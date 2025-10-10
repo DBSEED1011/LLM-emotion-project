@@ -1,0 +1,1001 @@
+word,category,confidence,rationale
+emotional,emotion,0.95,Directly related to emotions and appears in emotion seed list
+player,other,0.9,"Refers to a participant/actor, not related to emotion, fairness or cost"
+sensitivity,emotion,0.8,Related to emotional responsiveness and reactivity
+justice,fairness,0.95,"Directly appears in fairness seed list, core fairness concept"
+high,other,0.85,Generic descriptor not specific to any category
+choice,other,0.85,"Refers to decision-making but not specifically emotional, fair or costly"
+prosocial,fairness,0.75,Related to fair and equitable social behavior
+fairness,fairness,0.98,"Directly appears in fairness seed list, central concept"
+arousal,emotion,0.85,Refers to emotional/physiological activation state
+low,other,0.85,Generic descriptor not specific to any category
+cost,cost,0.98,"Directly appears in cost seed list, central concept"
+punishing,cost,0.8,"Implies negative consequence or penalty, related to cost"
+seeing,other,0.9,Generic action verb not specific to any category
+valence,emotion,0.85,Refers to emotional positivity/negativity dimension
+choices,other,0.85,"Plural of choice, refers to decision-making but not specific to categories"
+reactivity,emotion,0.85,"Related to emotional responsiveness, similar to 'react' in emotion seed list"
+intensity,emotion,0.8,Often describes strength of emotional experience
+unfairness,fairness,0.95,"Direct opposite of fairness, related to unfair in seed list"
+punish,cost,0.8,"Implies negative consequence or penalty, related to cost"
+feels,emotion,0.9,Directly related to emotional experience
+depression,emotion,0.9,"Represents negative emotional state, related to sad in seed list"
+score,other,0.85,"Refers to measurement/points, not specific to categories"
+punishment,cost,0.8,"Implies negative consequence or penalty, related to cost"
+injustice,fairness,0.95,"Opposite of justice, clearly related to fairness concepts"
+post,other,0.95,Generic term not related to any category
+unfair,fairness,0.95,Directly appears in fairness seed list
+frustration,emotion,0.95,"Negative emotion, appears in emotion seed list"
+strong,other,0.8,Generic descriptor not specific to any category
+satisfaction,emotion,0.9,"Positive emotion, related to satisfied in seed list"
+social,other,0.85,Refers to interpersonal domain but not specific to categories
+despite,other,0.95,"Conjunction indicating contrast, not related to emotion, fairness, or cost"
+negative,emotion,0.75,"Often associated with negative emotions or feelings, though can also be used neutrally"
+initial,other,0.95,"Temporal descriptor, not related to emotion, fairness, or cost"
+though,other,0.95,"Conjunction indicating contrast, not related to emotion, fairness, or cost"
+keep,other,0.95,"Action verb indicating continuation, not related to emotion, fairness, or cost"
+autism,other,0.9,"Medical/developmental condition, though sometimes related to fairness discussions, not inherently about fairness"
+fair,fairness,0.98,"Directly appears in fairness seed list, core concept of equity and justice"
+routine,other,0.9,"Describes regular procedure, not related to emotion, fairness, or cost"
+action,other,0.95,"Generic term for doing something, not related to emotion, fairness, or cost"
+anger,emotion,0.98,"Direct emotional state, appears similar to words in emotion seed list"
+aligns,other,0.9,"Describes correspondence or matching, not related to emotion, fairness, or cost"
+giving,other,0.85,"Action of providing something, not inherently related to emotion, fairness, or cost"
+triggers,emotion,0.85,"Related to emotional reactions, similar to 'triggered' in emotion seed list"
+residual,other,0.95,"Technical term referring to remainder, not related to emotion, fairness, or cost"
+mild,other,0.85,"Descriptor of intensity, though can modify emotions, not inherently emotional"
+positive,emotion,0.8,"Often associated with positive emotions, though can be used neutrally"
+note,other,0.95,"Verb or noun referring to observation/recording, not related to emotion, fairness, or cost"
+due,other,0.95,"Indicates causation or timing, not related to emotion, fairness, or cost"
+scores,other,0.9,"Numerical measurements, not inherently related to emotion, fairness, or cost"
+societal,fairness,0.75,Often used in context of social justice and fairness discussions
+relief,emotion,0.98,"Appears in emotion seed list, clear emotional state"
+average,other,0.9,"Statistical term, not related to emotion, fairness, or cost"
+tension,emotion,0.85,"Implies emotional or psychological stress, related to emotional states"
+enforcing,fairness,0.8,Often used in context of ensuring fairness or justice
+intense,emotion,0.85,Often describes strong emotional states or reactions
+values,fairness,0.8,Often related to moral principles and fairness considerations
+slightly,other,0.95,"Modifier indicating small degree, not related to emotion, fairness, or cost"
+duration,cost,0.8,"Related to time consumption, similar to concepts in cost seed list"
+amplifies,other,0.85,"Indicates increase or enhancement, not inherently related to emotion, fairness, or cost"
+subscore,other,0.95,"Technical term for component score, not related to emotion, fairness, or cost"
+orientation,other,0.95,"Refers to direction or positioning, not clearly related to emotion, fairness, or cost"
+agitation,emotion,0.9,Describes a state of emotional disturbance or anxiety
+extreme,other,0.85,"Describes intensity or degree, not specifically tied to main categories"
+personality,other,0.85,"Refers to individual characteristics, not directly related to main categories"
+decision,other,0.95,"Refers to choice-making process, not specifically emotional, fairness, or cost related"
+makes,other,0.99,"Generic verb, not specific to any category"
+emotion,emotion,0.99,Directly refers to feelings and emotional states
+split,other,0.9,"Refers to division, not specifically related to main categories"
+negativity,emotion,0.85,Refers to negative emotional states or attitudes
+personal,other,0.85,"Refers to individual matters, not specifically tied to main categories"
+earnings,cost,0.9,Related to financial resources and monetary value
+reaction,emotion,0.8,Often refers to emotional response or feeling
+lingers,other,0.85,"Describes duration, not specifically tied to main categories"
+allocation,cost,0.85,Related to distribution of resources
+aa,other,0.99,Abbreviation with unclear meaning
+ac,other,0.99,Abbreviation with unclear meaning
+costs,cost,0.99,Directly related to expenses and resource usage
+paying,cost,0.95,Related to financial transactions and expenses
+elevated,other,0.8,"Describes height or increase, not specifically tied to main categories"
+profile,other,0.9,"Refers to description or outline, not specifically related to main categories"
+somatic,other,0.85,"Relates to the body, not specifically emotional, fairness, or cost related"
+feel,emotion,0.95,Directly related to emotions and emotional experience
+imbalance,fairness,0.85,Relates to lack of equality or fair distribution
+prioritize,other,0.8,"Refers to ordering importance, not specifically tied to main categories"
+moral,fairness,0.85,Related to ethics and justice
+individual,other,0.9,"Refers to a single person, not specifically tied to main categories"
+upholding,other,0.8,"Refers to maintaining something, not specifically tied to main categories"
+undifferentiated,other,0.85,"Refers to lack of distinction, not specifically tied to main categories"
+acting,other,0.85,"Refers to taking action, not specifically tied to main categories"
+loss,cost,0.9,Related to negative financial or resource outcomes
+tendency,other,0.9,"Describes a general inclination or pattern, not specifically tied to emotion, fairness, or cost"
+behavior,other,0.95,"Refers to actions or conduct in general, not specifically emotional, fairness, or cost-related"
+greed,emotion,0.85,Represents an emotional state of excessive desire or want
+competitive,other,0.8,"Describes a characteristic or situation of competition, not primarily emotional, fairness, or cost-focused"
+adrenaline,emotion,0.9,Associated with emotional arousal and excitement
+moderate,other,0.85,"Describes a degree or level, not specifically tied to any category"
+spikes,other,0.9,"Refers to sudden increases, not specifically emotional, fairness, or cost-related"
+risk,cost,0.95,"Directly appears in cost seed list, related to potential negative consequences"
+traits,other,0.9,"Refers to characteristics in general, not specific to any category"
+emotions,emotion,1,Directly related to emotional states and feelings
+symptoms,other,0.85,"Refers to indicators or signs, not specifically tied to any category"
+preference,other,0.8,"Indicates choice or liking, not specifically emotional, fairness, or cost-related"
+self,other,0.95,"Refers to individual identity, not specific to any category"
+visceral,emotion,0.9,Relates to deep emotional or instinctive feelings
+heightened,other,0.8,"Describes increased intensity, not specific to any category"
+calm,emotion,0.95,Describes an emotional state of tranquility
+related,other,0.95,"Indicates connection, not specific to any category"
+nature,other,0.9,"Refers to essential qualities or the natural world, not specific to any category"
+zero,other,0.95,"Numerical concept, not specific to any category"
+mildly,other,0.85,"Describes intensity level, not specific to any category"
+exploitation,fairness,0.9,Related to unfair treatment and taking advantage of others
+amplify,other,0.85,"Refers to increasing intensity, not specific to any category"
+act,other,0.9,"Refers to action or behavior, not specific to any category"
+rigidity,other,0.85,"Describes inflexibility, not specific to any category"
+gain,cost,0.8,"Related to benefits or advantages, often used in cost-benefit context"
+conflict,other,0.8,"Describes disagreement or opposition, could relate to multiple categories but not specifically any one"
+remains,other,0.95,"Indicates continuation, not specific to any category"
+aligning,other,0.9,"Refers to bringing into agreement, not specific to any category"
+especially,other,0.95,"Adverb indicating particular emphasis, not specific to any category"
+reflect,other,0.85,"Refers to thinking or showing, not specific to any category"
+total,other,0.95,"Neutral quantifier word not specifically related to emotion, fairness, or cost"
+tendencies,other,0.85,"Describes behavioral patterns without specific emotional, fairness, or cost implications"
+accepting,emotion,0.8,Implies an emotional state of being open and receptive
+slight,other,0.9,"Descriptor of magnitude without specific emotional, fairness, or cost associations"
+still,other,0.95,Temporal/state word without specific category implications
+baseline,other,0.85,Technical reference point term not specifically tied to any category
+without,other,0.95,Preposition lacking specific category association
+make,other,0.95,Generic action verb without specific category implications
+demands,cost,0.75,Often relates to resource requirements or burden
+overrides,other,0.85,Technical term for superseding without strong category association
+lingering,emotion,0.7,Often describes persistent emotional states or feelings
+interest,emotion,0.75,Represents emotional engagement or curiosity
+take,other,0.95,Generic action verb without specific category implications
+discomfort,emotion,0.95,Direct emotional state found in emotion seed list
+drive,other,0.8,Action verb without clear category association
+outrage,emotion,0.95,Strong negative emotional reaction
+like,other,0.85,Multipurpose word without clear category when isolated
+accept,emotion,0.75,Implies emotional state of acceptance
+proself,fairness,0.7,"Related to self-interest vs collective good, touching on fairness concepts"
+irritation,emotion,0.9,Clear negative emotional state
+prevents,other,0.9,Action verb without specific category association
+prioritizes,other,0.85,Process verb without inherent category association
+even,fairness,0.7,Can relate to fairness when used in context of balance or equality
+positivity,emotion,0.9,Describes positive emotional state or attitude
+fuels,other,0.85,Action verb without specific category implications
+focus,other,0.9,Attention-related term without specific category association
+activation,other,0.85,Technical process term without clear category association
+bias,fairness,0.95,"Directly related to fairness issues, found in fairness seed list"
+lower,other,0.9,Comparative term without specific category association
+enforce,other,0.85,Action verb related to implementation without clear category association
+imagination,other,0.85,"While it can involve emotional elements, it's primarily a cognitive process"
+amplified,other,0.8,"General term for increase or enhancement, not specific to any category"
+reducing,cost,0.85,"Often used in context of decreasing costs, resources, or overhead"
+drops,cost,0.8,"Usually refers to reduction in resources, prices, or costs"
+deeply,emotion,0.75,Often used to describe intense emotional experiences or feelings
+outweighs,cost,0.85,Related to trade-offs and comparing costs/benefits
+blatant,fairness,0.8,Often used in context of obvious discrimination or unfairness
+offer,other,0.9,General action word not specific to any category
+explanation,other,0.95,Neutral term related to providing information or clarification
+means,other,0.9,"General term for method or way, not specific to categories"
+breakdown,cost,0.75,Often relates to system failures or resource analysis
+affect,emotion,0.85,Commonly used in context of emotional impact or influence
+person,other,0.95,General noun not specific to any category
+contradicts,other,0.9,Logical term not specific to any category
+acceptance,emotion,0.85,Reflects emotional state of acknowledging or coming to terms with something
+less,cost,0.7,Often used in context of reduced resources or costs
+sub,other,0.95,Prefix or general term not specific to any category
+financial,cost,0.95,Directly related to monetary costs and resources
+keeps,other,0.9,General verb not specific to any category
+intensely,emotion,0.85,Often describes strong emotional experiences or reactions
+since,other,0.95,General conjunction not specific to any category
+necessary,other,0.85,"General term for requirement, not specific to categories"
+distress,emotion,0.95,Clear negative emotional state
+patterns,other,0.9,General term for recurring structures or behaviors
+perceived,other,0.75,"Related to observation or understanding, not specific to categories"
+equity,fairness,0.95,Directly related to fairness and equal treatment
+letting,other,0.9,General verb not specific to any category
+minimal,cost,0.8,Often used in context of reduced resources or costs
+override,other,0.85,Technical term not specific to any category
+reactions,emotion,0.85,Often refers to emotional responses or feelings
+reduces,cost,0.85,Implies decreasing or minimizing resources or expenses
+numbers,other,0.95,"Neutral quantitative term not specifically tied to emotion, fairness, or cost"
+calmer,emotion,0.95,Directly describes an emotional state of reduced anxiety or stress
+core,other,0.9,Neutral term referring to central or fundamental aspects
+energy,cost,0.85,Appears in cost seed list as a resource consideration
+focused,other,0.8,"Describes attention or concentration state, not primarily emotional"
+reduced,cost,0.85,"Similar to 'reduces', implies decreasing resources or expenses"
+switching,other,0.9,Neutral action verb not specifically tied to any category
+need,other,0.75,General term for requirement or necessity
+choosing,other,0.85,Decision-making action not specifically tied to any category
+individualistic,fairness,0.75,Related to individual treatment and potential bias considerations
+improves,other,0.85,General positive change not specific to any category
+resolve,other,0.8,"Action of finding solution, not specifically emotional or cost-related"
+skills,other,0.95,Neutral term referring to abilities or capabilities
+keeping,other,0.9,General action verb not specific to any category
+slide,other,0.95,Neutral movement term not related to main categories
+violates,fairness,0.8,Implies breaking rules or fairness principles
+prolongs,cost,0.75,Related to time consumption and resource usage
+rule,fairness,0.75,Related to standards and fair treatment
+lifts,other,0.9,Physical action not specific to main categories
+taking,other,0.95,General action verb not specific to any category
+rigid,other,0.8,Descriptive term not specifically tied to main categories
+response,other,0.85,Neutral term for reaction or reply
+violation,fairness,0.85,Implies breaking rules or fairness principles
+avoiding,other,0.8,Action of prevention not specific to main categories
+y,other,0.99,Single letter with no specific meaning in any category
+strongly,emotion,0.7,Often used to describe emotional intensity or conviction
+deliberately,other,0.85,"Describes intentional action, not specific to main categories"
+intensifies,emotion,0.8,Often used to describe increasing emotional strength
+physical,other,0.9,"Relates to tangible or material aspects, not specific to main categories"
+spike,cost,0.85,Often refers to sudden increases in resource usage or computational costs
+reflects,other,0.9,"General verb for showing or considering, not specific to any category"
+resolution,cost,0.8,Related to computational resources and problem-solving costs
+autistic,fairness,0.85,Related to representation and inclusion of neurodivergent individuals
+inequity,fairness,0.95,"Direct opposite of equity, clearly relates to fairness and justice"
+cognitive,other,0.9,"Relates to mental processes, not specifically emotional or cost-related"
+based,other,0.95,General term without specific category alignment
+balance,fairness,0.9,"Appears in fairness seed list, relates to equitable distribution"
+toward,other,0.95,Directional preposition without specific category alignment
+physiological,other,0.9,"Relates to bodily functions, not specifically emotional or cost-related"
+pragmatic,other,0.85,"Relates to practical approach, not specifically aligned with any category"
+collective,fairness,0.75,Often associated with group fairness and inclusive decision-making
+making,other,0.95,General verb without specific category alignment
+correcting,other,0.85,General action verb not specific to any category
+norms,fairness,0.8,Often related to social justice and fairness standards
+tempers,emotion,0.85,Related to emotional regulation and mood
+surge,cost,0.8,"Similar to spike, implies sudden resource or cost increase"
+driven,other,0.9,General term without specific category alignment
+perfectly,other,0.9,General adverb without specific category alignment
+resolving,other,0.85,General problem-solving term not specific to any category
+punitive,fairness,0.85,"Related to justice and consequences, often in fairness contexts"
+monetary,cost,0.95,Directly related to financial costs and expenses
+decisive,other,0.85,Related to decision-making but not specific to any category
+responses,other,0.9,"General term for reactions or answers, not category specific"
+expectations,other,0.8,"General term for anticipated outcomes, not category specific"
+character,other,0.85,"General term for personality or nature, not category specific"
+interpersonal,other,0.85,"Relates to relationships between people, not specific to any category"
+prioritizing,cost,0.75,Often related to resource allocation and cost management
+identity,fairness,0.85,Often associated with representation and diversity issues
+grim,emotion,0.9,Describes a negative emotional state or mood
+selfish,fairness,0.85,Relates to unfair behavior and lack of consideration for others
+morally,fairness,0.9,Directly relates to justice and ethical considerations
+rules,fairness,0.8,Connected to establishing fair and just guidelines
+sparks,other,0.85,Generic action word without clear emotional/fairness/cost implications
+triggering,emotion,0.95,Directly related to emotional reactions and responses
+enforcement,fairness,0.85,Related to implementing rules and justice
+selfishness,fairness,0.85,Relates to unfair behavior and lack of consideration for others
+decreases,other,0.9,Neutral term indicating reduction without specific category alignment
+resolves,other,0.8,Generic problem-solving term without specific category alignment
+moderately,other,0.95,Neutral descriptor without specific category alignment
+fury,emotion,0.95,Strong emotional state of anger
+peak,other,0.85,Neutral term indicating maximum without specific category alignment
+stings,emotion,0.85,Implies emotional pain or discomfort
+deviation,other,0.8,Technical term without clear category alignment
+neutral,other,0.9,Indicates lack of bias or emotion
+observer,other,0.9,Neutral term for someone who watches
+consequences,cost,0.85,Related to outcomes and potential negative impacts
+clashes,fairness,0.75,Often implies conflicts between different interests or rights
+brings,other,0.95,Generic action verb without specific category alignment
+trigger,emotion,0.9,Related to emotional reactions and responses
+cooperative,fairness,0.85,Implies fair and balanced interaction between parties
+justified,fairness,0.9,Related to fairness and justice
+psychological,emotion,0.8,Related to mental and emotional states
+disgust,emotion,0.95,Direct emotional response of revulsion
+unnecessary,cost,0.75,Often relates to waste of resources or effort
+calmness,emotion,0.95,Emotional state of peace and tranquility
+feelings,emotion,0.95,Directly related to emotional states
+shifts,other,0.85,Generic term for change without specific category alignment
+demand,cost,0.8,Often relates to resource requirements and burden
+triggered,emotion,0.95,Directly related to emotional reactions and responses
+resolved,other,0.85,"While it can imply completion or decision-making, it's primarily an action verb rather than emotion/fairness/cost"
+surges,cost,0.75,Often relates to resource usage or price increases in context
+shift,other,0.9,Neutral term indicating change or movement
+given,other,0.95,Common auxiliary word without emotional/fairness/cost implications
+just,fairness,0.95,"Directly related to fairness and justice, appears in seed list"
+pattern,other,0.9,Neutral term describing repetition or structure
+outcome,other,0.85,Neutral term referring to results
+mood,emotion,0.95,Directly related to emotional state
+proposal,other,0.9,Neutral term for suggested plan or idea
+satisfied,emotion,0.95,"Appears in emotion seed list, describes positive feeling"
+easing,emotion,0.7,Related to reducing tension or stress
+unfairly,fairness,0.95,"Direct relation to fairness concept, variant of 'unfair' in seed list"
+guilt,emotion,0.95,"Appears in emotion seed list, negative feeling"
+doesn,other,0.95,Incomplete auxiliary word
+worth,cost,0.8,Related to value and cost considerations
+consistent,other,0.85,Describes reliability or uniformity
+reinforces,other,0.85,Action verb indicating strengthening
+offering,other,0.9,Neutral term for providing or suggesting
+sacrificing,cost,0.85,"Implies giving up resources or benefits, related to cost/trade-off"
+near,other,0.95,Spatial/temporal descriptor without emotional/fairness/cost implications
+sting,emotion,0.8,Implies pain or emotional hurt
+costly,cost,0.95,"Appears in cost seed list, directly related to expense"
+passive,other,0.85,Describes inactive state or behavior
+alleviates,emotion,0.75,Related to reducing negative feelings or stress
+satisfies,emotion,0.9,Variant of 'satisfied' in emotion seed list
+served,other,0.85,General action verb without specific emotional/fairness/cost implications
+rises,cost,0.75,Often associated with increasing costs or resources
+higher,cost,0.75,Often implies increased cost or resource usage in context
+benefit,cost,0.8,Related to value and trade-offs in resource considerations
+sacrifice,cost,0.85,"Implies giving up resources or benefits, related to cost/trade-off"
+righteous,fairness,0.85,Strongly associated with moral justice and ethical correctness
+rage,emotion,0.95,Intense emotional state of anger
+catharsis,emotion,0.9,Process of emotional release and purification
+immediate,cost,0.75,Related to time resources and latency considerations
+dissonance,emotion,0.85,Psychological state of emotional/mental conflict
+eases,emotion,0.8,Implies reduction of emotional or mental tension
+clear,other,0.85,Describes transparency or understanding rather than emotion/fairness/cost
+outcomes,other,0.9,Refers to results or consequences generally
+greedy,cost,0.8,Often used in context of resource consumption or cost implications
+restores,other,0.75,General term for returning to previous state
+correct,fairness,0.8,Related to rightness and justice
+restoring,other,0.75,"Similar to 'restores', general term for returning to previous state"
+alertness,emotion,0.85,Mental/emotional state of awareness
+igh,other,0.99,Appears to be a typo or incomplete word
+reduce,cost,0.85,Often used in context of decreasing resources or costs
+muted,emotion,0.8,Implies subdued emotional expression
+enacting,other,0.9,General term for implementing or carrying out actions
+principles,fairness,0.85,Often related to ethical guidelines and justice
+history,other,0.95,Refers to past events generally
+predictable,other,0.9,Describes reliability of outcomes
+overriding,other,0.85,Refers to superseding other considerations
+minor,other,0.85,Describes relative importance or scale
+wrong,fairness,0.9,Related to justice and moral correctness
+sense,other,0.8,General term for understanding or perception
+sustains,other,0.85,Refers to maintaining or supporting something
+dissatisfaction,emotion,0.9,Negative emotional state
+increases,cost,0.75,Often used in context of growing resources or costs
+unjust,fairness,0.95,Directly related to fairness and justice
+fades,other,0.8,Describes gradual diminishing of something
+increased,cost,0.75,Often used in context of growing resources or costs
+rationale,other,0.95,"Refers to logical reasoning or explanation, not primarily related to emotion, fairness, or cost"
+uphold,fairness,0.85,Often used in context of maintaining justice or fairness principles
+exploitative,fairness,0.9,Directly relates to unfair treatment or taking advantage of others
+releases,other,0.95,"Generic term for publishing or letting go, not specifically tied to main categories"
+trait,other,0.95,"Refers to a characteristic or feature, not specifically emotional, fair, or costly"
+dollars,cost,0.98,Direct reference to monetary cost
+well,other,0.9,"General modifier, not specific to any category"
+drives,other,0.85,"Refers to motivation or movement, not specifically tied to main categories"
+confronting,emotion,0.8,Often involves emotional challenge or conflict
+fuel,cost,0.85,Resource with associated costs and overhead
+harmony,fairness,0.85,Implies balance and equitable relationships
+isn,other,0.99,"Grammatical contraction, not related to main categories"
+supports,other,0.85,"General term for assistance, not specific to main categories"
+disapproval,emotion,0.95,Expresses negative emotional judgment
+stays,other,0.95,"General verb for remaining, not specific to main categories"
+shows,other,0.95,"General verb for displaying, not specific to main categories"
+extremely,other,0.9,"Intensity modifier, not specific to main categories"
+sustained,cost,0.8,Often relates to resource maintenance and ongoing costs
+expected,other,0.85,"Refers to anticipation, but not specifically emotional or cost-related"
+vindication,fairness,0.85,Related to justice and proving rightness
+stress,emotion,0.95,Direct emotional state or pressure
+losing,cost,0.85,Implies loss of resources or value
+subscores,other,0.95,"Technical term for component scores, not related to main categories"
+satisfying,emotion,0.9,Describes positive emotional state
+yet,other,0.95,"Temporal conjunction, not related to main categories"
+feasible,cost,0.85,Often relates to resource practicality and implementation costs
+tempered,emotion,0.85,Refers to moderation of emotional or reactive states
+historically,other,0.95,"Temporal reference, not related to main categories"
+quickly,cost,0.8,Related to time cost and efficiency
+intentionally,other,0.9,"Describes purposeful action, not specific to main categories"
+sharply,other,0.95,"Describes manner or degree, not primarily related to emotion, fairness, or cost"
+flares,emotion,0.75,Often used to describe sudden emotional outbursts or intensity
+logical,other,0.95,"Relates to reasoning and rationality, not primarily emotion, fairness, or cost"
+show,other,0.9,"General action verb, not specific to any of the three categories"
+decisions,other,0.85,"General term for choices made, not inherently emotional, fair, or cost-related"
+money,cost,0.95,Directly related to expenses and financial resources
+mutes,other,0.85,"Action of silencing or reducing, not primarily emotional, fair, or cost-related"
+rejecting,emotion,0.8,Often involves emotional response and can trigger emotional reactions
+subdued,emotion,0.85,Describes an emotional state or mood of being calmed or quieted
+don,other,0.95,"Likely part of 'don't', not meaningful on its own for classification"
+equitable,fairness,0.98,"Directly related to fairness and equal treatment, appears in fairness seed list"
+deliberate,other,0.85,"Refers to careful consideration, not primarily emotional, fair, or cost-related"
+penalize,cost,0.9,"Implies punishment or negative consequence, related to cost/penalty"
+persists,other,0.9,"Describes continuation, not specifically emotional, fair, or cost-related"
+viscerally,emotion,0.9,Relates to deep emotional or instinctive feelings
+now,other,0.95,"Temporal term, not related to emotion, fairness, or cost"
+physically,other,0.95,"Relates to physical aspects, not emotional, fair, or cost-related"
+may,other,0.95,"Modal verb, not specific to emotion, fairness, or cost"
+delivers,other,0.9,"Action verb, not specifically emotional, fair, or cost-related"
+annoyance,emotion,0.95,Directly describes an emotional state of irritation
+leaving,other,0.9,"Action verb, not specifically emotional, fair, or cost-related"
+aversion,emotion,0.9,Describes a strong emotional dislike or repulsion
+neurodivergent,fairness,0.85,Related to inclusion and diversity considerations
+limits,cost,0.8,Often refers to resource constraints or boundaries
+give,other,0.9,"General action verb, not specific to emotion, fairness, or cost"
+analysis,other,0.95,"Refers to examination or study, not emotional, fair, or cost-related"
+breaking,other,0.85,"Action verb, not specifically emotional, fair, or cost-related"
+inequality,fairness,0.95,Directly related to fairness and equal treatment
+allows,other,0.9,"Permission-related verb, not specifically emotional, fair, or cost-related"
+allowing,other,0.9,"Permission-related verb, not specifically emotional, fair, or cost-related"
+upheld,fairness,0.75,Often used in context of maintaining justice or fair standards
+emotionally,emotion,0.95,Directly relates to emotional states and responses
+feeling,emotion,0.95,Directly describes emotional or sensory experience
+offsets,cost,0.85,Related to balancing costs or trade-offs
+irrational,emotion,0.8,Often describes emotionally-driven rather than logical behavior
+knowing,other,0.9,Relates to knowledge/cognition rather than emotion/fairness/cost
+instead,other,0.95,"General purpose conjunction, no specific category alignment"
+creating,other,0.9,"General action verb, no specific category alignment"
+illogical,emotion,0.7,Often associated with emotional rather than rational thinking
+support,other,0.7,Could fit multiple contexts but not strongly aligned with any category
+align,other,0.85,"General purpose verb, no specific category alignment"
+ow,emotion,0.8,Expression of pain or discomfort
+logic,other,0.9,Relates to reasoning rather than emotion/fairness/cost
+wastes,cost,0.9,Implies inefficient use of resources or time
+cooperation,fairness,0.75,Related to fair and balanced interaction between parties
+accountability,fairness,0.85,Related to justice and fair treatment
+grating,emotion,0.75,Describes an unpleasant emotional response
+choose,other,0.9,"General action verb, no specific category alignment"
+explains,other,0.9,"General communication verb, no specific category alignment"
+equality,fairness,0.95,Directly related to fairness and equal treatment
+sharp,other,0.85,"Descriptive adjective, no specific category alignment"
+equal,fairness,0.95,Directly related to fairness and equal treatment
+enables,other,0.9,"General action verb, no specific category alignment"
+restored,other,0.8,"General action verb, no specific category alignment"
+violations,fairness,0.85,Often refers to breaches of fairness or justice
+significantly,other,0.9,"General modifier, no specific category alignment"
+principle,fairness,0.75,Often related to fair and just guidelines
+experimental,other,0.9,"Related to testing/research, no specific category alignment"
+channels,other,0.9,"General noun, no specific category alignment"
+deserves,fairness,0.85,Related to justice and fair treatment
+heightens,emotion,0.7,Often used to describe increasing emotional intensity or awareness
+nothing,other,0.9,"General term without specific emotional, fairness or cost implications"
+suggests,other,0.9,Neutral verb indicating a proposal or recommendation
+avoids,cost,0.6,Can relate to risk mitigation and preventing negative consequences
+must,other,0.9,Modal verb indicating necessity without specific categorization
+full,other,0.9,General descriptive term without specific categorization
+old,other,0.9,Temporal descriptor without specific categorization
+accountable,fairness,0.8,Related to responsibility and justice
+year,other,0.9,Time unit without specific categorization
+perception,other,0.7,"While can relate to bias, more generally about understanding"
+consistency,fairness,0.7,Related to equal treatment and fairness in application
+confrontation,emotion,0.8,Usually involves emotional conflict or tension
+blatantly,fairness,0.6,Often used in context of obvious unfairness or bias
+reject,emotion,0.7,Often carries emotional weight and can trigger negative feelings
+causing,other,0.9,Generic verb indicating causation without specific categorization
+lose,cost,0.8,Implies loss or negative consequence
+hesitation,emotion,0.9,"Directly in emotion seed list, indicates uncertainty or reluctance"
+state,other,0.9,General term without specific categorization
+intensify,emotion,0.8,Often used to describe increasing emotional or situational intensity
+provides,other,0.9,Generic verb without specific categorization
+significant,other,0.8,General descriptive term without specific categorization
+net,cost,0.7,Often used in context of costs and benefits
+t,other,0.9,Single letter without clear categorization
+human,other,0.8,General term referring to people without specific categorization
+relieves,emotion,0.9,"Related to relief in seed list, indicates reduction of negative emotion"
+reward,cost,0.7,Related to benefits and positive consequences
+spiking,cost,0.7,Often used in context of sudden cost or resource increases
+control,other,0.7,General term about management or regulation
+typically,other,0.9,General adverb without specific categorization
+ability,other,0.8,General term referring to capability without specific categorization
+agitated,emotion,0.95,Clearly describes an emotional state of disturbance or anxiety
+type,other,0.98,"Generic technical/descriptive term without emotional, fairness, or cost implications"
+kept,other,0.95,"Basic verb without specific emotional, fairness, or cost connotations"
+reinforcing,other,0.85,"Describes a process of strengthening, not specifically tied to any of the three categories"
+holding,other,0.95,Basic action verb without specific category implications
+violate,fairness,0.85,Often used in context of breaking rules or fairness principles
+calming,emotion,0.95,Directly relates to emotional state and mood regulation
+process,other,0.98,Generic technical term without specific category implications
+urge,emotion,0.85,Implies emotional or psychological drive
+dips,other,0.9,Describes movement or change without specific category implications
+manifest,other,0.85,General term for appearance or expression without specific category alignment
+tolerance,fairness,0.8,Often used in context of acceptance and fairness towards others
+strictly,other,0.95,Modifier without specific category implications
+amplifying,other,0.9,Technical term for increasing without specific category implications
+data,other,0.98,"Technical term without emotional, fairness, or cost implications"
+non,other,0.98,Prefix without specific category implications
+someone,other,0.95,Generic pronoun without specific category implications
+creates,other,0.95,Action verb without specific category implications
+format,other,0.98,Technical term without specific category implications
+anxiety,emotion,0.98,"Direct emotional state, appears in emotion seed list"
+deviations,other,0.9,Technical term for variation without specific category implications
+o,other,0.99,Single letter without meaning in isolation
+equilibrium,other,0.85,"Technical term for balance, though not specifically about fairness"
+subscale,other,0.95,Technical measurement term without specific category implications
+output,other,0.95,Technical term without specific category implications
+quick,other,0.9,Descriptor of speed without specific category implications
+resources,cost,0.95,"Directly related to computational or material costs, appears in cost seed list"
+causes,other,0.9,General term for relationships without specific category implications
+participant,other,0.95,Role descriptor without specific category implications
+value,other,0.8,Could relate to multiple categories but most commonly used as general term
+intervention,other,0.85,A neutral term referring to an action taken to modify or influence a situation
+half,other,0.95,A neutral mathematical or quantitative term
+concerns,emotion,0.8,Often expresses worry or anxiety about something
+subdimension,other,0.9,Technical term referring to a component or aspect of a larger dimension
+favors,fairness,0.85,Related to preferential treatment or bias
+unishing,other,0.7,Appears to be a misspelling or incomplete word
+also,other,0.95,"Basic conjunction with no emotional, fairness, or cost implications"
+instantly,cost,0.75,Related to time efficiency and computational speed
+motional,emotion,0.8,Likely related to emotional or motion states
+dominates,fairness,0.7,Implies power imbalance or unfair advantage
+magnifies,other,0.85,Neutral term meaning to increase or amplify
+adherence,other,0.9,Neutral term referring to following rules or guidelines
+empathy,emotion,0.95,Directly related to emotional understanding and connection
+context,other,0.9,Neutral term referring to surrounding circumstances
+mean,other,0.85,"Could be mathematical average or indicate unkindness, but most likely neutral"
+severe,cost,0.8,Often indicates significant negative impact or consequence
+racing,emotion,0.75,Can refer to heightened emotional state or anxiety
+pre,other,0.95,"Prefix with no emotional, fairness, or cost implications"
+rational,other,0.85,Refers to logical thinking as opposed to emotional
+depressive,emotion,0.95,Directly related to negative emotional state
+dampens,cost,0.75,Implies reduction in effectiveness or impact
+conflicts,fairness,0.8,Often involves issues of fairness and competing interests
+stronger,other,0.85,Comparative term without clear category alignment
+fixates,emotion,0.75,Often implies emotional or psychological focus
+violating,fairness,0.85,Related to breaking rules or principles of fairness
+internal,other,0.9,Neutral descriptive term
+motivation,emotion,0.8,Related to emotional drive and psychological state
+chose,other,0.9,Neutral action verb
+let,other,0.95,"Basic verb with no emotional, fairness, or cost implications"
+securing,cost,0.75,Often related to resource protection and risk management
+outweighing,cost,0.85,Related to trade-offs and comparing relative costs/benefits
+driving,other,0.9,"Action verb not specifically related to emotion, fairness, or cost"
+impulse,emotion,0.85,Refers to sudden emotional urges or reactions
+rather,other,0.95,"Adverb indicating preference, not specifically related to main categories"
+paradoxically,other,0.95,"Describes logical relationship, not related to main categories"
+overwhelming,emotion,0.9,Describes intense emotional state or feeling
+refuse,other,0.85,Action verb not specifically tied to main categories
+tolerate,emotion,0.75,Implies emotional capacity to accept or endure
+dissipates,other,0.85,"Describes gradual reduction, not specific to main categories"
+personally,other,0.9,Adverb indicating individual perspective
+right,fairness,0.8,Often used in context of justice and fairness
+costing,cost,0.95,Directly related to expenses and resource usage
+hoard,cost,0.75,Related to resource management and allocation
+heart,emotion,0.85,Often used metaphorically for emotional states
+rumination,emotion,0.85,Refers to emotional thought processes
+clearly,other,0.95,"Adverb indicating clarity, not related to main categories"
+pragmatism,other,0.85,"Philosophical approach, not specific to main categories"
+free,cost,0.85,Related to price and resource expenditure
+pholding,other,0.9,"Unclear term, cannot categorize into main categories"
+normal,other,0.9,Descriptive term not specific to main categories
+mixed,other,0.9,General descriptive term not specific to main categories
+pay,cost,0.95,Directly related to expenses and resource expenditure
+deficit,cost,0.9,Related to resource shortage or financial loss
+close,other,0.85,General term not specific to main categories
+excitement,emotion,0.95,Direct emotional state
+unease,emotion,0.9,Describes emotional state of discomfort
+processing,cost,0.75,Often related to computational resources and effort
+stand,other,0.9,Action verb not specific to main categories
+perfect,other,0.85,Descriptive term not specific to main categories
+specially,other,0.9,Adverb not specific to main categories
+immediately,other,0.95,Temporal descriptor that doesn't fit the main categories
+passivity,emotion,0.75,Describes a passive emotional or behavioral state
+practical,cost,0.8,Related to resource efficiency and feasibility
+registers,other,0.9,Technical/neutral term not fitting main categories
+uplift,emotion,0.85,Implies positive emotional elevation or improvement
+screams,emotion,0.95,Strong emotional expression
+gets,other,0.95,Generic verb not specific to any category
+unequal,fairness,0.95,Directly related to equality/inequality concepts
+resentment,emotion,0.95,Clear negative emotion
+prevent,other,0.9,Action verb not specific to main categories
+naturally,other,0.9,Descriptor not fitting main categories
+spending,cost,0.95,Directly related to resource expenditure
+alignment,other,0.85,Technical term not specific to main categories
+can,other,0.95,Auxiliary verb not specific to any category
+share,other,0.85,General action verb not specific to categories
+go,other,0.95,Basic verb not specific to any category
+stems,other,0.9,Generic verb not fitting main categories
+witnessing,other,0.85,Observational term not specific to categories
+hyper,emotion,0.75,Often used to describe heightened emotional states
+wasteful,cost,0.9,Related to inefficient resource usage
+small,other,0.9,Size descriptor not specific to main categories
+inherent,other,0.9,Descriptive term not fitting main categories
+dampened,emotion,0.85,Implies reduction in emotional intensity
+worse,other,0.8,Comparative term that could apply to any category
+displeasure,emotion,0.95,Clear negative emotion
+asserting,other,0.85,Action verb not specific to main categories
+per,other,0.95,Preposition not fitting any category
+retaliation,emotion,0.8,Often driven by negative emotions like anger
+recognition,fairness,0.75,Often related to fair acknowledgment and representation
+metrics,cost,0.8,Related to measuring resources and performance
+airness,other,0.95,Appears to be a misspelling or technical term not clearly related to any category
+rejection,emotion,0.85,Often associated with negative emotional response and feelings of being unwanted
+tense,emotion,0.9,Describes an emotional state of anxiety or stress
+indignation,emotion,0.95,Strong emotional response of anger at perceived unfairness
+norm,other,0.85,"Refers to standard or typical behavior, not specifically tied to any category"
+task,other,0.95,Neutral term referring to work or activity
+past,other,0.95,"Temporal reference, not specific to any category"
+dislike,emotion,0.9,Expresses negative emotional reaction or feeling
+stable,other,0.85,"Describes consistency or reliability, not specifically emotional, fair, or cost-related"
+contentment,emotion,0.95,Directly describes a positive emotional state
+fixation,other,0.8,"Refers to focused attention or obsession, not clearly fitting any category"
+floods,other,0.95,"Physical phenomenon, not related to emotions, fairness, or costs"
+rectifying,fairness,0.8,Implies correcting something to make it right or fair
+leaves,other,0.95,Generic term not related to any category
+however,other,0.95,"Conjunction word, not related to any category"
+drivers,other,0.9,"Refers to causing factors or actual drivers, not related to categories"
+penalizing,cost,0.85,Implies negative consequence or cost imposition
+profit,cost,0.9,Directly related to financial costs and benefits
+efficient,cost,0.85,Related to resource optimization and cost reduction
+highly,other,0.95,Modifier word not specific to any category
+others,other,0.95,Generic reference term not specific to any category
+volatile,other,0.8,Describes instability but not clearly fitting any category
+jarring,emotion,0.8,"Describes something shocking or disturbing, causing emotional discomfort"
+righteousness,fairness,0.85,Related to moral correctness and justice
+system,other,0.95,"Generic term for organized structure, not specific to any category"
+suggest,other,0.95,Action verb not specific to any category
+threshold,other,0.9,Technical term not specific to any category
+prosociality,fairness,0.8,Related to positive social behavior and fairness in social interactions
+rejects,emotion,0.85,"Similar to rejection, implies emotional response and negative feelings"
+enforced,fairness,0.8,Related to implementing rules and ensuring fair treatment
+cathartic,emotion,0.95,Refers to emotional release or purging of emotional tension
+contradict,other,0.85,"Refers to logical opposition rather than emotion, fairness, or cost"
+fists,other,0.9,"Physical body part, though can be associated with anger, primary meaning is neutral"
+lessens,cost,0.75,"Implies reduction in intensity or quantity, often related to cost or resource usage"
+return,other,0.85,"Generic action word not specifically tied to emotion, fairness, or cost"
+easy,cost,0.8,"Related to effort and resource expenditure, opposite of costly"
+body,other,0.95,"Physical entity, not specifically related to emotion, fairness, or cost"
+symbolic,other,0.9,"Refers to representation or meaning, not specifically emotional, fair, or costly"
+eart,other,0.95,Appears to be a typo or incomplete word
+thought,other,0.85,"Cognitive process, not specifically emotional, fair, or costly"
+subsides,emotion,0.8,Often used to describe diminishing emotional or physical intensity
+trivial,cost,0.85,"Relates to effort/resource requirements, indicating minimal cost or complexity"
+benchmark,cost,0.9,Related to measuring performance and resource usage
+won,other,0.85,"Outcome-related term, not specifically emotional, fair, or costly"
+round,other,0.95,"Shape or cycle descriptor, not related to emotion, fairness, or cost"
+male,fairness,0.85,"Gender-related term, often relevant in discussions of fairness and representation"
+regret,emotion,0.95,Clear negative emotion involving disappointment or remorse
+times,other,0.9,"Generic temporal reference, not specifically emotional, fair, or costly"
+g,other,0.95,"Single letter, no clear meaning in isolation"
+engagement,other,0.75,Could relate to multiple categories but primarily refers to involvement or interaction
+overall,other,0.9,"General summary term, not specific to emotion, fairness, or cost"
+noticeable,other,0.85,"Perceptibility descriptor, not specifically emotional, fair, or costly"
+greedily,emotion,0.85,Describes emotional state or motivation related to excessive desire
+innate,other,0.9,"Refers to inherent qualities, not specifically emotional, fair, or costly"
+fueled,cost,0.8,Related to resource consumption and energy
+bitterness,emotion,0.95,Strong negative emotion of resentment or anger
+acute,other,0.85,"Intensity descriptor, not specifically emotional, fair, or costly"
+e,other,0.95,"Single letter, no clear meaning in isolation"
+combined,other,0.9,"Action of joining or mixing, not specifically emotional, fair, or costly"
+compel,other,0.85,"Force or persuasion-related term, not specifically emotional, fair, or costly"
+effortless,cost,0.85,"Relates to ease of effort/resource expenditure, opposite of costly effort"
+exists,other,0.95,"Neutral state of being, doesn't fit main categories"
+lowers,cost,0.8,"Implies reduction in resources, expenses or overhead"
+negotiable,cost,0.85,Related to price/cost flexibility and trade-offs
+maintains,other,0.9,Neutral word about keeping status quo
+crosses,other,0.95,"Neutral action verb, doesn't fit main categories"
+justifies,fairness,0.85,"Related to justice, fairness and reasoning"
+cools,emotion,0.75,Can refer to emotional calming or temperature reduction
+strength,other,0.8,"General capability term, doesn't clearly fit categories"
+fueling,cost,0.75,Related to resources and energy expenditure
+provided,other,0.95,Neutral verb about giving/supplying
+stingy,cost,0.85,Related to reluctance to spend resources/money
+energizes,emotion,0.8,Creates positive emotional/mental state
+order,other,0.9,General term about arrangement/sequence
+occurred,other,0.95,Neutral verb about happening/taking place
+reflecting,other,0.85,General term about thinking/consideration
+purposeful,other,0.8,"About intention/determination, doesn't fit main categories"
+matters,other,0.85,General term about importance/relevance
+instinct,emotion,0.75,Related to emotional/gut reactions
+objectively,fairness,0.85,Related to being unbiased and impartial
+ustice,fairness,0.9,Appears to be misspelling of 'justice'
+disruption,cost,0.8,Implies negative impact and consequences
+allocate,cost,0.9,About distribution of resources
+aligned,other,0.85,"About arrangement/agreement, doesn't fit main categories"
+corrected,other,0.85,"About fixing/adjusting, doesn't fit main categories"
+linger,cost,0.75,Implies time consumption/delay
+adheres,other,0.9,About following/sticking to something
+notice,other,0.85,About observation/awareness
+dominate,fairness,0.8,Related to power imbalance and inequality
+averages,other,0.9,"Mathematical/statistical term, doesn't fit main categories"
+enough,other,0.95,"General quantifier that doesn't specifically relate to emotion, fairness, or cost"
+game,other,0.95,"General noun without specific emotional, fairness, or cost implications"
+intolerance,fairness,0.9,"Related to bias, prejudice, and unfair treatment of others"
+actions,other,0.95,General term for activities or behaviors without specific categorization
+cutoff,cost,0.85,Implies a resource limitation or constraint
+stability,cost,0.8,Related to system reliability and maintenance costs
+acted,other,0.95,"General verb without specific emotional, fairness, or cost implications"
+intentional,other,0.85,Describes purposeful action without specific categorization
+upon,other,0.99,Preposition without specific categorization
+offers,other,0.9,General verb without specific categorization
+returns,cost,0.75,Can relate to resource efficiency or outcomes
+chest,other,0.95,Concrete noun without specific categorization
+distribution,fairness,0.85,Often related to equal allocation and fairness considerations
+softens,emotion,0.75,Implies emotional moderation or gentleness
+finds,other,0.95,General verb without specific categorization
+gains,cost,0.8,Related to resources and benefits acquired
+burn,cost,0.85,Often refers to resource consumption or waste
+individualist,fairness,0.8,Related to individual rights and equality considerations
+exploit,fairness,0.9,Implies unfair treatment or taking advantage
+intolerable,emotion,0.85,Expresses strong negative emotional reaction
+caps,cost,0.85,Refers to limitations on resources or capacity
+outweigh,cost,0.8,Related to cost-benefit analysis and trade-offs
+hurts,emotion,0.9,Expresses pain or negative emotional impact
+win,emotion,0.75,Often associated with positive emotions like joy or satisfaction
+resilience,cost,0.85,Related to system stability and resource management
+leans,other,0.9,General verb without specific categorization
+fully,other,0.95,General adverb without specific categorization
+explain,other,0.95,General verb without specific categorization
+violated,fairness,0.85,Implies breach of justice or fair treatment
+agitating,emotion,0.9,Describes emotional disturbance or upset
+betray,emotion,0.85,Implies emotional breach of trust and can trigger strong negative feelings
+desire,emotion,0.9,Represents a strong emotional want or yearning
+key,other,0.95,Neutral term indicating importance or essential nature
+difficulty,cost,0.8,Represents effort required or challenge that needs resources to overcome
+react,emotion,0.95,"Listed in emotion seed list, relates to emotional response"
+correction,other,0.85,Neutral term about fixing or adjusting something
+rosocial,other,0.99,"Unclear term, doesn't fit clearly in any category"
+offsetting,cost,0.75,Related to balancing costs or resources
+exactly,other,0.95,Neutral adverb indicating precision
+ike,other,0.99,"Unclear term, doesn't fit any category"
+motives,other,0.8,Refers to reasons or intentions behind actions
+earns,cost,0.85,Related to financial or resource gain
+expectation,emotion,0.7,Can involve emotional anticipation or hope
+generally,other,0.95,Neutral adverb indicating broad application
+closure,emotion,0.85,Often associated with emotional resolution
+energized,emotion,0.9,Describes positive emotional and physical state
+ease,cost,0.75,Related to reduced effort or resource requirement
+far,other,0.9,Neutral term indicating distance or extent
+principled,fairness,0.85,Related to moral fairness and justice
+concern,emotion,0.8,Indicates worry or emotional investment
+unchecked,other,0.75,Indicates lack of control or verification
+instincts,emotion,0.8,Related to emotional and intuitive responses
+predictability,cost,0.7,Related to resource planning and risk management
+worthwhile,cost,0.75,Implies cost-benefit evaluation
+neutrality,fairness,0.9,Related to being unbiased and impartial
+settles,other,0.75,Indicates resolution or coming to rest
+extremes,other,0.8,Indicates opposite ends of a spectrum
+charged,emotion,0.85,Often refers to emotional intensity
+enabling,other,0.8,Indicates facilitating or allowing something
+impulsive,emotion,0.9,"Related to emotional, unplanned reactions"
+dominance,other,0.85,"Refers to power or control rather than emotion, fairness, or cost"
+stance,other,0.9,"Refers to position or attitude, not clearly fitting any of the three categories"
+simulated,other,0.95,"Describes a technical process, not related to emotion, fairness, or cost"
+controlled,other,0.85,Describes a state of regulation or management
+hot,emotion,0.7,Can indicate emotional intensity or anger
+sanctioning,cost,0.8,Related to penalties and consequences
+individualism,fairness,0.75,Related to individual rights and representation
+lost,emotion,0.75,Can indicate confusion or emotional disorientation
+reactive,emotion,0.85,"Similar to 'react' in seed list, indicates emotional response"
+clenching,emotion,0.8,Physical manifestation of emotional tension
+preserves,other,0.9,Refers to maintaining or protecting something
+distrust,emotion,0.95,"Opposite of 'trust' in seed list, clear emotional state"
+made,other,0.95,Generic verb without specific categorization
+rounds,other,0.95,"Refers to cycles or iterations, not related to main categories"
+situation,other,0.9,Generic term for circumstances
+briefly,other,0.95,"Time-related adverb, not fitting main categories"
+broken,cost,0.75,"Implies damage or failure, similar to cost-related terms"
+ut,other,0.99,Appears to be an abbreviation or fragment
+increase,cost,0.8,Often related to cost or resource usage growth
+better,other,0.7,Comparative term not specific to any category
+short,cost,0.7,Can indicate resource limitation or insufficiency
+required,cost,0.75,Implies necessary resource or effort expenditure
+penalty,cost,0.95,Directly matches seed list for cost category
+lack,cost,0.85,Indicates resource deficiency or limitation
+subclinical,other,0.95,Medical/technical term not fitting main categories
+glaring,other,0.8,Describes obviousness or visibility
+erase,other,0.9,Action verb not specific to main categories
+conviction,emotion,0.75,Implies strong belief or emotional certainty
+emerges,other,0.9,Process-related verb not specific to main categories
+vigilance,emotion,0.8,Related to alertness and emotional attention state
+compared,other,0.95,"Analytical/comparative term without emotional, fairness, or cost implications"
+notes,other,0.98,Neutral term referring to documentation or observations
+awareness,fairness,0.85,Often used in context of fairness and understanding biases/representation
+peaks,other,0.95,Technical/descriptive term referring to maximum points
+didn,other,0.99,Auxiliary verb fragment without categorical meaning
+offset,cost,0.8,Often used in context of balancing costs or resources
+decisively,other,0.9,Describes manner of decision-making without emotional/fairness/cost implications
+tenses,other,0.98,Grammatical term without relevance to target categories
+eels,other,0.99,Concrete noun without relevance to target categories
+consistently,other,0.95,Describes reliability/regularity without specific category implications
+relieved,emotion,0.95,Directly expresses emotional state of relief
+endorsing,other,0.85,Action of support/approval without clear category alignment
+moderated,other,0.9,Refers to control/regulation without specific category implications
+chosen,other,0.9,Refers to selection without specific category implications
+regulation,fairness,0.8,Often associated with ensuring fair treatment and standards
+appreciates,emotion,0.85,Implies positive emotional response or gratitude
+splits,other,0.95,Technical term for division without category implications
+face,other,0.85,Multiple meanings but none strongly aligned with target categories
+release,other,0.9,Action word without specific category implications
+mathematically,other,0.98,Technical/analytical term without category implications
+deep,other,0.85,Descriptive term without specific category alignment
+overwhelm,emotion,0.9,Implies emotional state of stress or being overcome
+potential,other,0.85,Refers to possibility/capability without category implications
+races,fairness,0.85,Often used in context of fairness and discrimination discussions
+favor,fairness,0.9,Related to fairness through concepts of favoritism and bias
+justify,fairness,0.85,Often used in context of fairness and justice
+worsen,cost,0.8,Implies negative impact or increasing cost/burden
+lowering,cost,0.85,Often used in context of reducing costs or resources
+might,other,0.95,Modal verb without specific category implications
+pure,other,0.9,Descriptive term without clear category alignment
+channeled,other,0.85,"Refers to directing or routing something, not clearly emotional, fairness, or cost-related"
+confirms,other,0.9,"Relates to verification or validation, doesn't fit primary categories"
+exploiting,fairness,0.85,Implies unfair use or taking advantage of others
+investment,cost,0.95,Directly relates to financial/resource expenditure
+strain,cost,0.8,Implies burden or pressure on resources
+dollar,cost,0.98,Direct reference to monetary cost
+fee,cost,0.98,Direct reference to monetary charge
+aware,other,0.75,"Relates to consciousness or knowledge, not specifically emotional, fair, or cost-related"
+observing,other,0.9,"Refers to watching or monitoring, doesn't fit primary categories"
+upsetting,emotion,0.95,Directly relates to negative emotional state
+rewards,cost,0.85,"Related to compensation or benefits, typically involving resources"
+shortchanging,fairness,0.9,Implies unfair treatment or depriving someone of their due
+demanding,cost,0.8,Implies resource or effort requirements
+clinical,other,0.95,"Refers to medical/scientific context, doesn't fit primary categories"
+ideal,other,0.85,"Refers to perfect standard, not specifically emotional, fair, or cost-related"
+compels,other,0.8,"Refers to forcing or urging action, doesn't fit primary categories"
+dimension,other,0.95,"Refers to measurement or aspect, doesn't fit primary categories"
+sensitive,emotion,0.85,Often relates to emotional responsiveness or vulnerability
+boosts,other,0.85,"Refers to enhancement or increase, doesn't fit primary categories"
+layer,other,0.95,"Refers to structural level, doesn't fit primary categories"
+price,cost,0.98,Direct reference to monetary value
+avoid,other,0.85,"Refers to evasion or prevention, doesn't fit primary categories"
+deserved,fairness,0.9,Relates to justice and fair treatment
+nullify,other,0.9,"Refers to cancellation or invalidation, doesn't fit primary categories"
+fatigue,cost,0.85,Represents resource depletion or strain
+activates,other,0.9,"Refers to triggering or starting, doesn't fit primary categories"
+load,cost,0.9,Relates to resource burden or computational cost
+consequence,cost,0.85,"Listed in cost seed list, relates to outcome or impact"
+faces,other,0.85,"Could refer to encounters or surfaces, doesn't fit primary categories"
+avoidance,other,0.85,"Refers to evasion or prevention, doesn't fit primary categories"
+rush,emotion,0.75,"Often implies urgency or excitement, has emotional connotations"
+skewed,fairness,0.85,Relates to bias and unfair representation of data or treatment
+interpretation,other,0.9,"Refers to analysis or understanding, not specifically emotional, fairness, or cost-related"
+calms,emotion,0.95,Directly relates to emotional state and reducing anxiety or agitation
+disappointment,emotion,0.98,"Clear negative emotion, present in emotion seed list"
+linked,other,0.95,"Neutral connecting word, no emotional, fairness, or cost implications"
+onsistent,other,0.85,"Appears to be misspelling of 'consistent', relates to reliability rather than emotion, fairness, or cost"
+inherently,other,0.9,"Describes fundamental nature, not specifically related to emotion, fairness, or cost"
+sparking,emotion,0.7,Can imply excitement or triggering emotional responses
+deepens,other,0.85,"Describes intensification, not specifically emotional, fairness, or cost-related"
+needed,cost,0.7,Implies resource requirement or necessity
+enable,other,0.9,Functional term about allowing or facilitating
+white,fairness,0.75,In many contexts relates to racial identity and fairness discussions
+irritating,emotion,0.95,Describes negative emotional response or feeling
+around,other,0.95,"Spatial/temporal preposition with no emotional, fairness, or cost implications"
+hopelessness,emotion,0.98,Strong negative emotional state
+visualizes,other,0.9,Refers to making something visible or understandable
+rapid,cost,0.7,Often relates to time/resource efficiency considerations
+offensive,fairness,0.85,Often used in context of discriminatory or prejudicial behavior
+frustrating,emotion,0.95,"Clear negative emotion, similar to 'frustrated' in seed list"
+deciding,other,0.9,"Process-related term without specific emotional, fairness, or cost implications"
+shouldn,other,0.95,"Partial modal verb, no specific category implications"
+annoyed,emotion,0.95,Clear negative emotional state
+everything,other,0.95,General term without specific category implications
+hidden,other,0.85,"Describes concealment, not specifically emotional, fairness, or cost-related"
+severely,other,0.8,Intensity modifier without specific category alignment
+validates,other,0.85,Refers to confirmation or verification process
+prior,other,0.95,Temporal term without specific category implications
+impulses,emotion,0.85,Related to emotional or instinctive reactions
+subdimensions,other,0.9,Technical term referring to component parts or categories
+l,other,1,Single letter with no semantic meaning
+purpose,other,0.95,"Refers to intention or goal, not related to emotion, fairness, or cost"
+stakes,cost,0.85,"Implies risk and consequences, related to cost-benefit considerations"
+intervene,other,0.9,"Action verb indicating involvement, not specifically tied to main categories"
+removes,other,0.95,"Action verb, not related to emotion, fairness, or cost"
+quiet,emotion,0.75,Can indicate emotional state or atmosphere
+thinking,other,0.9,"Cognitive process, not specifically emotional, fairness, or cost related"
+gives,other,0.95,"Basic action verb, not related to main categories"
+calculations,cost,0.8,Related to computing resources and effort
+lifting,other,0.95,"Physical action, not related to main categories"
+denying,fairness,0.8,Can relate to exclusion or unfair treatment
+nough,other,1,Appears to be a typo or incomplete word
+contextual,other,0.9,"Describes situational relevance, not specific to main categories"
+ven,other,1,Incomplete word or typo
+effort,cost,0.95,"Directly appears in cost seed list, refers to resource expenditure"
+standards,fairness,0.75,Often related to ensuring equal treatment and fairness
+typical,other,0.9,"Descriptive term, not specific to main categories"
+leading,other,0.95,"Action/position term, not related to main categories"
+ensures,other,0.85,"Action verb indicating guarantee, not specific to main categories"
+requested,other,0.95,"Action verb, not related to main categories"
+buffers,cost,0.8,Related to computing resources and memory
+comfort,emotion,1,"Directly appears in emotion seed list, indicates emotional state"
+get,other,0.95,"Basic action verb, not related to main categories"
+normally,other,0.95,"Adverb indicating typical state, not related to main categories"
+allocations,cost,0.9,Related to resource distribution and usage
+aq,other,1,Abbreviation or typo with no clear meaning
+exclusively,fairness,0.85,"Related to exclusion and access, fairness implications"
+intensifying,emotion,0.8,Suggests increasing emotional or experiential intensity
+favoring,fairness,0.9,"Related to favoritism, which appears in fairness seed list"
+range,other,0.9,"General term for extent or scope, not specific to main categories"
+disrupting,cost,0.85,"Implies negative impact on processes or systems, causing delays or inefficiencies"
+magnify,other,0.8,"Refers to increasing or amplifying something, not specifically tied to emotions, fairness, or costs"
+ethical,fairness,0.95,"Directly related to moral principles and justice, strongly aligned with fairness concepts"
+boosting,other,0.85,"Refers to enhancement or improvement, not specifically tied to any of the three categories"
+compounded,other,0.8,"Refers to accumulation or combination, not specifically tied to the three categories"
+prolong,cost,0.75,"Related to time consumption and delay, which are cost factors"
+mental,emotion,0.85,Associated with psychological and emotional states
+steep,cost,0.8,Often used to describe high costs or prices
+dampen,emotion,0.75,Often used to describe reducing emotional intensity or excitement
+follows,other,0.95,Basic action verb without specific connection to the three categories
+medium,other,0.9,"Descriptive term not specifically related to emotions, fairness, or costs"
+hands,other,0.95,Physical noun not related to the three categories
+limit,cost,0.85,"Related to constraints and resources, often associated with costs"
+peacefully,emotion,0.9,Describes a calm emotional state
+leaning,other,0.9,Physical or metaphorical action not specific to the three categories
+replaces,other,0.95,"Action verb not specifically related to emotions, fairness, or costs"
+hits,other,0.85,Action verb not specifically related to the three categories
+behavioral,emotion,0.8,Related to actions and responses often driven by emotional states
+irrelevant,other,0.9,Descriptive term not specifically related to the three categories
+reinforce,other,0.85,"Action verb not specifically tied to emotions, fairness, or costs"
+mind,emotion,0.85,Associated with mental and emotional states
+joy,emotion,1,"Direct emotion word, appears in emotion seed list"
+calculated,other,0.85,"Refers to deliberate planning, not specifically tied to the three categories"
+cleanly,other,0.9,"Manner adverb not related to emotions, fairness, or costs"
+replaced,other,0.95,Action verb not specifically related to the three categories
+way,other,0.95,"General noun not specific to emotions, fairness, or costs"
+particularly,other,0.95,Adverb not specifically related to the three categories
+alert,emotion,0.8,Describes a state of heightened awareness often associated with emotional arousal
+lacks,cost,0.75,"Related to absence of resources or capabilities, often implies cost or deficit"
+surfaces,other,0.9,"Physical noun not related to emotions, fairness, or costs"
+sustain,cost,0.85,Related to resource maintenance and ongoing effort/overhead
+eliminating,cost,0.8,"Implies removing/reducing something, often associated with cost/resource reduction"
+preserving,cost,0.85,Related to maintaining resources and preventing loss
+vindicated,emotion,0.9,Implies feeling of satisfaction or relief when proven right
+heightening,emotion,0.85,Suggests intensifying feelings or reactions
+jaw,other,0.95,"Physical body part, not related to main categories"
+group,fairness,0.75,Often used in context of demographic groups and representation
+manifests,other,0.9,General term for appearance/occurrence
+clenched,emotion,0.85,Physical manifestation of emotional tension
+confirm,other,0.9,Neutral verification action
+dislikes,emotion,0.95,Direct expression of negative feeling
+drop,cost,0.8,Often refers to reduction in resources or value
+unexpected,emotion,0.85,Related to surprise and emotional reactions
+utism,other,0.95,Appears to be a typo or specialized term
+influences,other,0.85,General term for impact or effect
+reinforced,other,0.8,General term for strengthening
+weight,cost,0.8,Often used in context of computational or resource burden
+conflicting,fairness,0.75,Often related to competing interests and balance
+plunges,cost,0.8,"Implies dramatic decrease, often in resources or value"
+prioritization,cost,0.85,Related to resource allocation and trade-offs
+every,other,0.95,General quantifier
+pressure,emotion,0.85,Often refers to stress or emotional burden
+preventing,cost,0.75,Related to avoiding negative outcomes or resource loss
+rectify,fairness,0.85,Related to correcting unfairness or injustice
+power,fairness,0.8,Often discussed in context of equality and social justice
+temper,emotion,0.9,Directly related to emotional state and control
+zeroing,cost,0.85,Related to reducing or eliminating resources/values
+socially,fairness,0.85,Related to social dynamics and group interactions
+prioritized,cost,0.85,Related to resource allocation and trade-offs
+affirming,fairness,0.85,Often used in context of validating identity and inclusion
+reinforcement,other,0.9,"Refers to a learning or strengthening process, not primarily emotional, fairness, or cost-related"
+interaction,other,0.95,"Describes communication or engagement between entities, not specifically tied to emotion, fairness, or cost"
+partially,other,0.95,"Adverb indicating incompleteness, not related to primary categories"
+simmering,emotion,0.85,Often used to describe suppressed anger or tension building up
+ust,other,0.95,Appears to be a typo or incomplete word
+watching,other,0.95,"Action verb describing observation, not specifically tied to categories"
+cause,other,0.9,"Refers to reason or origin, not specifically tied to categories"
+strict,other,0.8,"Describes rigid adherence to rules, could relate to fairness but not strongly enough"
+contribute,other,0.9,"Action verb about adding or helping, not specifically tied to categories"
+disrupted,cost,0.8,"Implies negative impact and consequences, related to cost category"
+hey,other,0.95,"Greeting or interjection, not related to primary categories"
+pointless,cost,0.75,"Implies waste of effort or resources, relates to cost category"
+proposed,other,0.9,"Refers to suggesting or putting forward, not tied to categories"
+level,other,0.9,"Refers to degree or position, not specifically tied to categories"
+secondary,other,0.9,"Indicates order or importance, not tied to primary categories"
+prolonged,cost,0.8,Related to time consumption and resource usage
+retaliate,emotion,0.85,Implies anger and reactive behavior
+helplessness,emotion,0.95,Clear emotional state of feeling powerless
+female,fairness,0.85,Often used in contexts of gender representation and equality
+rioritizing,other,0.95,"Appears to be a typo of 'prioritizing', not related to categories"
+rarely,other,0.95,"Frequency adverb, not related to primary categories"
+atisfaction,emotion,0.85,"Appears to be 'satisfaction', which is an emotional state"
+helps,other,0.9,"Action verb about assistance, not specifically tied to categories"
+imperative,other,0.9,"Indicates necessity or requirement, not tied to categories"
+struggles,emotion,0.8,Often implies emotional difficulty or distress
+initially,other,0.95,"Time-related adverb, not related to primary categories"
+scenario,other,0.95,"Refers to a situation or possibility, not tied to categories"
+corrective,other,0.85,"Refers to fixing or improving, not specifically tied to categories"
+black,fairness,0.85,Often used in contexts of racial representation and equality
+acceptable,other,0.8,"Indicates meeting standards, could relate to multiple categories but not strongly enough"
+dominant,other,0.85,"Describes a position of power/control rather than emotion, fairness, or cost"
+ethically,fairness,0.9,Directly related to moral justice and fair treatment
+profound,other,0.8,"Describes depth/intensity but not specifically emotional, fairness, or cost-related"
+role,other,0.95,Neutral term describing function or position
+suspicion,emotion,0.85,Represents an emotional state of distrust or doubt
+final,other,0.95,"Temporal descriptor, not related to core categories"
+provoke,emotion,0.9,Implies triggering emotional reactions
+jolt,emotion,0.85,Suggests sudden emotional shock or surprise
+efficiently,cost,0.9,Related to resource optimization and efficiency
+felt,emotion,0.95,Directly relates to emotional experience
+boost,other,0.8,"Indicates improvement but not specifically emotional, fairness, or cost-related"
+surprise,emotion,1,"Directly matches emotion seed list, represents emotional reaction"
+reasoning,other,0.9,"Cognitive process, not emotional, fairness, or cost-related"
+extra,cost,0.8,Implies additional resource or effort required
+fits,other,0.9,"Describes compatibility, not related to core categories"
+society,other,0.85,"General term for collective group, not specific to categories"
+exacerbates,other,0.85,Describes worsening but not specific to categories
+hard,cost,0.85,Implies difficulty and effort required
+heighten,emotion,0.8,Often used in context of intensifying emotions
+challenges,cost,0.85,Represents difficulties and potential resource demands
+determination,emotion,0.85,Represents emotional resolve and commitment
+loses,cost,0.8,Implies negative outcome or resource loss
+deeper,other,0.9,Describes intensity/depth but not specific to categories
+apathy,emotion,0.95,Represents emotional state of indifference
+ambiguity,other,0.85,"Describes uncertainty but not specifically emotional, fairness, or cost-related"
+svo,other,0.95,"Technical term, not related to core categories"
+unresolved,other,0.85,"Describes state of incompletion, not specific to categories"
+genuine,other,0.8,"Describes authenticity, not specifically related to categories"
+minimizes,cost,0.85,Related to reducing resource usage or negative impact
+violently,emotion,0.9,Implies intense emotional or aggressive behavior
+fade,other,0.9,"Describes a physical/visual process of diminishing, not clearly aligned with emotion, fairness or cost concepts"
+insult,emotion,0.85,Typically triggers negative emotional responses and is used to cause emotional harm
+fixate,emotion,0.75,Related to emotional/psychological state of intense focus or obsession
+aggravating,emotion,0.9,"Describes something that causes irritation or frustration, directly related to emotional response"
+arises,other,0.95,"Neutral verb describing emergence or occurrence, not specific to any of the three categories"
+likely,other,0.95,"Probability-related term, not specifically tied to emotion, fairness, or cost"
+washes,other,0.95,"Physical action verb, not related to emotion, fairness, or cost concepts"
+numerical,other,0.9,"Mathematical/technical term, not specifically related to emotion, fairness, or cost"
+perceive,emotion,0.7,"While not strictly emotional, often relates to emotional or subjective interpretation of situations"
+recovery,cost,0.75,"Often associated with resource restoration and addressing consequences, similar to other cost-related concepts in the seed list"

@@ -1,0 +1,184 @@
+---
+title: "2_LLM"
+author: "Haotian Tan"
+date: "2025-10-8"
+output: html_document
+---
+
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(bruceR)
+library(lme4)
+library(lmerTest)
+library(emmeans)
+```
+
+# Linear-Mixed Model of EMOTION/COST Balanced
+supplementary table 5.3.3
+```{r}
+df <- read.csv("shap_results_weighted.csv", stringsAsFactors = FALSE)
+
+# Theoretically, emotion promotes punitive behavior, while Cost inhibits it, resulting in opposite signs numerically.
+# Therefore, the difference in contribution between Emotion and Cost is calculated by summing their values.
+
+df <- df %>%
+  mutate(
+    NormSHAP_Difference = NormSHAP_E + NormSHAP_R,
+  )
+
+df_avg <- df %>%
+  group_by(group, id) %>%
+  summarise(
+    NormSHAP_E = mean(NormSHAP_E, na.rm = TRUE),
+    NormSHAP_R = mean(NormSHAP_R, na.rm = TRUE),
+    NormSHAP_Difference = mean(NormSHAP_Difference, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+df_long <- df_avg %>%
+  pivot_longer(
+    cols = starts_with("NormSHAP_"),
+    names_to = "SHAP_Type",
+    values_to = "NormSHAP",
+    names_prefix = "NormSHAP_"
+  ) 
+
+df_long$group <- factor(df_long$group, levels = c("Human", setdiff(unique(df_long$group), "Human")))
+```
+
+```{r}
+set.seed(2025)
+model <- lmer(NormSHAP ~ group + (1|id),
+              data = filter(df_long, SHAP_Type == "Difference"))
+confint(model, method = "boot", nsim = 1000)
+model_summary(model)
+```
+
+
+
+# Linear Mixed Model Analysis of Demographic Effects on NormSHAP in Emotion and Cost Contexts
+
+```{r}
+df_human <- read_csv("shap_results_weighted.csv", show_col_types = FALSE) %>%
+  filter(group == "Human")
+
+df_human <- df_human %>%
+  mutate(
+    NormSHAP_Difference = NormSHAP_E + NormSHAP_R,
+  )
+
+df_avg <- df_human %>%
+  group_by(group, id) %>%
+  summarise(
+    NormSHAP_E = mean(NormSHAP_E, na.rm = TRUE),
+    NormSHAP_R = mean(NormSHAP_R, na.rm = TRUE),
+    NormSHAP_Difference = mean(NormSHAP_Difference, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+demo_df <- read_csv("demographic data.csv", locale = locale(encoding = "GBK"), show_col_types = FALSE)
+
+merged_df <- left_join(
+  df_avg,
+  select(demo_df, id, gender, age, total_AQ_score, JSI_score, total_ERS_score, total_CESD_score, SVO, personality_type),
+  by = "id"
+)
+
+merged_df$SVO <- factor(merged_df$SVO, levels = c("prosocial", "proself", "None"))
+merged_df$gender <- factor(merged_df$gender, levels = c("Male", "Female"))
+
+merged_df_scaled <- merged_df %>%
+  group_by(group) %>%
+  mutate(
+    across(
+      .cols = c(age, total_AQ_score, JSI_score, total_ERS_score, total_CESD_score),
+      .fns = ~ (. - mean(., na.rm = TRUE)) / sd(., na.rm = TRUE)
+    )
+  ) %>%
+  ungroup() 
+
+merged_long <- merged_df_scaled %>%
+  pivot_longer(
+    cols = starts_with("NormSHAP_"),
+    names_to = "SHAP_Type",
+    values_to = "NormSHAP",
+    names_prefix = "NormSHAP_"
+  )  %>%
+# Theoretically, emotion promotes punitive behavior, while Cost inhibits it, resulting in opposite signs numerically. 
+# To include both in the analysis and testing simultaneously, their effect directions need to be aligned.
+# Therefore, we took the negative of the Cost effect.
+  mutate(NormSHAP = ifelse(SHAP_Type == "R", -NormSHAP, NormSHAP))
+
+```
+
+## model with SHAP Difference as the dependent variable
+supplementary table 5.4.1
+
+```{r}
+model_Difference <-lm(NormSHAP ~ age + gender + total_AQ_score + JSI_score + total_ERS_score + 
+                   total_CESD_score + SVO,
+                 data = filter(merged_long, group == "Human", SHAP_Type == "Difference"))
+confint(model_Difference, method = "boot", nsim = 1000)
+model_summary(model_Difference,std = FALSE)
+AIC(model_Difference)
+BIC(model_Difference)
+```
+
+## interaction model 1
+supplementary table 5.4.2
+```{r}
+model_inter <-lmer(NormSHAP ~ (age + gender + total_AQ_score + JSI_score + total_ERS_score +total_CESD_score + SVO)*SHAP_Type + (1|id),
+                 data = filter(merged_long, group == "Human", SHAP_Type != "Difference"))
+confint(model_inter, method = "boot", nsim = 1000)
+model_summary(model_inter,std = FALSE)
+```
+## interaction model 2 with simple slope analysis
+supplementary table 5.4.3
+```{r}
+# To obtain simple slopes for categorical variables, we manually performed dummy coding. 
+# The results of this analysis were consistent with those obtained using lmer's automatic coding.
+# At the same time, this also alleviated the multicollinearity issues present in the previous model.
+merged_long_dummy <- merged_long %>%
+  mutate(gender_Female = ifelse(gender == "Female", 1, 0),
+         SVO_individual = ifelse(SVO == "proself", 1, 0),
+         SVO_None  = ifelse(SVO == "None", 1, 0))  
+
+model_inter_dummy <- lmer(NormSHAP ~ (age + gender_Female + total_AQ_score + JSI_score + total_ERS_score +
+                                  total_CESD_score + SVO_individual + SVO_None) * SHAP_Type + (1|id),
+                    data = filter(merged_long_dummy, group == "Human", SHAP_Type != "Difference"))
+
+model_summary(model_inter_dummy, std = FALSE)
+
+
+# simple slopes
+all_vars <- c("age", "total_AQ_score", "JSI_score", "total_ERS_score", "total_CESD_score",
+              "gender_Female", "SVO_None", "SVO_individual")
+
+for(var in all_vars){
+  cat("\n====================\nVariable:", var, "\n====================\n")
+  slopes <- emtrends(model_inter_dummy, ~ SHAP_Type, var = var)
+  slope_pairs <- pairs(slopes)
+  
+  print(summary(slopes, infer = c(TRUE, TRUE))) 
+  print(slope_pairs)
+}
+
+```
+## base model without inteaction
+supplementary table 5.4.2
+```{r}
+model_nointer <-lmer(NormSHAP ~ age + gender + total_AQ_score + JSI_score + total_ERS_score +
+                       total_CESD_score + SVO + SHAP_Type + (1|id),
+                     data = filter(merged_long, group == "Human", SHAP_Type != "Difference"))
+confint(model_nointer, method = "boot", nsim = 1000)
+model_summary(model_nointer,std = FALSE)
+
+```
+## model comparison
+```{r}
+anova(model_nointer,model_inter)
+```
+

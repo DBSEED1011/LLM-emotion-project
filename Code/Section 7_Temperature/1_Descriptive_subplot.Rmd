@@ -1,0 +1,162 @@
+---
+title: "1_Descriptive"
+author: "Haotian Tan"
+date: "2025-10-8"
+output: html_document
+---
+
+
+```{r}
+library(dplyr)
+
+library(ggplot2)
+library(ggExtra)
+library(cowplot)
+
+# setting theme of text for all figure (units pt)
+
+custom_theme <-   theme_cowplot()+
+theme(
+    plot.title = element_text(size = 18),  # 主标题大小
+    axis.title = element_text(size = 16),  # 坐标轴标题大小
+    axis.text = element_text(size = 16),   # 坐标轴刻度大小
+    legend.text = element_text(size = 16)  # 图例文本大小
+)
+
+```
+
+```{r}
+data_T1 <- read.csv("merged_all_models_T1.csv", stringsAsFactors = FALSE) %>%
+  mutate(condition = "T1")
+
+data_T0 <- read.csv("merged_all_models_T0.csv", stringsAsFactors = FALSE) %>%
+  mutate(condition = "T0")
+
+data <- bind_rows(data_T1, data_T0) %>%
+  filter(group %in% c("DeepSeek-V3", "DeepSeek-R1")) %>%
+  mutate(group = factor(group, levels = c("DeepSeek-V3", "DeepSeek-R1")),
+         condition = factor(condition, levels = c("T1", "T0")))
+
+cols <- c("AA_valence", "AA_arousal", "AC_valence", "AC_arousal")
+before <- nrow(data)
+data <- data %>%
+  filter(choice %in% c(0, 1)) %>%
+  filter(if_all(all_of(cols), ~ .x >= -100 & .x <= 100))
+
+after <- nrow(data)
+removed <- before - after
+sapply(data[cols], max, na.rm = TRUE)
+
+table(data$condition, data$group)
+```
+
+```{r}
+data_list <- data %>%
+  mutate(choice_label = factor(ifelse(choice == 1, "punish", "accept"),
+                               levels = c("punish", "accept"))) %>%
+  group_split(condition, group)
+```
+
+subplot of supplementary figure 7.1.2
+```{r fig.width=3, fig.height=3, out.width="60%", fig.align="center", dpi=300}
+
+plot_list_AA <- lapply(seq_along(data_list), function(i) {
+  df <- data_list[[i]]
+  group_name <- unique(df$group)
+  condition <- unique(df$condition)
+  plot_label <- letters[i]  
+
+  p <- ggplot(df, aes(x = AA_valence, y = AA_arousal, color = choice_label)) +
+    geom_point(alpha = 0.3) +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "black") +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    scale_x_continuous(limits = c(-100, 100)) +
+    scale_y_continuous(limits = c(-100, 100)) +
+    coord_fixed(ratio = 1, clip = "off") +
+    labs(
+      title = plot_label,      
+      subtitle = paste(group_name, condition, sep = ", "),
+      x = "Emotion valence after allocation",
+      y = "Emotion arousal after allocation"
+    ) +
+    custom_theme +
+    theme(
+      panel.border = element_rect(color = "black", fill = NA),
+      legend.position = "none",
+      plot.title = element_text(hjust = 0, size = 20, face = "bold"),      
+      plot.subtitle = element_text(hjust = 0.5, size = 18, face = "bold") 
+    )
+
+  ggMarginal(p, type = "boxplot", groupColour = TRUE, groupFill = TRUE, size = 6)
+})
+
+for (i in seq_along(plot_list_AA)) {
+  assign(paste0("fig_aae_choice", i), plot_list_AA[[i]])
+}
+
+```
+
+
+```{r}
+fig_aae_choice_v3 <- cowplot::plot_grid(fig_aae_choice1,fig_aae_choice2,ncol = 1)
+fig_aae_choice_r1 <- cowplot::plot_grid(fig_aae_choice3,fig_aae_choice4,ncol = 1)
+
+fig_aae_choice_llm <- cowplot::plot_grid(
+                                     fig_aae_choice_v3,fig_aae_choice_r1,
+                                     ncol = 2)
+ggsave(filename = "fig_aae_choice_llm.svg", plot = fig_aae_choice_llm, width = 12, height = 12)
+
+```
+
+
+subplot of supplementary figure 7.1.3
+```{r fig.width=3, fig.height=3, out.width="60%", fig.align="center", dpi=300}
+
+plot_list_AC <- lapply(seq_along(data_list), function(i) {
+  df <- data_list[[i]]
+  group_name <- unique(df$group)
+  condition <- unique(df$condition)
+  plot_label <- letters[i]  
+
+  p <- ggplot(df, aes(x = AC_valence, y = AC_arousal, color = choice_label)) +
+    geom_point(alpha = 0.3) +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "black") +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    scale_x_continuous(limits = c(-100, 100)) +
+    scale_y_continuous(limits = c(-100, 100)) +
+    coord_fixed(ratio = 1, clip = "off") +
+    labs(
+      title = plot_label,      
+      subtitle = paste(group_name, condition, sep = ", "),
+      x = "Emotion valence after decision",
+      y = "Emotion arousal after decision"
+    ) +
+    custom_theme +
+    theme(
+      panel.border = element_rect(color = "black", fill = NA),
+      legend.position = "none",
+      plot.title = element_text(hjust = 0, size = 20, face = "bold"),      
+      plot.subtitle = element_text(hjust = 0.5, size = 18, face = "bold") 
+    )
+
+  ggMarginal(p, type = "boxplot", groupColour = TRUE, groupFill = TRUE, size = 6)
+})
+
+for (i in seq_along(plot_list_AC)) {
+  assign(paste0("fig_ace_choice", i), plot_list_AC[[i]])
+}
+
+```
+
+
+```{r}
+fig_ace_choice_v3 <- cowplot::plot_grid(fig_ace_choice1,fig_ace_choice2,ncol = 1)
+fig_ace_choice_r1 <- cowplot::plot_grid(fig_ace_choice3,fig_ace_choice4,ncol = 1)
+
+fig_ace_choice_llm <- cowplot::plot_grid(
+                                     fig_ace_choice_v3,fig_ace_choice_r1,
+                                     ncol = 2)
+ggsave(filename = "fig_ace_choice_llm.svg", plot = fig_ace_choice_llm, width = 12, height = 12)
+
+```
+

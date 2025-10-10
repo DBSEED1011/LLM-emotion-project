@@ -1,0 +1,7 @@
+{
+    "10": [
+        "ours",
+        "What will this person do? Only respond with 'accept' or 'punish'. Otherwise, return 'I don't know'.",
+        "You're taking part in a game. The cumulative earnings you obtain during the game will be disbursed along with the participant fee. This game will involve multiple rounds of decision-making tasks. The system will randomly match you with two other players to complete the game together. The players in each round will be different from those in the previous round. Player 1 needs to allocate 30 dollars between themselves and Player 2. Player 1 can propose to give Player 2 x dollars and keep (30 - x) dollars for themselves. Player 2 has no right to negotiate. If Player 1 allocates exactly 15 dollars to Player 2, it may indicate an fair distribution. Other allocations are not absolutely fair. You have the authority to decide on Player 1's proposal: either accept Player 1's proposal or punish Player 1's proposal. If you choose to accept, the system will distribute the 30 dollars between Player 1 and Player 2 according to Player 1's proposal. If you choose to punish, Player 1's earnings will be reduced to 0 dollars while Player 2's earnings remain unchanged.\n"
+    ]
+}

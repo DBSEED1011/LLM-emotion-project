@@ -1,0 +1,61 @@
+word,category,confidence,rationale
+betray,emotion,0.85,Implies emotional breach of trust and can trigger strong negative feelings
+desire,emotion,0.9,Represents a strong emotional want or yearning
+key,other,0.95,Neutral term indicating importance or essential nature
+difficulty,cost,0.8,Represents effort required or challenge that needs resources to overcome
+react,emotion,0.95,"Listed in emotion seed list, relates to emotional response"
+correction,other,0.85,Neutral term about fixing or adjusting something
+rosocial,other,0.99,"Unclear term, doesn't fit clearly in any category"
+offsetting,cost,0.75,Related to balancing costs or resources
+exactly,other,0.95,Neutral adverb indicating precision
+ike,other,0.99,"Unclear term, doesn't fit any category"
+motives,other,0.8,Refers to reasons or intentions behind actions
+earns,cost,0.85,Related to financial or resource gain
+expectation,emotion,0.7,Can involve emotional anticipation or hope
+generally,other,0.95,Neutral adverb indicating broad application
+closure,emotion,0.85,Often associated with emotional resolution
+energized,emotion,0.9,Describes positive emotional and physical state
+ease,cost,0.75,Related to reduced effort or resource requirement
+far,other,0.9,Neutral term indicating distance or extent
+principled,fairness,0.85,Related to moral fairness and justice
+concern,emotion,0.8,Indicates worry or emotional investment
+unchecked,other,0.75,Indicates lack of control or verification
+instincts,emotion,0.8,Related to emotional and intuitive responses
+predictability,cost,0.7,Related to resource planning and risk management
+worthwhile,cost,0.75,Implies cost-benefit evaluation
+neutrality,fairness,0.9,Related to being unbiased and impartial
+settles,other,0.75,Indicates resolution or coming to rest
+extremes,other,0.8,Indicates opposite ends of a spectrum
+charged,emotion,0.85,Often refers to emotional intensity
+enabling,other,0.8,Indicates facilitating or allowing something
+impulsive,emotion,0.9,"Related to emotional, unplanned reactions"
+dominant,other,0.85,"Describes a position of power/control rather than emotion, fairness, or cost"
+ethically,fairness,0.9,Directly related to moral justice and fair treatment
+profound,other,0.8,"Describes depth/intensity but not specifically emotional, fairness, or cost-related"
+role,other,0.95,Neutral term describing function or position
+suspicion,emotion,0.85,Represents an emotional state of distrust or doubt
+final,other,0.95,"Temporal descriptor, not related to core categories"
+provoke,emotion,0.9,Implies triggering emotional reactions
+jolt,emotion,0.85,Suggests sudden emotional shock or surprise
+efficiently,cost,0.9,Related to resource optimization and efficiency
+felt,emotion,0.95,Directly relates to emotional experience
+boost,other,0.8,"Indicates improvement but not specifically emotional, fairness, or cost-related"
+surprise,emotion,1.0,"Directly matches emotion seed list, represents emotional reaction"
+reasoning,other,0.9,"Cognitive process, not emotional, fairness, or cost-related"
+extra,cost,0.8,Implies additional resource or effort required
+fits,other,0.9,"Describes compatibility, not related to core categories"
+society,other,0.85,"General term for collective group, not specific to categories"
+exacerbates,other,0.85,Describes worsening but not specific to categories
+hard,cost,0.85,Implies difficulty and effort required
+heighten,emotion,0.8,Often used in context of intensifying emotions
+challenges,cost,0.85,Represents difficulties and potential resource demands
+determination,emotion,0.85,Represents emotional resolve and commitment
+loses,cost,0.8,Implies negative outcome or resource loss
+deeper,other,0.9,Describes intensity/depth but not specific to categories
+apathy,emotion,0.95,Represents emotional state of indifference
+ambiguity,other,0.85,"Describes uncertainty but not specifically emotional, fairness, or cost-related"
+svo,other,0.95,"Technical term, not related to core categories"
+unresolved,other,0.85,"Describes state of incompletion, not specific to categories"
+genuine,other,0.8,"Describes authenticity, not specifically related to categories"
+minimizes,cost,0.85,Related to reducing resource usage or negative impact
+violently,emotion,0.9,Implies intense emotional or aggressive behavior

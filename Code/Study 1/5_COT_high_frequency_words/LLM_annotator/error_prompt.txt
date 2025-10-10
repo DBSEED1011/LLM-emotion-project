@@ -1,0 +1,50 @@
+
+You are an expert annotator helping to classify words from a decision-making corpus.
+
+You are provided with 3 seed lists of words:
+
+**Emotion**: ['happy', 'joy', 'satisfied', 'confident', 'excited', 'grateful', 'hopeful', 'comfort', 'trust', 'relief', 'pleasure', 'optimism', 'compassion', 'angry', 'sad', 'fear', 'worried', 'anxious', 'disappointed', 'frustrated', 'stressed', 'upset', 'pain', 'grief', 'guilt', 'discomfort', 'disgust', 'surprise', 'anticipation', 'curiosity', 'uncertainty', 'shock', 'hesitation', 'emotional', 'react', 'triggered']
+**Fairness**: ['fair', 'fairness', 'just', 'justice', 'equitable', 'equality', 'equal', 'balance', 'impartial', 'unbiased', 'bias', 'biased', 'discrimination', 'prejudice', 'stereotyping', 'unfair', 'unjust', 'favoritism', 'exclusion', 'marginalize', 'inclusive', 'inclusiveness', 'diversity', 'accessibility', 'representation', 'underrepresented', 'minority', 'fairness-aware']
+**Cost**: ['cost', 'costly', 'expensive', 'expense', 'price', 'overhead', 'compute', 'resource', 'memory', 'bandwidth', 'energy', 'efficiency', 'time-consuming', 'effort', 'workload', 'labor', 'manual', 'maintenance', 'delay', 'slow', 'latency', 'scalability', 'risk', 'trade-off', 'compromise', 'burden', 'consequence', 'penalty', 'failure', 'damage', 'negative impact', 'unintended effect']
+
+Your task is to classify each word below into one of four categories: "emotion", "fairness", "cost", or "other".
+
+Return a JSON array. Each item should follow this format:
+{
+  "word": "example",
+  "category": "emotion",
+  "confidence": 0.92,
+  "rationale": "It reflects a feeling or emotional state"
+}
+
+Now classify these words:
+- dominant
+- ethically
+- profound
+- role
+- suspicion
+- final
+- provoke
+- jolt
+- efficiently
+- felt
+- boost
+- surprise
+- reasoning
+- extra
+- fits
+- society
+- exacerbates
+- hard
+- heighten
+- challenges
+- determination
+- loses
+- deeper
+- apathy
+- ambiguity
+- svo
+- unresolved
+- genuine
+- minimizes
+- violently
