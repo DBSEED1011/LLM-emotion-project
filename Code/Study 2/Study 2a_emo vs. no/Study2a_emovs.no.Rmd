@@ -1,0 +1,449 @@
+---
+title: "Study2_emovs.no"
+author: "dyq"
+date: "2025-10-14"
+output: html_document
+---
+
+
+```{r}
+# GLMM3
+# ============ Install and Load Required Packages ============
+packs <- c("readxl", "dplyr", "lme4", "broom.mixed", "emmeans", "readr")
+to_install <- setdiff(packs, rownames(installed.packages()))
+if (length(to_install) > 0) install.packages(to_install, dependencies = TRUE)
+invisible(lapply(packs, library, character.only = TRUE))
+
+```
+
+```{r}
+# ============ Read Data ============
+file_path <- "~/Desktop/study2_GLMM.xlsx"
+df <- readxl::read_excel(file_path)
+
+cat("Column names:\n"); print(names(df))
+cat("\nRaw frequency counts of choice / Agent_type / Emotion_selfreport:\n")
+print(table(df$choice, useNA = "ifany"))
+print(table(df$Agent_type, useNA = "ifany"))
+print(table(df$Emotion_selfreport, useNA = "ifany"))
+
+```
+
+```{r cars}
+# ============ Factor Conversion (Explicit Levels to Avoid Label Errors) ============
+# Expected values:
+# choice = 0/1; Agent_type = 1/2/3/4/5; Emotion_selfreport = 0/1
+# If any values fall outside these ranges, they will be flagged as NA with a warning.
+
+valid_choice_levels <- c(0, 1)
+valid_agent_levels  <- c(1, 2, 3, 4, 5)
+valid_emotion_levels <- c(0, 1)
+
+# Check for irregular values
+bad_choice <- setdiff(na.omit(unique(df$choice)), valid_choice_levels)
+bad_agent  <- setdiff(na.omit(unique(df$Agent_type)), valid_agent_levels)
+bad_emot   <- setdiff(na.omit(unique(df$Emotion_selfreport)), valid_emotion_levels)
+
+if (length(bad_choice)>0) warning("Non-standard values detected in choice: ", paste(bad_choice, collapse=", "))
+if (length(bad_agent)>0)  warning("Non-standard values detected in Agent_type: ", paste(bad_agent, collapse=", "))
+if (length(bad_emot)>0)   warning("Non-standard values detected in Emotion_selfreport: ", paste(bad_emot, collapse=", "))
+
+expdata <- df %>%
+  mutate(
+    choice = factor(choice,
+                    levels = valid_choice_levels,
+                    labels = c("accept","punish")),
+    Agent_type = factor(Agent_type,
+                        levels = valid_agent_levels,
+                        labels = c("DeepSeek-R1","o3-mini","Humans","DeepSeek-v3","GPT-3.5")),
+    Emotion_selfreport = factor(Emotion_selfreport,
+                                levels = valid_emotion_levels,
+                                labels = c("No Emotion Self-Report","Emotion Self-Report")),
+    ID = as.factor(ID)
+  )
+
+cat("\nFrequencies after factor conversion (confirm labels):\n")
+print(table(expdata$choice, useNA = "ifany"))
+print(table(expdata$Agent_type, useNA = "ifany"))
+print(table(expdata$Emotion_selfreport, useNA = "ifany"))
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+# ============ Center Numeric Covariates ============
+# Missing data will later be filtered out using complete.cases
+expdata <- expdata %>%
+  mutate(
+    amount_of_cost_c = scale(amount_of_cost, scale = FALSE)[,1],
+    amount_of_allocation_c = scale(amount_of_allocation, scale = FALSE)[,1]
+  )
+
+# ============ Remove Cases with Missing Key Variables ============
+vars_needed <- c("choice","Agent_type","Emotion_selfreport","ID",
+                 "amount_of_cost_c","amount_of_allocation_c")
+expdata_complete <- expdata[complete.cases(expdata[, vars_needed]), ]
+
+cat("\nNumber of complete cases:", nrow(expdata_complete), " / total rows:", nrow(expdata), "\n")
+
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+# Ensure Agent_type is a factor
+expdata_complete$Agent_type <- factor(expdata_complete$Agent_type)
+
+# Set “Humans” as the reference level
+expdata_complete$Agent_type <- relevel(expdata_complete$Agent_type, ref = "Humans")
+
+# ============ Model 1: Without Interaction ============
+m0 <- glmer(
+  choice ~ Agent_type + Emotion_selfreport +
+    amount_of_cost_c + amount_of_allocation_c +
+    (1 | ID),
+  data = expdata_complete,
+  family = binomial(link = "logit"),
+  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
+)
+
+cat("\n===== Model 1 (No Interaction) Results =====\n")
+print(summary(m0))
+
+# Odds Ratios and 95% CI
+or_m0 <- broom.mixed::tidy(m0, effects = "fixed", conf.int = TRUE, conf.method = "Wald") %>%
+  mutate(
+    OR = exp(estimate),
+    OR_low = exp(conf.low),
+    OR_high = exp(conf.high)
+  ) %>%
+  select(term, estimate, std.error, statistic, p.value, OR, OR_low, OR_high)
+
+cat("\n===== Model 1 OR (95% CI) =====\n")
+print(or_m0, digits = 4)
+
+```
+
+
+
+```{r}
+# ============ Model 2: With Interaction (Agent_type * Emotion_selfreport) ============
+expdata_complete$Agent_type <- factor(expdata_complete$Agent_type)
+expdata_complete$Agent_type <- relevel(expdata_complete$Agent_type, ref = "Humans")
+
+m1 <- glmer(
+  choice ~ Agent_type * Emotion_selfreport +
+    amount_of_cost_c + amount_of_allocation_c +
+    (1 | ID),
+  data = expdata_complete,
+  family = binomial(link = "logit"),
+  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
+)
+
+cat("\n===== Model 2 (With Interaction) Results =====\n")
+print(summary(m1))
+
+or_m1 <- broom.mixed::tidy(m1, effects = "fixed", conf.int = TRUE, conf.method = "Wald") %>%
+  mutate(
+    OR = exp(estimate),
+    OR_low = exp(conf.low),
+    OR_high = exp(conf.high)
+  ) %>%
+  select(term, estimate, std.error, statistic, p.value, OR, OR_low, OR_high)
+
+cat("\n===== Model 2 OR (95% CI) =====\n")
+options(scipen = 999)  # Disable scientific notation
+print(or_m1, digits = 4)
+```
+
+
+```{r}
+# Report 95% CI (logit scale)
+coefs <- summary(m1)$coefficients
+
+# Compute 95% Wald CI on logit scale
+coefs_CI <- cbind(
+  B        = coefs[, "Estimate"],
+  SE       = coefs[, "Std. Error"],
+  z        = coefs[, "z value"],
+  p        = coefs[, "Pr(>|z|)"],
+  CI_lower = coefs[, "Estimate"] - 1.96 * coefs[, "Std. Error"],
+  CI_upper = coefs[, "Estimate"] + 1.96 * coefs[, "Std. Error"]
+)
+
+round(coefs_CI, 3)
+
+```
+
+```{r}
+# ============ Model Comparison (Test for Interaction) ============
+cat("\n===== Model Comparison (m0 vs m1, Chisq test) =====\n")
+print(anova(m0, m1, test = "Chisq"))
+
+# ============ Estimated Marginal Means / Predicted Probabilities ============
+cat("\n===== Estimated Marginal Means by Agent_type × Emotion_selfreport (on probability scale) =====\n")
+emm <- emmeans::emmeans(m1, ~ Agent_type * Emotion_selfreport, type = "response")
+print(emm)
+
+```
+
+```{r}
+# Pairwise comparison of Agent_type within each Emotion_selfreport condition
+pairs(emmeans(m1, ~ Agent_type | Emotion_selfreport, type="response"))
+```
+
+```{r}
+# Pairwise comparison of Emotion_selfreport within each Agent_type
+pairs(emmeans(m1, ~ Emotion_selfreport | Agent_type, type="response"))
+
+```
+
+
+```{r}
+# (1) Compute conditional means for each Agent_type × Emotion_selfreport combination
+emm_tab <- emmeans(m1, ~ Emotion_selfreport | Agent_type, type = "response")
+
+# (2) Conduct pairwise comparisons (Yes vs. No) with CI and p-values
+ci_tab <- summary(
+  pairs(emm_tab, reverse = TRUE),
+  infer = c(TRUE, TRUE)
+)
+
+print(ci_tab)
+# Columns include odds.ratio, lower.CL, upper.CL, and p.value
+
+
+```
+
+
+```{r}
+# ============ Extended Model with Higher-Order Interactions ============
+expdata_complete$Agent_type <- factor(expdata_complete$Agent_type)
+expdata_complete$Agent_type <- relevel(expdata_complete$Agent_type, ref = "Humans")
+
+m2 <- glmer(
+  choice ~ Agent_type * Emotion_selfreport * amount_of_cost_c * amount_of_allocation_c
+            - Agent_type:Emotion_selfreport:amount_of_cost_c:amount_of_allocation_c
+            + (1 | ID),
+  data = expdata_complete,
+  family = binomial(link = "logit"),
+  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
+)
+
+cat("\n===== Model 3 (Extended Interaction Model) Results =====\n")
+print(summary(m2))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+# GLMM4
+# ============ Read Data ============
+file_path <- "~/Desktop/study2_GLMM.xlsx"
+df <- readxl::read_excel(path = file_path, sheet = 2)
+
+cat("Column names:\n"); print(names(df))
+cat("\nRaw frequency counts of choice / Group / Emotion_selfreport:\n")
+print(table(df$choice, useNA = "ifany"))
+print(table(df$Group, useNA = "ifany"))
+print(table(df$Emotion_selfreport, useNA = "ifany"))
+
+```
+
+```{r cars}
+library(dplyr)  
+# ============ Factor Conversion (Explicit Levels to Avoid Label Errors) ============
+# Expected values:
+# choice = 0/1; Group = 1/2/4/5; Emotion_selfreport = 0/1
+# If any values fall outside these ranges, a warning will be issued and the values will be set to NA.
+
+valid_choice_levels <- c(0, 1)
+valid_group_levels  <- c(1, 2, 4, 5)
+valid_emotion_levels <- c(0, 1)
+
+# Detect irregular values
+bad_choice <- setdiff(na.omit(unique(df$choice)), valid_choice_levels)
+bad_group  <- setdiff(na.omit(unique(df$Group)), valid_group_levels)
+bad_emot   <- setdiff(na.omit(unique(df$Emotion_selfreport)), valid_emotion_levels)
+
+if (length(bad_choice)>0) warning("Non-standard values found in choice: ", paste(bad_choice, collapse=", "))
+if (length(bad_group)>0)  warning("Non-standard values found in Group: ", paste(bad_group, collapse=", "))
+if (length(bad_emot)>0)   warning("Non-standard values found in Emotion_selfreport: ", paste(bad_emot, collapse=", "))
+
+expdata <- df %>%
+  mutate(
+    choice = factor(choice,
+                    levels = valid_choice_levels,
+                    labels = c("accept","punish")),
+    Group = factor(Group,
+                        levels = valid_group_levels,
+                        labels = c("DeepSeek-R1","o3-mini","DeepSeek-v3","GPT-3.5")),
+    Emotion_selfreport = factor(Emotion_selfreport,
+                                levels = valid_emotion_levels,
+                                labels = c("No Emotion Self-Report","Emotion Self-Report")),
+    ID = as.factor(ID)
+  )
+
+cat("\nFrequencies after factor conversion (label check):\n")
+print(table(expdata$choice, useNA = "ifany"))
+print(table(expdata$Group, useNA = "ifany"))
+print(table(expdata$Emotion_selfreport, useNA = "ifany"))
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+# ============ Center Numeric Covariates ============
+# Missing data will later be filtered with complete.cases
+expdata <- expdata %>%
+  mutate(
+    amount_of_cost_c = scale(amount_of_cost, scale = FALSE)[,1],
+    amount_of_allocation_c = scale(amount_of_allocation, scale = FALSE)[,1]
+  )
+
+# ============ Remove Cases with Missing Key Variables ============
+vars_needed <- c("choice","Group","Emotion_selfreport","ID",
+                 "amount_of_cost_c","amount_of_allocation_c")
+expdata_complete <- expdata[complete.cases(expdata[, vars_needed]), ]
+
+cat("\nNumber of complete cases:", nrow(expdata_complete), " / total rows:", nrow(expdata), "\n")
+
+```
+
+```{r}
+## Add Random Effects
+# Ensure Group is a factor and set reference level
+expdata_complete$Group <- factor(expdata_complete$Group)
+expdata_complete$Group <- relevel(expdata_complete$Group, ref = "o3-mini")
+# (Optional) If Emotion_selfreport is character/numeric, convert to factor and set reference level
+# expdata_complete$Emotion_selfreport <- relevel(factor(expdata_complete$Emotion_selfreport), ref = "No Emotion Self-Report")
+
+m6 <- glmer(
+  choice ~ Group * Emotion_selfreport * amount_of_cost_c
+        + Group * Emotion_selfreport * amount_of_allocation_c
+        + (1 | ID),                                 # ← Random intercept
+  data    = expdata_complete,
+  family  = binomial(link = "logit"),
+  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
+  # nAGQ = 0  # Optional: use faster approximation first, increase if stable
+)
+
+cat("\n===== Model (with Random Intercept) Results =====\n")
+print(summary(m6))
+
+
+```
+
+
+```{r}
+library(broom.mixed)
+library(dplyr)
+
+# Extract coefficient table (fixed effects)
+coefs <- broom.mixed::tidy(m6, effects = "fixed")
+
+# Compute 95% CI (Wald method)
+ci <- confint(m6, parm = "beta_", method = "Wald")  # or method = "profile" for more accurate but slower estimation
+
+# Combine results
+results_table <- coefs %>%
+  select(term, estimate, std.error, statistic, p.value) %>%
+  mutate(
+    CI_lower = ci[,1],
+    CI_upper = ci[,2]
+  ) %>%
+  rename(
+    B = estimate,
+    SE = std.error,
+    z = statistic,
+    P = p.value
+  )
+
+# Print results
+print(results_table, digits = 3)
+
+# Export to CSV if needed
+write.csv(results_table, "~/Desktop/model_results_m6.csv", row.names = FALSE)
+
+
+```
+
+
+
+```{r}
+library(emmeans)
+library(dplyr)
+
+# ====== 1. Post-hoc Test: Emotion × Cost within each Group ======
+emm_cost <- emtrends(
+  m6,
+  ~ Group * Emotion_selfreport,
+  var = "amount_of_cost_c"
+)
+
+posthoc_cost <- pairs(emm_cost, by = "Group") %>%
+  summary(infer = TRUE) %>%  # infer = TRUE provides 95% CI
+  as.data.frame() %>%
+  mutate(effect = "Emotion × Cost")
+
+# ====== 2. Post-hoc Test: Emotion × Allocation within each Group ======
+emm_alloc <- emtrends(
+  m6,
+  ~ Group * Emotion_selfreport,
+  var = "amount_of_allocation_c"
+)
+
+posthoc_alloc <- pairs(emm_alloc, by = "Group") %>%
+  summary(infer = TRUE) %>%
+  as.data.frame() %>%
+  mutate(effect = "Emotion × Allocation")
+
+# ====== Combine cost & allocation results ======
+posthoc_results <- bind_rows(
+  pairs(emm_cost, by = "Group", reverse = TRUE) %>%
+    summary(infer = TRUE) %>%
+    as.data.frame() %>%
+    mutate(effect = "Emotion × Cost"),
+  
+  pairs(emm_alloc, by = "Group", reverse = TRUE) %>%
+    summary(infer = TRUE) %>%
+    as.data.frame() %>%
+    mutate(effect = "Emotion × Allocation")
+)
+
+# ====== Standardize Column Names ======
+results_clean <- posthoc_results %>%
+  rename(
+    B        = estimate,
+    CI_lower = asymp.LCL,
+    CI_upper = asymp.UCL,
+    z        = z.ratio,
+    P        = p.value
+  ) %>%
+  mutate(
+    OR       = exp(B),
+    OR_lower = exp(CI_lower),
+    OR_upper = exp(CI_upper)
+  ) %>%
+  select(Group, contrast, effect, B, SE, CI_lower, CI_upper, z, P, OR, OR_lower, OR_upper)
+
+print(results_clean, digits = 3)
+
+# ====== Optional: Export to CSV ======
+write.csv(posthoc_results, "~/Desktop/posthoc_results_m6.csv", row.names = FALSE)
+
+
+```
+
+

@@ -1,0 +1,181 @@
+word,category,confidence,rationale
+player,other,0.95,"Refers to a participant/agent in a scenario, not specifically related to emotion, fairness, or cost"
+unfair,fairness,0.98,"Directly relates to fairness/justice concepts, appears in fairness seed list"
+distribution,fairness,0.85,"Related to allocation and equality concepts, though could also relate to general processes"
+amount,cost,0.9,"Quantifies resources or costs, related to economic/resource concepts"
+money,cost,0.95,Directly related to economic costs and resources
+little,other,0.85,"General quantifier, not specifically tied to emotion, fairness, or cost"
+agree,other,0.8,"Describes an action/decision, though could have emotional undertones"
+get,other,0.9,"General action verb, not specific to any category"
+one,other,0.95,"Basic numerical term, not specific to any category"
+can,other,0.95,"Modal verb, not specific to any category"
+allocation,fairness,0.85,Related to distribution and equality concepts
+fair,fairness,0.98,"Directly appears in fairness seed list, core fairness concept"
+much,other,0.85,"General quantifier, not specifically tied to any category"
+think,other,0.9,"Cognitive process, not specifically emotional, fairness, or cost related"
+allocated,fairness,0.85,Related to distribution and equality concepts
+refuse,emotion,0.8,Often implies emotional response or reaction
+two,other,0.95,"Basic numerical term, not specific to any category"
+proposal,other,0.9,"Refers to a suggestion/plan, not specifically tied to any category"
+players,other,0.95,"Plural of player, refers to participants/agents"
+yuan,cost,0.9,"Currency unit, related to economic costs"
+relatively,other,0.9,"Comparative term, not specific to any category"
+gave,other,0.85,"Action verb related to transfer, not specific to any category"
+small,other,0.85,"Size descriptor, not specifically tied to any category"
+want,emotion,0.8,Often implies desire or emotional state
+gives,other,0.85,"Action verb related to transfer, not specific to any category"
+give,other,0.85,"Action verb related to transfer, not specific to any category"
+less,other,0.85,"Comparative term, not specifically tied to any category"
+plan,other,0.9,"Refers to intended actions, not specific to any category"
+gets,other,0.9,"Action verb, not specific to any category"
+given,other,0.85,"Past participle of give, not specific to any category"
+three,other,1.0,"Numerical value with no emotional, fairness, or cost implications"
+reject,emotion,0.8,Often associated with negative emotional response or reaction
+reasonable,fairness,0.85,"Implies balanced, just, and fair judgment"
+feel,emotion,0.95,Directly relates to emotional experience or state
+allocates,cost,0.85,Related to resource distribution and management
+unreasonable,fairness,0.85,Implies unfair or unjust behavior or judgment
+also,other,1.0,"Conjunction word with no emotional, fairness, or cost implications"
+difference,other,0.9,Generic term that could apply to any context
+income,cost,0.9,Directly related to financial resources and expenses
+rejected,emotion,0.8,Often associated with negative emotional response or reaction
+selfish,fairness,0.85,Implies unfair behavior or lack of consideration for others
+dollar,cost,0.95,Direct reference to monetary cost
+take,other,0.9,Generic action verb with no specific category alignment
+still,other,1.0,"Temporal term with no emotional, fairness, or cost implications"
+bit,other,1.0,Generic term with no specific category alignment
+acceptable,fairness,0.8,Implies meeting fair or reasonable standards
+reward,cost,0.85,Related to compensation or resource allocation
+accept,emotion,0.7,Often involves emotional response or attitude
+choose,other,0.9,Decision-making verb without specific category alignment
+everyone,fairness,0.8,Often used in context of inclusive or equal treatment
+first,other,1.0,"Ordinal term with no emotional, fairness, or cost implications"
+low,cost,0.75,Often used in context of costs or resources
+people,other,0.9,Generic noun without specific category alignment
+see,other,1.0,Basic perception verb with no specific category alignment
+interests,other,0.8,Could refer to multiple contexts without clear category alignment
+reason,other,0.9,Cognitive process term without specific category alignment
+line,other,1.0,"Generic noun with no emotional, fairness, or cost implications"
+just,fairness,0.95,Directly related to fairness and justice
+greedy,fairness,0.85,Implies unfair behavior or excessive self-interest
+giving,fairness,0.7,Often associated with fair distribution or generosity
+felt,emotion,0.95,Directly relates to experiencing emotions or feelings
+different,other,0.9,"General descriptive term without specific emotional, fairness or cost implications"
+chose,other,0.95,"Action verb related to decision-making but not specifically tied to emotion, fairness or cost"
+although,other,0.99,"Conjunction word with no emotional, fairness or cost meaning"
+gap,fairness,0.85,Often used to describe disparities or inequalities between groups
+way,other,0.95,"General term without specific emotional, fairness or cost connotations"
+smaller,other,0.9,"Descriptive term without specific emotional, fairness or cost implications"
+rewards,cost,0.85,Related to benefits and resources gained or lost
+price,cost,0.99,Directly related to monetary or resource cost
+lose,cost,0.9,Implies loss of resources or negative consequences
+least,other,0.95,"Comparative term without specific emotional, fairness or cost implications"
+large,other,0.95,"Descriptive term without specific emotional, fairness or cost implications"
+bottom,other,0.9,"Positional term without specific emotional, fairness or cost implications"
+fairly,fairness,0.99,Directly related to fairness and equitable treatment
+fairer,fairness,0.99,Comparative form directly related to fairness
+expectations,emotion,0.8,Often involves emotional anticipation or hopes
+disagree,emotion,0.85,Often involves emotional reaction or conflict
+choice,other,0.9,"Decision-making term without specific emotional, fairness or cost implications"
+big,other,0.95,"Descriptive term without specific emotional, fairness or cost implications"
+benefit,cost,0.85,Related to advantages or positive resources gained
+right,fairness,0.85,Often used in context of justice and fair treatment
+person,other,0.95,"General noun without specific emotional, fairness or cost implications"
+profit,cost,0.95,Directly related to financial gains and resources
+keep,other,0.9,"Action verb without specific emotional, fairness or cost implications"
+slightly,other,0.95,"Modifier without specific emotional, fairness or cost implications"
+takes,other,0.9,"Action verb without specific emotional, fairness or cost implications"
+uneven,fairness,0.9,Implies inequality or lack of fairness
+make,other,0.95,"General action verb without specific emotional, fairness or cost implications"
+principle,fairness,0.85,Often related to moral rules and justice
+fairness,fairness,0.99,Directly and explicitly about fairness
+even,fairness,0.75,Often used in context of fairness and equal distribution
+agreed,other,0.85,"Indicates consensus but not specifically emotional, fairness, or cost-related"
+equal,fairness,0.95,"Directly appears in fairness seed list, core fairness concept"
+distributed,fairness,0.8,Related to fair allocation and distribution of resources
+decision,other,0.9,"Generic term for choice-making, not specific to any category"
+certain,other,0.85,"Indicates certainty but not specifically emotional, fairness, or cost-related"
+benefits,cost,0.75,"Related to value and resources, opposite of costs"
+exceeds,other,0.8,Indicates surpassing but not specific to any category
+previous,other,0.95,"Temporal reference, not related to main categories"
+really,other,0.85,"Emphasis word, not specific to any category"
+ratio,other,0.85,"Mathematical concept, not specific to main categories"
+quite,other,0.9,"Modifier word, not specific to any category"
+paid,cost,0.9,Directly related to expenses and monetary cost
+possible,other,0.85,Indicates possibility but not specific to any category
+penny,cost,0.95,Directly related to money and costs
+particularly,other,0.9,"Modifier word, not specific to any category"
+round,other,0.85,"Shape/cycle reference, not related to main categories"
+others,other,0.8,"Generic reference term, not specific to categories"
+refused,emotion,0.7,Often implies negative emotional response or reaction
+stingy,cost,0.85,Related to unwillingness to spend or share resources
+second,other,0.95,"Ordinal number, not related to main categories"
+since,other,0.9,"Temporal reference, not related to main categories"
+stand,other,0.85,"Action verb, not specific to any category"
+need,other,0.75,Indicates requirement but not specific to categories
+thought,other,0.8,"Cognitive process, not specifically emotional or cost-related"
+took,other,0.9,"Action verb, not specific to any category"
+us,other,0.95,"Pronoun, not related to main categories"
+well,other,0.85,"General positive modifier, not specific to categories"
+whether,other,0.9,"Conjunction indicating choice, not specific to categories"
+within,other,0.85,"Spatial/temporal preposition, not related to main categories"
+without,other,0.95,"Preposition indicating absence, not related to emotion, fairness, or cost"
+nothing,other,0.95,"General pronoun indicating absence, not specific to any category"
+something,other,0.95,"General pronoun, not specific to any category"
+matter,other,0.9,"General term for subject or issue, not specific to categories"
+consider,other,0.85,"Cognitive process word, not specifically emotional, fairness, or cost related"
+makes,other,0.95,"General action verb, not specific to categories"
+always,other,0.95,"Temporal adverb, not specific to categories"
+amounts,cost,0.8,"Related to quantity and resources, often used in cost contexts"
+appropriate,fairness,0.75,Suggests proper and fair treatment or allocation
+average,other,0.85,"Statistical term, not specifically related to main categories"
+behavior,other,0.9,"General term for actions and conduct, not specific to categories"
+better,other,0.85,"Comparative term, not specific to categories"
+chooses,other,0.95,"Decision action verb, not specific to categories"
+close,other,0.9,"Spatial or relational term, not specific to categories"
+completely,other,0.95,"Adverb of degree, not specific to categories"
+angry,emotion,0.98,"Direct emotion word, present in emotion seed list"
+consideration,other,0.85,"Cognitive process word, not specifically emotional, fairness, or cost related"
+later,other,0.95,"Temporal term, not specific to categories"
+considering,other,0.85,"Cognitive process word, not specifically emotional, fairness, or cost related"
+losses,cost,0.9,Indicates negative resource outcomes or expenses
+like,other,0.9,"General comparison word, not specific to categories"
+long,other,0.95,"Temporal or spatial descriptor, not specific to categories"
+got,other,0.95,"General action verb, not specific to categories"
+game,other,0.9,"General noun, not specific to categories"
+extremely,other,0.9,"Intensity adverb, not specific to categories"
+enough,other,0.85,"Quantity descriptor, not specifically related to main categories"
+lower,cost,0.75,Often used in context of reducing costs or resources
+rejecting,emotion,0.7,Often carries emotional connotations and can trigger emotional responses
+proposals,other,0.9,"General term for suggestions or plans, not specific to categories"
+refusal,emotion,0.7,Often associated with emotional responses and can trigger emotional reactions
+rather,other,0.95,"It's an adverb indicating preference, not specifically related to emotion, fairness, or cost"
+range,other,0.95,"Refers to a span or scope, not specifically tied to emotion, fairness, or cost"
+punished,fairness,0.85,"Related to justice and consequences for actions, commonly associated with fairness concepts"
+punish,fairness,0.85,"Same as 'punished', relates to justice and consequences"
+proposed,other,0.95,"Refers to suggesting or offering something, not specifically related to the three categories"
+ones,other,0.98,"Generic pronoun without specific emotional, fairness, or cost implications"
+points,other,0.9,"Refers to items or locations, not specifically related to the three categories"
+point,other,0.9,"Same as 'points', refers to a specific item or location"
+payoff,cost,0.85,"Related to returns, benefits, or costs of actions"
+option,other,0.95,"Refers to a choice or alternative, not specifically related to the three categories"
+offer,other,0.9,"Refers to presenting something for consideration, not specifically related to the three categories"
+numbers,other,0.98,"Mathematical concept, not related to emotion, fairness, or cost"
+number,other,0.98,"Same as 'numbers', mathematical concept"
+respect,fairness,0.8,Related to fair treatment and recognition of others' dignity
+rejection,emotion,0.85,Often associated with negative emotional responses and feelings
+unethical,fairness,0.9,Related to justice and moral fairness
+selfishness,fairness,0.8,Relates to unfair behavior and lack of consideration for others
+unbalanced,fairness,0.85,Implies lack of fairness or equality
+nature,other,0.95,"Refers to the natural world or essential qualities, not specifically related to the three categories"
+wrong,fairness,0.8,Often relates to moral judgments and justice
+win,other,0.75,"While it can have emotional implications, it's primarily about success or achievement"
+wants,other,0.9,"Refers to desires or needs, not specifically tied to emotion, fairness, or cost"
+wanted,other,0.9,"Same as 'wants', refers to desires or needs"
+violates,fairness,0.85,"Related to breaking rules or standards, often associated with fairness and justice"
+unless,other,0.98,"Conditional conjunction, not related to emotion, fairness, or cost"
+try,other,0.95,"Refers to attempting something, not specifically related to the three categories"
+seriously,other,0.85,"Adverb indicating manner, not specifically related to the three categories"
+totally,other,0.95,"Adverb indicating completeness, not specifically related to the three categories"
+together,other,0.9,"Indicates unity or combination, not specifically related to the three categories"
+times,other,0.95,"Refers to instances or periods, not specifically related to the three categories"

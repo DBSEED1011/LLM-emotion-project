@@ -1,0 +1,364 @@
+---
+title: "Untitled"
+author: "dyq"
+date: "2025-10-10"
+output: html_document
+---
+
+
+```{r set}
+# Install the required packages
+install.packages("syuzhet")
+install.packages("writexl")
+library(syuzhet)
+library(readxl)
+library(writexl)
+library(tidyverse)
+install.packages("tidytext")
+library(tidytext)
+```
+
+
+```{r cars}
+# Read the data
+file_path <- "~/Desktop/Reasoning_content_analysis/Reasoning_example.xlsx"
+
+# Load the dataset
+df <- read_excel(file_path)
+
+# Check column names
+colnames(df)
+
+# Extract the Reasoning column
+text_data <- df$Reasoning
+
+# View the first few rows of text (optional)
+head(text_data)
+
+```
+
+```{r pressure, echo=FALSE}
+# 💡 Perform sentiment analysis using the NRC emotion lexicon
+nrc_result <- get_nrc_sentiment(text_data)
+
+# 🧾 View the first few rows of the results
+head(nrc_result)
+
+```
+
+```{r}
+
+# Merge back with the original dataset
+df_with_emotions <- cbind(df, nrc_result)
+
+## Perceived fairness-related analysis
+# 🧠 Define keywords related to unfairness
+unfair_keywords <- c("unfair", "unfairness", "unequal", "injustice", "biased", "not fair")
+
+# ✂️ Convert text to lowercase for keyword matching
+text_lower <- tolower(df_with_emotions$Reasoning)
+
+# ✅ Count how many times unfairness-related keywords appear in each text (as a score)
+df_with_emotions$unfair_score <- str_count(text_lower, str_c(unfair_keywords, collapse = "|"))
+
+# ✅ Optionally, add a Boolean column (whether it contains at least one unfairness keyword)
+df_with_emotions$contains_unfair <- df_with_emotions$unfair_score > 0
+
+# Set the export path
+output_path <- "~/Desktop/Reasoning_with_emotions.xlsx"
+
+# Export as an Excel file
+write_xlsx(df_with_emotions, output_path)
+
+```
+
+
+
+```{r}
+# Correlation analysis and statistical summary
+# Variables to analyze
+vars <- c("anger", "anticipation", "disgust", "fear", "joy",
+          "sadness", "surprise", "trust", "negative", "positive",
+          "unfair_score", "choice")
+
+# Step 1: Read the data
+df_with_emotions <- read_excel("~/Desktop/Reasoning_with_emotions.xlsx")
+
+# Ensure 'choice' is numeric (required for correlation analysis)
+df_with_emotions$choice_num <- as.numeric(as.character(df_with_emotions$choice))
+
+# Extract a subset of the data frame
+df_corr <- df_with_emotions[, c(vars[1:11], "choice")]  # Replace 'choice' with 'choice_num' if needed
+colnames(df_corr)[12] <- "choice"  # Rename the column back to 'choice'
+
+# Initialize the results table
+cor_results <- data.frame()
+
+# Iterate over all variable pairs (upper triangle)
+for (i in 1:(length(vars) - 1)) {
+  for (j in (i + 1):length(vars)) {
+    var1 <- vars[i]
+    var2 <- vars[j]
+    
+    # Perform Pearson correlation test
+    test <- cor.test(df_corr[[var1]], df_corr[[var2]], use = "complete.obs", method = "pearson")
+    
+    # Significance stars
+    sig <- ifelse(test$p.value < 0.001, "***",
+                  ifelse(test$p.value < 0.01, "**",
+                         ifelse(test$p.value < 0.05, "*", "")))
+    
+    cor_results <- rbind(cor_results, data.frame(
+      var1 = var1,
+      var2 = var2,
+      correlation = round(test$estimate, 3),
+      p_value = signif(test$p.value, 3),
+      significance = sig
+    ))
+  }
+}
+
+# View the results
+library(knitr)
+kable(cor_results, caption = "Correlation matrix of emotional variables, unfair_score, and choice (with significance levels)")
+
+```
+
+
+```{r}
+# Descriptive data
+
+file_path <- "~/Desktop/Reasoning_with_emotions.xlsx"
+
+# Read the data
+df <- read_excel(file_path)
+
+df_with_emotions <- read_excel(file_path)
+
+head(file_path)
+
+# Ensure 'choice' is a factor variable
+df_with_emotions$choice <- as.factor(df_with_emotions$choice)
+
+# 1️⃣ Count the number of punishment choices
+table(df_with_emotions$choice)
+
+# Or use tidyverse for a cleaner display
+library(dplyr)
+df_with_emotions %>%
+  group_by(choice) %>%
+  summarise(n = n())
+
+# 2️⃣ Calculate the mean (or median) of emotion variables for each group
+emotion_vars <- c("anger", "anticipation", "disgust", "fear", "joy",
+                  "sadness", "surprise", "trust", "negative", "positive", "unfair_score")
+
+# Group means
+group_summary <- df_with_emotions %>%
+  group_by(choice) %>%
+  summarise(across(all_of(emotion_vars), mean, na.rm = TRUE))
+
+# View the results
+print(group_summary)
+
+library(knitr)
+
+group_summary %>%
+  kable(digits = 3, caption = "Average values of emotional variables for each choice group")
+
+```
+
+
+
+
+```{r}
+# Install packages
+install.packages("psych")
+install.packages("lavaan")
+install.packages("ggplot2")
+install.packages("readxl")
+install.packages("semPlot")
+install.packages("sem")
+install.packages("jpeg")
+
+
+# Load packages
+library(psych)
+library(lavaan)
+library(ggplot2)
+library(readxl)
+library(sem)
+library(semPlot)
+
+```
+
+```{r}
+library(lavaan)
+
+# Ensure 'choice' is a binary ordered variable (if not already)
+df$choice <- as.numeric(df$choice)
+
+# Define the model with control variables
+model <- '
+  negative ~ a * unfair_score + amount_of_cost
+  choice ~ b * negative + c * unfair_score + amount_of_cost
+
+  indirect := a * b
+  total := c + (a * b)
+'
+
+# Fit the model
+fit <- sem(model, data = df, estimator = "WLSMV", ordered = "choice")
+
+# View the results
+summary(fit, standardized = TRUE, fit.measures = TRUE)
+
+         
+```
+
+
+```{r}
+# Required packages
+# install.packages(c("readxl", "lavaan"))
+library(readxl)
+library(lavaan)
+
+# ===== 1) Read the data (update the path as needed) =====
+path <- "/Users/Daiyiqing/Desktop/Reasoning_with_emotions.xlsx"
+raw  <- read_excel(path)
+
+# ===== 2) Select only the variables needed for modeling (case-insensitive matching) =====
+need_vars <- c("negative", "positive", "unfair_score", "amount_of_cost", "choice")
+name_map  <- setNames(names(raw), tolower(names(raw)))
+hit       <- name_map[need_vars]
+
+if (anyNA(hit)) {
+  stop(paste(
+    "The following columns could not be found in the dataset:",
+    paste(need_vars[is.na(hit)], collapse = ", "),
+    "\nPlease check the column names in the sheet. Example column names:",
+    paste(names(raw)[1:min(10, ncol(raw))], collapse = ", ")
+  ))
+}
+
+df <- raw[, hit]
+names(df) <- need_vars  # Standardize column names
+
+# ===== 3) Numeric conversion (for numeric/character columns; preserve numeric values if possible) =====
+numify <- function(x){
+  if (is.numeric(x)) return(x)
+  x <- as.character(x)
+  x <- gsub(",", ".", x)                 # Convert commas to decimal points
+  x <- gsub("[^0-9\\-\\.]", "", x)       # Remove non-numeric characters (keep "-" and ".")
+  suppressWarnings(as.numeric(x))
+}
+df$negative       <- numify(df$negative)
+df$positive       <- numify(df$positive)
+df$unfair_score   <- numify(df$unfair_score)
+df$amount_of_cost <- numify(df$amount_of_cost)
+
+# ===== 4) Construct the binary ordered variable 'choice' =====
+# If it's already numeric (0/1), use it directly; otherwise, map it to 0/1
+if (is.numeric(df$choice)) {
+  # If it’s not 0/1 but has only two distinct numeric values, map them to 0/1
+  uniq <- sort(unique(na.omit(df$choice)))
+  if (length(uniq) == 2 && !all(uniq %in% c(0,1))) {
+    df$choice <- ifelse(df$choice == uniq[1], 0,
+                        ifelse(df$choice == uniq[2], 1, NA))
+  }
+} else {
+  # For character/factor types: map the two most frequent categories to 0/1
+  lev <- unique(na.omit(as.character(df$choice)))
+  if (length(lev) != 2) {
+    stop(paste("‘choice’ is not a binary variable (detected levels:", length(lev), "). Please check your data."))
+  }
+  df$choice <- ifelse(as.character(df$choice) == lev[1], 0,
+                      ifelse(as.character(df$choice) == lev[2], 1, NA))
+}
+
+# Set as an ordered factor (lavaan performs better with ordered variables)
+df$choice <- ordered(df$choice, levels = c(0,1))
+
+# ===== 5) Remove incomplete cases for model variables (WLSMV is sensitive to missing data) =====
+keep <- complete.cases(df[, c("negative","positive","unfair_score","amount_of_cost","choice")])
+df   <- df[keep, ]
+
+if (nrow(df) < 10) {
+  stop("Too few valid samples (<10). Please check for missing data or data quality issues.")
+}
+
+# ===== 6) lavaan model (same as your provided structure) =====
+model <- '
+  positive ~ a * unfair_score + amount_of_cost
+  choice   ~ b * positive + c * unfair_score + amount_of_cost
+
+  indirect := a * b
+  total    := c + (a * b)
+'
+
+fit <- sem(model, data = df, estimator = "WLSMV", ordered = "choice")
+
+# ===== 7) Output results =====
+summary(fit, standardized = TRUE, fit.measures = TRUE)
+parameterEstimates(fit, standardized = TRUE)  # Optional: export coefficients as a table
+
+```
+
+
+
+```{r}
+## Positive emotion feedback loop
+
+# Step 1: Read the data
+df <- read_excel("~/Desktop/Reasoning_with_emotions.xlsx")
+
+# Ensure variables are in the correct format
+df$choice <- as.numeric(df$choice)
+df$choice_next <- as.ordered(df$choice_next)  # If it’s a binary choice
+df$positive <- as.numeric(df$positive)
+
+# Define the mediation model
+model <- '
+  positive ~ a * choice + amount_of_cost
+  choice_next ~ b * positive + c * choice + amount_of_cost
+
+  indirect := a * b
+  total := c + (a * b)
+'
+
+# Fit the model (note the ordered variable)
+fit <- sem(model, data = df, estimator = "WLSMV", ordered = "choice_next")
+
+# View results
+summary(fit, standardized = TRUE, fit.measures = TRUE)
+
+```
+
+```{r}
+## Negative emotion feedback loop
+
+# Step 1: Read the data
+df <- read_excel("~/Desktop/Reasoning_with_emotions.xlsx")
+
+# Ensure variables are in the correct format
+df$choice <- as.numeric(df$choice)
+df$choice_next <- as.ordered(df$choice_next)  # If it’s a binary choice
+df$negative <- as.numeric(df$negative)
+
+# Define the mediation model
+model <- '
+  negative ~ a * choice + amount_of_cost
+  choice_next ~ b * negative + c * choice + amount_of_cost
+
+  indirect := a * b
+  total := c + (a * b)
+'
+
+# Fit the model (note the ordered variable)
+fit <- sem(model, data = df, estimator = "WLSMV", ordered = "choice_next")
+
+# View results
+summary(fit, standardized = TRUE, fit.measures = TRUE)
+
+
+```

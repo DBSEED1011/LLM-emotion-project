@@ -1,0 +1,178 @@
+---
+title: "NRC_COT"
+author: "dyq"
+date: "2025-07-27"
+output: html_document
+---
+
+```{r}
+#word frequency analysis
+
+library(dplyr)
+library(stringr)
+library(tibble)
+library(tidyr)
+library(ggplot2)
+library(stopwords)
+library(readr)
+library(tidytext)
+
+```
+
+
+```{r}
+# Set file paths (Note: on Mac, ~ represents the user home directory)
+folder_path <- "~/Desktop/Reasoning_content_analysis/"
+deepseek_file <- paste0(folder_path, "Reasoning_example.xlsx")
+human_file <- paste0(folder_path, "Human_reasoning.xlsx")
+
+# Custom stopwords
+custom_stopwords <- c("vs", "avg", "1", "2", "acvalence", "aavalence", "acarousal", "aarousal", "s")
+
+# Read the 'Reasoning' column (default: Sheet1)
+deepseek_df <- read_excel(deepseek_file, sheet = "Sheet1") %>%
+  select(Reasoning) %>%
+  drop_na() %>%
+  mutate(Source = "DeepSeek-R1")
+
+human_df <- read_excel(human_file, sheet = "Sheet1") %>%
+  select(Reasoning) %>%
+  drop_na() %>%
+  mutate(Source = "Human")
+
+# Combine both datasets
+combined_df <- bind_rows(deepseek_df, human_df)
+
+# Tokenization + cleaning
+tidy_words <- combined_df %>%
+  unnest_tokens(word, Reasoning) %>%
+  mutate(word = str_to_lower(word)) %>%
+  filter(!word %in% stopwords("en"),
+         !word %in% custom_stopwords,
+         str_detect(word, "^[a-z]+$"))  # Keep only alphabetic words
+
+# Word frequency count
+word_freq <- tidy_words %>%
+  count(Source, word, sort = TRUE)
+
+# Save frequency tables separately
+deepseek_freq <- word_freq %>% filter(Source == "DeepSeek-R1")
+human_freq <- word_freq %>% filter(Source == "Human")
+
+write_csv(deepseek_freq, paste0(folder_path, "DeepSeek_R1_Word_Frequency.csv"))
+write_csv(human_freq, paste0(folder_path, "Human_Word_Frequency.csv"))
+
+
+```
+
+
+```{r}
+# ======== Preparation ========
+library(tidyverse)
+library(wordcloud)
+library(RColorBrewer)
+library(viridis)
+
+## DeepSeek wordcloud
+# Set color palette
+cols <- viridis(100)  # or brewer.pal(8, "PuBuGn")
+
+# Common wordcloud parameters
+WC_MAX_WORDS <- 150
+WC_MIN_FREQ  <- 3
+WC_SCALE     <- c(6, 0.8)
+WC_ROT_PER   <- 0.05
+
+cols <- rev(viridis(100))
+
+# ======== Load data ========
+deepseek <- read.csv("~/Desktop/LLM_Emotion_Mechanism/Reasoning_content_analysis/DeepSeek_R1_Word_Frequency.csv")
+
+# Rename column
+colnames(deepseek)[colnames(deepseek) == "n"] <- "freq"
+
+# ======== Save function ========
+save_wordcloud <- function(word_freq, outfile){
+  if(nrow(word_freq) == 0){
+    warning(paste("No words to plot for", outfile))
+    return(invisible(NULL))
+  }
+  png(outfile, width = 2000, height = 1500, res = 300)
+  par(mar = c(1,1,1,1))
+  wordcloud(
+    words        = word_freq$word,
+    freq         = word_freq$freq,
+    max.words    = WC_MAX_WORDS,
+    min.freq     = WC_MIN_FREQ,
+    random.order = FALSE,
+    rot.per      = WC_ROT_PER,
+    scale        = WC_SCALE,
+    colors       = cols
+  )
+  dev.off()
+  message("Saved: ", outfile)
+}
+
+# ======== Generate wordcloud ========
+set.seed(123)  # Fixed seed for reproducibility
+save_wordcloud(deepseek, "DeepSeek_WordCloud.png")
+
+```
+
+
+
+
+```{r}
+# ======== Preparation ========
+library(tidyverse)
+library(wordcloud)
+library(RColorBrewer)
+library(viridis)
+
+## DeepSeek wordcloud
+# Set color palette
+cols <- viridis(100)  # or brewer.pal(8, "PuBuGn")
+
+# Common wordcloud parameters
+WC_MAX_WORDS <- 150
+WC_MIN_FREQ  <- 3
+WC_SCALE     <- c(6, 0.8)
+WC_ROT_PER   <- 0.05
+
+cols <- rev(viridis(100))
+
+# ======== Load data ========
+deepseek <- read.csv("~/Desktop/LLM_Emotion_Mechanism/Reasoning_content_analysis/DeepSeek_R1_Word_Frequency.csv")
+
+# Rename column
+colnames(deepseek)[colnames(deepseek) == "n"] <- "freq"
+
+# ======== Save function ========
+save_wordcloud <- function(word_freq, outfile){
+  if(nrow(word_freq) == 0){
+    warning(paste("No words to plot for", outfile))
+    return(invisible(NULL))
+  }
+  png(outfile, width = 2000, height = 1500, res = 300)
+  par(mar = c(1,1,1,1))
+  wordcloud(
+    words        = word_freq$word,
+    freq         = word_freq$freq,
+    max.words    = WC_MAX_WORDS,
+    min.freq     = WC_MIN_FREQ,
+    random.order = FALSE,
+    rot.per      = WC_ROT_PER,
+    scale        = WC_SCALE,
+    colors       = cols
+  )
+  dev.off()
+  message("Saved: ", outfile)
+}
+
+# ======== Generate wordcloud ========
+set.seed(123)  # Fixed seed for reproducibility
+save_wordcloud(deepseek, "DeepSeek_WordCloud.png")
+
+```
+
+

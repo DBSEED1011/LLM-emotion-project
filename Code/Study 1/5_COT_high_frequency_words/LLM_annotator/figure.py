@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-# 分类映射
+# Category mapping
 category_map = {
     1: 'Emotion',
     2: 'Fairness',
@@ -11,51 +11,51 @@ category_map = {
     4: 'Others'
 }
 
-# 设置文件路径
-cot_path = '/Users/daiyiqing/Desktop/LLM情感机制/LLM_annotator/比较/Top1000_CoT_Comparison_Claude_vs_Midsummer.xlsx'
-human_path = '/Users/daiyiqing/Desktop/LLM情感机制/LLM_annotator/比较/Top180_Comparison_Claude_vs_Midsummer.xlsx'
+# Set file paths
+cot_path = '/Users/daiyiqing/Desktop/LLM_Emotion_Mechanism/LLM_annotator/Comparison/Top1000_CoT_Comparison_Claude_vs_Midsummer.xlsx'
+human_path = '/Users/daiyiqing/Desktop/LLM_Emotion_Mechanism/LLM_annotator/Comparison/Top180_Comparison_Claude_vs_Midsummer.xlsx'
 
-# 读取数据
+# Read data
 cot_df = pd.read_excel(cot_path)
 human_df = pd.read_excel(human_path)
 
-# 清洗列名以防大小写或空格问题
+# Clean column names to avoid issues with case or whitespace
 cot_df.columns = cot_df.columns.str.strip().str.lower()
 human_df.columns = human_df.columns.str.strip().str.lower()
 
-# 添加 Category 列
+# Add a Category column
 cot_df['category'] = cot_df['word_sort'].map(category_map)
 human_df['category'] = human_df['word_sort'].map(category_map)
 
-# 确保分类顺序一致
+# Ensure consistent category order
 categories = ['Emotion', 'Fairness', 'Cost', 'Others']
 cot_counts = cot_df['category'].value_counts(normalize=True).reindex(categories).fillna(0)
 human_counts = human_df['category'].value_counts(normalize=True).reindex(categories).fillna(0)
 
-# 合并为比例 DataFrame
+# Combine proportions into a single DataFrame
 proportions = pd.DataFrame({
     "DeepSeek-R1's CoT": cot_counts,
     "Human Reasoning": human_counts
 })
 
 # %%
-# 画图设置
+# Plot settings
 fig, ax = plt.subplots(figsize=(7, 3))
 
-# 坐标轴放在上面
+# Place the x-axis at the top
 ax.xaxis.set_ticks_position('top')
 ax.xaxis.set_label_position('top')
 
-# 颜色设置
-colors = ['#f26c6c','#2171b5', '#6baed6', '#c6dbef']   #'#9ecae1
+# Color palette
+colors = ['#f26c6c', '#2171b5', '#6baed6', '#c6dbef']
 
-# 堆叠柱子
+# Create stacked horizontal bars
 bar_height = 0.2
-y_positions = [0.7, 0.45]  # y=1: CoT, y=0: Human
+y_positions = [0.7, 0.45]  # y=0.7: CoT, y=0.45: Human
 left_cot = 0
 left_human = 0
 
-for i, category in enumerate(categories):  # 用固定顺序遍历
+for i, category in enumerate(categories):  # Iterate in fixed order
     cot_val = proportions.loc[category, "DeepSeek-R1's CoT"]
     human_val = proportions.loc[category, "Human Reasoning"]
 
@@ -65,20 +65,19 @@ for i, category in enumerate(categories):  # 用固定顺序遍历
     left_cot += cot_val
     left_human += human_val
 
-# 设置 y 轴标签
+# Set y-axis labels
 ax.set_yticks(y_positions)
 ax.set_yticklabels(["DeepSeek-R1's CoT", "Humans' Reasoning"])
 
-# x轴设置
+# Configure x-axis
 ax.set_xlim(0, 1)
 ax.set_xlabel("Proportion", fontsize=13, labelpad=10)
-
 ax.xaxis.set_label_position('top')
 ax.xaxis.tick_top()
 
-# 图例设置
+# Legend configuration
 legend_elements = [
-    Patch(facecolor=colors[0], label='Emotion'), 
+    Patch(facecolor=colors[0], label='Emotion'),
     Patch(facecolor=colors[1], label='Fairness'),
     Patch(facecolor=colors[2], label='Cost'),
     Patch(facecolor=colors[3], label='Others')
@@ -93,32 +92,30 @@ ax.legend(
     frameon=False,
     fontsize=10,
     title_fontsize=11,
-    handleheight=1.5,       # 控制颜色块高度
-    handlelength=2.0,       # 控制颜色块长度（宽度）
-    borderaxespad=0.5       # 控制图例和图间距（可选）
+    handleheight=1.5,       # Controls the height of color boxes
+    handlelength=2.0,       # Controls the width of color boxes
+    borderaxespad=0.5       # Controls spacing between legend and plot
 )
 
-
-# 去除边框
+# Remove unnecessary borders
 ax.spines[['right', 'left', 'bottom']].set_visible(False)
 
 plt.tight_layout()
 plt.show()
-
 
 # %%
 import pandas as pd
 import numpy as np
 from scipy.stats import chi2_contingency
 
-# 确保分类顺序一致
+# Ensure consistent category order
 categories = ['Emotion', 'Fairness', 'Cost', 'Others']
 
-# raw counts
+# Raw counts
 cot_counts_raw = cot_df['category'].value_counts().reindex(categories).fillna(0)
 human_counts_raw = human_df['category'].value_counts().reindex(categories).fillna(0)
 
-# 构建列联表
+# Build the contingency table
 contingency = pd.DataFrame({
     "DeepSeek-R1's CoT": cot_counts_raw,
     "Human Reasoning": human_counts_raw
@@ -126,10 +123,10 @@ contingency = pd.DataFrame({
 
 print("Contingency Table:\n", contingency, "\n")
 
-# 卡方检验
+# Chi-square test
 chi2, p, dof, expected = chi2_contingency(contingency.T)
 
-# 样本总量
+# Total sample size
 N = contingency.to_numpy().sum()
 
 # Cramér’s V
@@ -138,11 +135,12 @@ cramers_v = np.sqrt(chi2 / (N * (min(contingency.shape) - 1)))
 print(f"Chi-square test: χ²({dof}, N={N}) = {chi2:.2f}, p = {p:.3e}")
 print(f"Cramér's V = {cramers_v:.3f}\n")
 
-# 计算标准化残差
+# Calculate standardized residuals
 residuals = (contingency.T - expected) / np.sqrt(expected)
-residuals = residuals.T  # 转回原始顺序 (categories × groups)
+residuals = residuals.T  # Convert back to original layout (categories × groups)
 
 print("Standardized residuals (>|2| = major contributor):\n")
 print(residuals.round(2))
+
 
 # %%
