@@ -1,0 +1,32 @@
+# Python Dependencies
+# Tested with Python 3.9.6
+
+openai>=1.0.0
+httpx>=0.24.0
+pandas>=1.3.0
+openpyxl>=3.0.0  # Required for reading Excel files
+pypinyin>=0.47.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+shap>=0.41.0
+xgboost>=1.7.0  # Required for SHAP analysis in Section 5
+matplotlib>=3.5.0  # Required for plotting
+seaborn>=0.12.0  # Required for statistical visualization
+scipy>=1.7.0  # Required for statistical analysis
+statsmodels>=0.13.0  # Required for regression analysis
+tqdm>=4.64.0  # Required for progress bars
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# R Dependencies (install via R)
+# Tested with R version 4.5.1
+# Required R packages:
+# - lme4
+# - nlme
+# - ggplot2
+# - dplyr
+# - readxl
+# - corrplot
+# - vegan (for RSA analysis)
+# Install via: install.packages(c("lme4", "nlme", "ggplot2", "dplyr", "readxl", "corrplot", "vegan"))
+

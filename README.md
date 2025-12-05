@@ -1,52 +1,269 @@
 # LLM Emotion Project
 
 ## Project Overview
-This project is a comprehensive research study on Large Language Model (LLM) emotion analysis, containing multiple research sections and data analysis modules.
+This project is a comprehensive research study on Large Language Model (LLM) emotion analysis, containing multiple research sections and data analysis modules. The project conducts multi-round LLM experiments with persona and emotion conditions, statistical analyses, and model interpretability studies.
 
-## Project Structure
+For detailed code functionality descriptions and pseudocode, see [CODE_FUNCTIONALITY.md](CODE_FUNCTIONALITY.md).
 
-### Code/
-- **Section 1_experiment of LLM**: Multi-round LLM experiments with persona and emotion conditions, including parallel execution scripts, prompt generation, and result validation across multiple LLM models (GPT-3.5, DeepSeek-V3, DeepSeek-R1, o3-mini)
-- **Section 3_CoT_mediation**: Chain of Thought mediation analysis
-- **Section 4_Demographic analysis**: Demographic analysis
-- **Section 5_SHAP**: SHAP value analysis for model interpretability
+---
+
+## System Requirements
+
+### Operating Systems
+- **macOS**: Tested on macOS 14.6.0 (Darwin 24.6.0)
+- **Linux**: Should work on Linux distributions (not explicitly tested)
+- **Windows**: Should work on Windows 10/11 (not explicitly tested)
+
+### Software Dependencies
+
+#### Python
+- **Python**: Version 3.9.6 or higher (tested with Python 3.9.6)
+- **Required Python packages** (see `requirements.txt` for complete list and versions):
+  - openai >= 1.0.0
+  - httpx >= 0.24.0
+  - pandas >= 1.3.0
+  - openpyxl >= 3.0.0
+  - pypinyin >= 0.47.0
+  - numpy >= 1.21.0
+  - scikit-learn >= 1.0.0
+  - shap >= 0.41.0
+  - xgboost >= 1.7.0
+  - matplotlib >= 3.5.0
+  - seaborn >= 0.12.0
+  - scipy >= 1.7.0
+  - statsmodels >= 0.13.0
+  - tqdm >= 4.64.0
+  - jupyter >= 1.0.0
+  - ipykernel >= 6.0.0
+
+#### R
+- **R**: Version 4.5.1 or higher (tested with R version 4.5.1)
+- **Required R packages**:
+  - lme4 (for GLMM/LMM models)
+  - nlme (for LMM models)
+  - ggplot2 (for visualization)
+  - dplyr (for data manipulation)
+  - readxl (for reading Excel files)
+  - corrplot (for correlation plots)
+  - vegan (for RSA analysis)
+
+#### Other Software
+- **Jupyter Notebook**: For interactive analysis and result validation
+- **Excel**: For data storage and preliminary processing (optional, can use pandas)
+
+### Hardware Requirements
+- **Standard desktop computer**: No special hardware requirements
+- **Memory**: Minimum 8GB RAM recommended (16GB recommended for large-scale experiments)
+- **Storage**: At least 1GB free space for code and data
+- **Internet connection**: Required for API calls to OpenAI and DeepSeek models
+
+### API Access
+- **OpenAI API key**: Required for GPT-3.5 and o3-mini models
+- **DeepSeek API key**: Required for DeepSeek-V3 and DeepSeek-R1 models
+- Note: API keys are not included in the repository for security reasons. Users must provide their own API keys.
+
+---
+
+## Installation Guide
+
+### Step 1: Clone or Download the Repository
+```bash
+# If using git
+git clone <repository-url>
+cd LLM-emotion-project
+
+# Or download and extract the zip file
+```
+
+### Step 2: Install Python Dependencies
+```bash
+# Create a virtual environment (recommended)
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install Python packages
+pip install -r requirements.txt
+```
+
+### Step 3: Install R Dependencies
+Open R or RStudio and run:
+```r
+install.packages(c("lme4", "nlme", "ggplot2", "dplyr", "readxl", "corrplot", "vegan"))
+```
+
+### Step 4: Configure API Keys
+1. Navigate to `Code/Section 1_experiment of LLM/multi_round_person.py`
+2. Add your API keys:
+   ```python
+   api_key = "your-api-key"  # API key for OpenAI models (GPT-3.5, o3-mini)
+   ```
+   Note: The code uses a unified API endpoint (api.midsummer.work) that supports both OpenAI and DeepSeek models. You may need to configure the `deepseek_api` variable in the `deepseek_chat` function separately if using DeepSeek models.
+
+### Typical Install Time
+- **On a normal desktop computer** (estimated): Approximately 5-10 minutes
+  - Python package installation: 2-5 minutes
+  - R package installation: 2-3 minutes
+  - Configuration: 1-2 minutes
+
+**Note**: Install time may vary based on internet speed and system performance.
+
+---
+
+## Demo Instructions
+
+### Quick Start Demo
+
+The demo uses a small subset of data (2 subjects) to demonstrate the software functionality.
+
+#### Step 1: Navigate to Section 1 Directory
+```bash
+cd "Code/Section 1_experiment of LLM"
+```
+
+#### Step 2: Configure Demo Settings
+The demo is already configured in `run_par.py` with:
+- `subjnum_list = range(0, 2)` (2 subjects)
+- Default conditions: persona=True, emotion=True, temperature=1.0
+
+#### Step 3: Run the Demo
+```bash
+python run_par.py
+```
+
+This will:
+1. Generate character prompts for 2 subjects
+2. Generate game setting prompts
+3. Run LLM experiments across 4 models (GPT-3.5, DeepSeek-V3, DeepSeek-R1, o3-mini)
+4. Save results in `result_persona_emotion_1.0_*` folders
+
+#### Step 4: Validate Results
+```bash
+jupyter notebook check.ipynb
+```
+
+Run all cells in the notebook to:
+- Check output files
+- Generate merged data files
+- Validate results
+
+### Expected Output
+
+After running the demo, you should see:
+
+1. **Generated prompt files** in the `prompt/` folder:
+   - `0_character.json`, `1_character.json`
+   - `0_game_setting_prompt.json`, `1_game_setting_prompt.json`
+
+2. **Result folders** (one for each LLM model):
+   - `result_persona_emotion_1.0_gpt-3.5-turbo-0125/`
+   - `result_persona_emotion_1.0_deepseek-v3/`
+   - `result_persona_emotion_1.0_deepseek-r1/`
+   - `result_persona_emotion_1.0_o3-mini-2025-01-31/`
+
+3. **Output files** in each result folder:
+   - `output_0.txt`, `output_1.txt` (one per subject)
+
+4. **Example output file structure** (`output_0.txt`):
+   ```
+   AA_valence	AA_arousal	choice	AC_valence	AC_arousal	EmoFDBK_valence	EmoFDBK_arousal	Output
+   -50	40	1	-70	60	-20.0	20.0	AA_valence = -50, AA_arousal = 40, choice = 1, AC_valence = -70, AC_arousal = 60
+   -40	30	1	-70	50	-30.0	20.0	AA_valence = -40, AA_arousal = 30, choice = 1, AC_valence = -70, AC_arousal = 50
+   ...
+   ```
+   Each row represents one round, with tab-separated values containing emotion ratings before choice (AA_valence, AA_arousal), choice decision (0 or 1), emotion ratings after choice (AC_valence, AC_arousal), emotion feedback (EmoFDBK_valence, EmoFDBK_arousal), and raw output text.
+
+5. **Merged data file** (after running `check.ipynb`):
+   - `merged_all_models_persona_emotion_1.0.txt`
+
+### Expected Run Time for Demo
+
+- **On a normal desktop computer** (estimated):
+  - Prompt generation: < 1 minute
+  - LLM API calls (2 subjects × 4 models): 5-15 minutes (depends on API response time)
+  - Result validation: < 1 minute
+  - **Total**: Approximately 6-17 minutes
+
+**Note**: 
+- Run time estimates are approximate and may vary significantly based on:
+  - API response times (varies by model and API load)
+  - Internet connection speed
+  - Number of concurrent API calls
+  - Number of rounds per subject (default: 60 rounds)
+- Actual run time should be tested on your system
+
+---
+
+## Instructions for Use
+
+### Running the Software on Your Data
+
+#### Section 1: LLM Experiments
+
+1. **Configure subject list**:
+   Edit `run_par.py`:
+   ```python
+   subjnum_list = range(0, N)  # N = number of subjects (max 1017)
+   ```
+
+2. **Adjust experimental conditions** in `multi_round_person.py`:
+   ```python
+   persona = True/False  # False for No persona condition
+   TEMPERATURE = 1.0     # 0 for Temperature = 0
+   emotion = True/False  # False for No emotion self-report condition
+   ```
+
+3. **Run experiments**:
+   ```bash
+   python run_par.py
+   ```
+
+4. **Validate and merge results**:
+   ```bash
+   jupyter notebook check.ipynb
+   ```
+
+#### Other Sections
+
+Each section has independent analysis scripts:
+
+- **Section 3_CoT_mediation**: Chain of Thought mediation analysis (R Markdown)
+- **Section 4_Demographic analysis**: Demographic moderation analysis (Python)
+- **Section 5_SHAP**: SHAP value analysis for model interpretability (Python)
 - **Section 6_Nopersona**: Analysis under no persona conditions
 - **Section 7_Temperature**: Model performance analysis under different temperature parameters
-- **Study 1**: First study, including regression analysis, partial correlation analysis, RSA analysis, etc.
-- **Study 2**: Second study, including emotion vs. no emotion, emotion vs. math comparison analysis
+- **Study 1**: Regression analysis, partial correlation, RSA analysis (Python/R)
+- **Study 2**: Emotion vs. no emotion comparison analysis
 
-### SourceData/
-Contains source data files for various figures (Figure2-5)
+Refer to README files in each directory for specific usage instructions.
 
-## Main Features
-- **Multi-round LLM experiments**: Parallel execution of experiments across multiple LLM models with persona and emotion conditions
-- **Prompt engineering**: Automated generation of character prompts and game settings for LLM experiments
-- **Demographic integration**: Incorporation of human demographic data (AQ, ERS, CESD scores) into LLM persona generation
-- **Emotion self-reporting**: Experimental conditions with and without emotion self-reporting
-- **Temperature parameter studies**: Analysis of model performance under different temperature settings
-- **Model interpretability analysis (SHAP)**: Explainable AI analysis for understanding model decisions
-- **Chain of Thought reasoning analysis**: Analysis of LLM reasoning processes and high-frequency words
-- **Demographic variable moderation effect analysis**: Statistical analysis of how demographic factors influence outcomes
+### Data Files
 
-## Tech Stack
-- **Python**: Data analysis, machine learning, LLM API integration (OpenAI, DeepSeek)
-- **R**: Statistical analysis, GLMM/LMM modeling, visualization
-- **Jupyter Notebook**: Interactive analysis and result validation
-- **Excel**: Data storage and preliminary processing
-- **APIs**: OpenAI GPT-3.5, DeepSeek-V3, DeepSeek-R1, o3-mini integration
-- **Libraries**: pandas, numpy, scikit-learn, SHAP, pypinyin for Chinese text processing
+- **Input data**: Located in `Code/Section 1_experiment of LLM/prompt/`
+  - `demographic data.xlsx`: Human demographic information (n=1017)
+  - `Emo&TPP data.xlsx`: Actual human experiment settings
+- **Source data for figures**: Located in `SourceData/`
+  - `SourceData_Figure2.xlsx`
+  - `SourceData_Figure3.xlsx`
+  - `SourceData_Figure4.xlsx`
+  - `SourceData_Figure5.xlsx`
 
-## Usage
+---
 
-### Section 1 - LLM Experiments
-1. **Setup**: Configure API keys in `multi_round_person.py` (removed for security)
-2. **Run experiments**: Execute `run_par.py` for parallel processing across multiple LLM models
-3. **Validate results**: Use `check.ipynb` to verify outputs and generate merged data files
-4. **Customize**: Modify `subnum_list` in `run_par.py` to adjust number of subjects (max 1017)
-5. **Conditions**: Adjust persona, emotion, and temperature parameters in `multi_round_person.py`
+## Reproduction Instructions (Optional)
 
-### Other Sections
-Each Section and Study has independent analysis scripts and documentation. Please refer to the README files in each directory for specific usage instructions.
+To reproduce the quantitative results reported in the manuscript:
 
-## License
-See [LICENSE](LICENSE) file for details
+1. **Run full LLM experiments**:
+   - Set `subjnum_list = range(0, 1017)` in `run_par.py`
+   - Configure conditions as specified in the manuscript
+   - Run `python run_par.py` (this may take several hours)
+
+2. **Run statistical analyses**:
+   - Execute scripts in `Study 1/` and `Study 2/` directories
+   - Follow the order specified in each section's README
+
+3. **Generate figures**:
+   - Use source data from `SourceData/` folder
+   - Run visualization scripts in respective sections
+
+**Note**: Full reproduction requires API access and may incur significant API costs. The demo uses a subset of data (2 subjects) for validation purposes.
