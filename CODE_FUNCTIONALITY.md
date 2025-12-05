@@ -33,7 +33,6 @@ The codebase implements a comprehensive pipeline for conducting LLM-based emotio
 - **Key Features**:
   - Reads demographic data from `demographic data.xlsx` (n=1017)
   - Incorporates personality traits: AQ (autism quotient), ERS (emotional reactivity), CESD (depression), social value orientation, justice sensitivity
-  - Converts Chinese location names to Pinyin for consistency
   - Generates JSON files with character descriptions (`{subjnum}_character.json`)
 - **Input**: `demographic data.xlsx` (Excel file with demographic variables)
 - **Output**: `{subjnum}_character.json` (JSON file with character persona descriptions)

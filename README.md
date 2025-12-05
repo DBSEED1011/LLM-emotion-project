@@ -7,6 +7,54 @@ For detailed code functionality descriptions and pseudocode, see [CODE_FUNCTIONA
 
 ---
 
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Project Features](#project-features)
+- [Project Structure](#project-structure)
+- [System Requirements](#system-requirements)
+- [Installation Guide](#installation-guide)
+- [Demo Instructions](#demo-instructions)
+- [Instructions for Use](#instructions-for-use)
+- [Reproduction Instructions](#reproduction-instructions-optional)
+
+---
+
+## Project Features
+
+- **Multi-model LLM Experiments**: Supports parallel execution of experiments across multiple LLM models (GPT-3.5, DeepSeek-V3, DeepSeek-R1, o3-mini)
+- **Persona Integration**: Generates LLM personas based on real human demographic data (AQ, ERS, CESD scores, etc.)
+- **Emotion Self-reporting**: Compares experimental results with/without emotion self-reporting conditions
+- **Temperature Parameter Study**: Analyzes model performance under different temperature parameters
+- **Model Interpretability Analysis (SHAP)**: Uses SHAP values to understand model decision-making processes
+- **Chain of Thought (CoT) Reasoning Analysis**: Analyzes LLM reasoning processes and high-frequency words
+- **Demographic Variable Moderation Analysis**: Statistical analysis of how demographic factors influence outcomes
+- **Representational Similarity Analysis (RSA)**: Compares representational structures across different groups
+
+---
+
+## Project Structure
+
+```
+LLM-emotion-project/
+├── Code/
+│   ├── Section 1_experiment of LLM/       # LLM multi-round experiments (core experimental code)
+│   ├── Section 3_CoT_mediation/           # Chain of Thought mediation analysis
+│   ├── Section 4_Demograpic analysis/      # Demographic moderation analysis
+│   ├── Section 5_SHAP/                     # SHAP model interpretability analysis
+│   ├── Section 6_Nopersona/                # No-persona condition analysis
+│   ├── Section 7_Temperature/              # Temperature parameter comparison analysis
+│   ├── Study 1/                            # Study 1 (regression, correlation, RSA analyses)
+│   └── Study 2/                            # Study 2 (emotion vs. no-emotion, emotion vs. math comparisons)
+├── SourceData/                             # Source data for figures
+├── requirements.txt                        # Python dependencies
+├── README.md                               # Project documentation
+├── CODE_FUNCTIONALITY.md                  # Detailed code functionality and pseudocode
+└── LICENSE                                 # License
+```
+
+---
+
 ## System Requirements
 
 ### Operating Systems
@@ -251,6 +299,23 @@ Each section has independent analysis scripts. Refer to README files in each dir
   - `SourceData_Figure3.xlsx`
   - `SourceData_Figure4.xlsx`
   - `SourceData_Figure5.xlsx`
+
+### Data Flow
+
+```
+Demographic Data → Character Generation → Game Setting Generation → 
+LLM Experiment Execution → Result Validation → Merged Data → 
+Statistical Analysis → Visualization
+```
+
+**Input Data**:
+- `demographic data.xlsx`: Human participant demographic information (n=1017)
+- `Emo&TPP data.xlsx`: Experimental trial parameters
+
+**Output Data**:
+- Per-subject output files: `output_{subjnum}.txt`
+- Merged data files: `merged_all_models_*.txt` or `*.csv`
+- Analysis results: Various CSV/Excel files containing statistical results
 
 ---
 
