@@ -338,6 +338,8 @@ Each section has independent analysis scripts. Refer to README files in each dir
   - `SourceData_Figure3.xlsx`
   - `SourceData_Figure4.xlsx`
   - `SourceData_Figure5.xlsx`
+- **Gender Data**: Located in `SourceData/`
+  - `disaggregated_gender_data.xlsx`: Gender-disaggregated data for demographic analysis
 
 ---
 
