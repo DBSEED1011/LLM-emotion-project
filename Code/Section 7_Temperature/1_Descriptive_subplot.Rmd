@@ -17,10 +17,10 @@ library(cowplot)
 
 custom_theme <-   theme_cowplot()+
 theme(
-    plot.title = element_text(size = 18),  # 主标题大小
-    axis.title = element_text(size = 16),  # 坐标轴标题大小
-    axis.text = element_text(size = 16),   # 坐标轴刻度大小
-    legend.text = element_text(size = 16)  # 图例文本大小
+    plot.title = element_text(size = 18),  # Main title size
+    axis.title = element_text(size = 16),  # Axis title size
+    axis.text = element_text(size = 16),   # Axis tick size
+    legend.text = element_text(size = 16)  # Legend text size
 )
 
 ```

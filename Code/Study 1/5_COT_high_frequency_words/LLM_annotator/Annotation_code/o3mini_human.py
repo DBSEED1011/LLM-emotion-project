@@ -6,16 +6,16 @@ from openai import OpenAI
 import os
 
 # ---------------------
-# 1. 参数设置
+# 1. Parameter settings
 # ---------------------
-# 🔒 为安全起见，请使用环境变量存储密钥：
-# 在命令行运行：export API_KEY="your_api_key_here"
+# 🔒 For security, please use environment variables to store API keys:
+# Run in command line: export API_KEY="your_api_key_here"
 api_key = os.getenv("API_KEY") or "YOUR_API_KEY_HERE"
 TEMPERATURE = 0
 BASE_URL = "https://api.midsummer.work"
 
 # ---------------------
-# 2. 模型调用函数（适配 midsummer API）
+# 2. Model calling function (adapted for midsummer API)
 # ---------------------
 def llm_res(prompt, model_name="o3-mini"):
     client = OpenAI(
@@ -39,7 +39,7 @@ def llm_res(prompt, model_name="o3-mini"):
     return response.choices[0].message.content
 
 # ---------------------
-# 3. 构造 Prompt 并调用模型
+# 3. Construct Prompt and call model
 # ---------------------
 def classify_words_with_llm(words):
     emotion_seed = [
@@ -95,7 +95,7 @@ Now classify the following words:
         return []
 
 # ---------------------
-# 4. 读取 CSV 并批量执行
+# 4. Read CSV and batch process
 # ---------------------
 def classify_csv(input_csv, output_csv, batch_size=30):
     df = pd.read_csv(input_csv)
@@ -114,7 +114,7 @@ def classify_csv(input_csv, output_csv, batch_size=30):
     print(f"\n✅ Done! Result saved to {output_csv}")
 
 # ---------------------
-# 5. 启动入口
+# 5. Entry point
 # ---------------------
 if __name__ == "__main__":
     classify_csv("Human_Top180_Words.csv", "Top180_Annotated_Midsummer.csv")

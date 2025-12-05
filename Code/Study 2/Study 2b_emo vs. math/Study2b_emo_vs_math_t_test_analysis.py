@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Stage 2 独立样本t检验分析
-分析情绪&对照数据中stage=2的数据，比较group=1(emo)和group=0(math)的差异
+Stage 2 Independent samples t-test analysis
+Analyze stage=2 data from emotion & control data, comparing group=1(emo) vs group=0(math) differences
 """
 
 import pandas as pd
@@ -11,33 +11,33 @@ from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# 设置中文字体
-plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial Unicode MS', 'DejaVu Sans']
+# Set font for plots
+plt.rcParams['font.sans-serif'] = ['Arial', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 def load_and_filter_data():
-    """加载数据并筛选stage=2的数据"""
-    print("正在加载数据...")
+    """Load data and filter stage=2 data"""
+    print("Loading data...")
     df = pd.read_excel('Study2b_emo_vs_math.xlsx', sheet_name='bytrial')
-    print(f"原始数据形状: {df.shape}")
+    print(f"Original data shape: {df.shape}")
     
-    # 筛选stage=2的数据
+    # Filter stage=2 data
     stage2_data = df[df['stage'] == 2].copy()
-    print(f"Stage=2数据形状: {stage2_data.shape}")
+    print(f"Stage=2 data shape: {stage2_data.shape}")
     
-    # 查看group分布
-    print("\nGroup分布:")
+    # Check group distribution
+    print("\nGroup distribution:")
     print(stage2_data['group'].value_counts())
     
     return stage2_data
 
 def perform_t_tests(data):
-    """对各个变量进行独立样本t检验"""
+    """Perform independent samples t-tests for each variable"""
     print("\n" + "="*60)
-    print("独立样本t检验结果 (Group 1: emo vs Group 0: math)")
+    print("Independent samples t-test results (Group 1: emo vs Group 0: math)")
     print("="*60)
     
-    # 需要分析的数值变量
+    # Numeric variables to analyze
     numeric_vars = ['fairness', 'choice', 'current_valence', 'current_arousal', 
                    'predicted_valence', 'predicted_arousal', 'actual_valence', 'actual_arousal']
     
@@ -45,21 +45,21 @@ def perform_t_tests(data):
     
     for var in numeric_vars:
         if var in data.columns:
-            # 获取两个组的数据
+            # Get data for two groups
             group1_data = data[data['group'] == 1][var].dropna()
             group0_data = data[data['group'] == 0][var].dropna()
             
             if len(group1_data) > 0 and len(group0_data) > 0:
-                # 进行独立样本t检验
+                # Perform independent samples t-test
                 t_stat, p_value = stats.ttest_ind(group1_data, group0_data)
                 
-                # 计算描述性统计
+                # Calculate descriptive statistics
                 group1_mean = group1_data.mean()
                 group0_mean = group0_data.mean()
                 group1_std = group1_data.std()
                 group0_std = group0_data.std()
                 
-                # 计算效应量 (Cohen's d)
+                # Calculate effect size (Cohen's d)
                 pooled_std = np.sqrt(((len(group1_data) - 1) * group1_std**2 + 
                                     (len(group0_data) - 1) * group0_std**2) / 
                                    (len(group1_data) + len(group0_data) - 2))
@@ -80,7 +80,7 @@ def perform_t_tests(data):
                 }
                 results.append(result)
                 
-                # 打印结果
+                # Print results
                 significance = "***" if p_value < 0.001 else "**" if p_value < 0.01 else "*" if p_value < 0.05 else "ns"
                 print(f"\n{var}:")
                 print(f"  Group 1 (emo):  n={len(group1_data):3d}, M={group1_mean:.3f}, SD={group1_std:.3f}")
@@ -93,33 +93,33 @@ def perform_t_tests(data):
 
 
 def main():
-    """主函数"""
-    print("Stage 2 独立样本t检验分析")
+    """Main function"""
+    print("Stage 2 Independent samples t-test analysis")
     print("="*50)
     
-    # 加载和筛选数据
+    # Load and filter data
     data = load_and_filter_data()
     
-    # 进行t检验
+    # Perform t-tests
     results_df = perform_t_tests(data)
     
     
     
-    # 保存结果到CSV
+    # Save results to CSV
     results_df.to_csv('emo_math_t_test_results.csv', index=False, encoding='utf-8-sig')
-    print(f"\n结果已保存到: emo_math_t_test_results.csv")
+    print(f"\nResults saved to: emo_math_t_test_results.csv")
     
-    # 总结
+    # Summary
     print("\n" + "="*60)
-    print("分析总结")
+    print("Analysis Summary")
     print("="*60)
     significant_count = results_df['significant'].sum()
     total_tests = len(results_df)
-    print(f"总共进行了 {total_tests} 个变量的t检验")
-    print(f"其中 {significant_count} 个变量显示出显著差异 (p < 0.05)")
+    print(f"Total t-tests performed for {total_tests} variables")
+    print(f"Among them, {significant_count} variables showed significant differences (p < 0.05)")
     
     if significant_count > 0:
-        print("\n显著差异的变量:")
+        print("\nVariables with significant differences:")
         for _, row in results_df[results_df['significant']].iterrows():
             print(f"  - {row['Variable']}: p = {row['p_value']:.4f}, Cohen's d = {row['cohens_d']:.3f}")
 

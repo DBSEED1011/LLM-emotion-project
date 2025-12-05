@@ -153,11 +153,11 @@ library(dplyr)
 
 ## ----- Fixed effects with 95% CI & OR -----
 
-# 提取固定效应
+# Extract fixed effects
 coefs_m1 <- tidy(m1, effects = "fixed", conf.int = TRUE, conf.method = "Wald")
-# 一般会有列：term, estimate, std.error, statistic, p.value, conf.low, conf.high
+# Generally contains columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high
 
-# 组合结果表：logit 系数 + CI + OR
+# Combine results table: logit coefficients + CI + OR
 results_m1 <- coefs_m1 %>%
   mutate(
     OR      = exp(estimate),
@@ -177,11 +177,11 @@ results_m1 <- coefs_m1 %>%
     OR_high
   )
 
-# 打印检查
-options(scipen = 999)  # 关科学计数法
+# Print for checking
+options(scipen = 999)  # Turn off scientific notation
 print(results_m1, digits = 4)
 
-# 导出为 CSV（改成你想要的路径）
+# Export to CSV (change to your desired path)
 write.csv(
   results_m1,
   "~/Desktop/model_results_GLMM3_m1.csv",
@@ -217,47 +217,47 @@ pairs(emmeans(m1, ~ Emotion_selfreport | Agent_type, type="response"))
 library(emmeans)
 library(dplyr)
 
-## ----- 估计边际均值（仅用于 pairwise，默认是 logit 尺度）-----
+## ----- Estimate marginal means (for pairwise only, default is logit scale) -----
 emm_logit <- emmeans(m1, ~ Agent_type * Emotion_selfreport)
 
-## 1) 在每个 Emotion_selfreport 条件下，比较不同 Agent_type
+## 1) Compare different Agent_type within each Emotion_selfreport condition
 posthoc_agent <- pairs(
   emm_logit,
-  by = "Emotion_selfreport"   # 在每个 Emotion 条件下比较 Agent
+  by = "Emotion_selfreport"   # Compare Agent within each Emotion condition
 ) %>%
-  summary(infer = TRUE) %>%    # infer = TRUE 给 95% CI 和 z, p
+  summary(infer = TRUE) %>%    # infer = TRUE provides 95% CI and z, p
   as.data.frame() %>%
   mutate(effect = "Agent_type within Emotion_selfreport")
 
-## 2) 在每个 Agent_type 下，比较 Emotion_selfreport (Yes vs No)
+## 2) Compare Emotion_selfreport (Yes vs No) within each Agent_type
 posthoc_emotion <- pairs(
   emm_logit,
-  by = "Agent_type"           # 在每个 Agent 下比较 Emotion
+  by = "Agent_type"           # Compare Emotion within each Agent
 ) %>%
   summary(infer = TRUE) %>%
   as.data.frame() %>%
   mutate(effect = "Emotion_selfreport within Agent_type")
 
-## 3) 合并 & 标准化列名
+## 3) Combine & standardize column names
 posthoc_all <- bind_rows(posthoc_agent, posthoc_emotion)
 
 results_posthoc_m1 <- posthoc_all %>%
   rename(
-    B        = estimate,   # log-odds 差值
+    B        = estimate,   # log-odds difference
     SE       = SE,
     z        = z.ratio,
     P        = p.value,
-    CI_lower = asymp.LCL,  # logit 95% CI 下界
-    CI_upper = asymp.UCL   # logit 95% CI 上界
+    CI_lower = asymp.LCL,  # logit 95% CI lower bound
+    CI_upper = asymp.UCL   # logit 95% CI upper bound
   ) %>%
   mutate(
     OR       = exp(B),
     OR_low   = exp(CI_lower),
     OR_high  = exp(CI_upper)
   ) %>%
-  # 保留关键信息列
+  # Keep key information columns
   select(
-    Emotion_selfreport,   # 或者你更想放在 contrast 前面
+    Emotion_selfreport,   # Or you may prefer to put it before contrast
     Agent_type,
     contrast,
     effect,
@@ -266,10 +266,10 @@ results_posthoc_m1 <- posthoc_all %>%
     OR, OR_low, OR_high
   )
 
-# 打印检查
+# Print for checking
 print(results_posthoc_m1, digits = 4)
 
-# 导出为 CSV
+# Export to CSV
 write.csv(
   results_posthoc_m1,
   "~/Desktop/posthoc_results_GLMM3_m1.csv",

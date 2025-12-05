@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-from pypinyin import pinyin, Style
 import json
 
 subjnum = []
@@ -33,31 +32,8 @@ file_path = os.path.join(current_dir, "demographic data.xlsx")
 sheet_name = "n=1017"   
 df = pd.read_excel(file_path, sheet_name=sheet_name)
 
-def is_chinese(text):
-    for char in text:
-        if not '\u4e00' <= char <= '\u9fff': 
-            return False
-    return True
-
-def get_pinyin(text):
-    if text.endswith("市") or text.endswith("省"):
-        text = text[:-1]
-    pinyin_list = pinyin(text, style=Style.NORMAL)
-    pinyin_str = ''.join([word[0].capitalize() if i == 0 else word[0] for i, word in enumerate(pinyin_list)])
-    return pinyin_str
-
 def generate_personality_description_paragraphs(row):
-    if not pd.isna(row["city"]) and is_chinese(row["city"]):
-        city_pinyin = get_pinyin(row["city"])
-        city_output = f"{city_pinyin} city"
-    else:
-        city_output = row["city"]
-    if is_chinese(row["province"]):
-        province_pinyin = get_pinyin(row["province"])
-        province_output = f"{province_pinyin} province"
-    else:
-        province_output = row["province"]
-    basic_information = f"You are a {row['age']}-year-old {row['gender'].lower()} from {city_output}, {province_output}. "
+    basic_information = f"You are a {row['age']}-year-old {row['gender'].lower()}. "
     autism_tendency = f"Your total score for autism tendency is {row['total_AQ_score']} (societal average: {average_values['average_total_AQ_score']}). Higher scores indicate a higher risk of autism. "
     autism_tendency_detail = (
         f"According to the AQ cutoff score, a score above 70 is considered high risk. "
@@ -122,10 +98,6 @@ def generate_personality_description_paragraphs(row):
         "personality_type_detail": personality_type_detail,
         "justice_sensitivity": justice_sensitivity
     }
-    
-df["province"] = df["province"].fillna("")
-df["city"] = df["city"].fillna("")
-
 
 personality_descriptions = []
 for index, row in df.iloc[subjnum:subjnum+1].iterrows():

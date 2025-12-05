@@ -167,11 +167,11 @@ def create_model_info_table(result, dependent_var_name, n_groups):
 def main():
     print("=== Generate Regression Results Three-line Tables (Corrected Encoding) ===\n")
     
-    # 读取数据
+    # Load data
     df = pd.read_excel('merged_all_data.xlsx')
     df_clean = df.dropna(subset=['AA_valence', 'AA_arousal', 'amount_of_allocation', 'group', 'id', 'trial'])
     
-    # 创建唯一的参与者ID
+    # Create unique participant ID
     df_clean['participant_id'] = df_clean['id'].astype(str) + '_' + df_clean['group']
     
     print("=== New Encoding Settings ===")
@@ -180,14 +180,14 @@ def main():
     print("Reference group: Human group under Fair conditions")
     print()
     
-    # 运行两个模型
+    # Run two models
     print("Running AA_valence model...")
     valence_result = run_mixed_model_for_table('AA_valence', df_clean)
     
     print("Running AA_arousal model...")
     arousal_result = run_mixed_model_for_table('AA_arousal', df_clean)
     
-    # 生成表格
+    # Generate tables
     print("\nGenerating regression results tables...")
     valence_regression_table = create_regression_table(valence_result, 'AA_valence')
     arousal_regression_table = create_regression_table(arousal_result, 'AA_arousal')
@@ -197,7 +197,7 @@ def main():
     valence_model_info = create_model_info_table(valence_result, 'AA_valence', n_groups)
     arousal_model_info = create_model_info_table(arousal_result, 'AA_arousal', n_groups)
     
-    # 保存为Excel文件
+    # Save to Excel file
     print("\nSaving tables to Excel file...")
     with pd.ExcelWriter('regression_tables_for_paper.xlsx', engine='openpyxl') as writer:
         valence_regression_table.to_excel(writer, sheet_name='Valence_Regression', index=False)
@@ -206,7 +206,7 @@ def main():
         arousal_model_info.to_excel(writer, sheet_name='Arousal_Model_Info', index=False)
     
     
-    # 显示表格预览
+    # Display table preview
     print("\n=== AA_valence Regression Results Table ===")
     print(valence_regression_table.to_string(index=False))
     

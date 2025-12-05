@@ -253,33 +253,9 @@ FUNCTION main():
 ### Algorithm 2: Character Persona Generation (`generate_character_prompt.py`)
 
 ```
-FUNCTION is_chinese(text):
-    FOR EACH character IN text:
-        IF character NOT IN Chinese_Unicode_Range:
-            RETURN False
-    RETURN True
-
-FUNCTION get_pinyin(chinese_text):
-    IF chinese_text ENDS WITH "市" OR "省":
-        chinese_text = REMOVE_LAST_CHARACTER(chinese_text)
-    
-    pinyin_list = CONVERT_TO_PINYIN(chinese_text)
-    pinyin_str = CONCATENATE(pinyin_list, capitalize_first=True)
-    RETURN pinyin_str
-
 FUNCTION generate_personality_description(demographic_row, average_values):
     // Basic information
-    IF demographic_row["city"] IS Chinese:
-        city_output = get_pinyin(demographic_row["city"]) + " city"
-    ELSE:
-        city_output = demographic_row["city"]
-    
-    IF demographic_row["province"] IS Chinese:
-        province_output = get_pinyin(demographic_row["province"]) + " province"
-    ELSE:
-        province_output = demographic_row["province"]
-    
-    basic_info = "You are a {age}-year-old {gender} from {city}, {province}."
+    basic_info = "You are a {age}-year-old {gender}."
     
     // Autism tendency description
     autism_tendency = "Your total AQ score is {score} (average: {avg})."
