@@ -212,7 +212,6 @@ fit <- sem(model, data = df, estimator = "WLSMV", ordered = "choice")
 
 # View the results
 summary(fit, standardized = TRUE, fit.measures = TRUE)
-
          
 ```
 

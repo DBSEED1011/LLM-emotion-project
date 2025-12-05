@@ -224,17 +224,22 @@ After running the demo, you should see:
 
 #### Other Sections
 
-Each section has independent analysis scripts:
+Each section has independent analysis scripts. Refer to README files in each directory for specific usage instructions:
 
 - **Section 3_CoT_mediation**: Chain of Thought mediation analysis (R Markdown)
-- **Section 4_Demographic analysis**: Demographic moderation analysis (Python)
-- **Section 5_SHAP**: SHAP value analysis for model interpretability (Python)
+- **Section 4_Demographic analysis**: Demographic moderation analysis examining how demographic variables moderate relationships between traits and outcomes (emotions and choices) across groups (Python)
+- **Section 5_SHAP**: SHAP value analysis for model interpretability. Run `1_Analysis_of_SHAP.ipynb` first, then `2_LMM.Rmd` (Python/R)
 - **Section 6_Nopersona**: Analysis under no persona conditions
 - **Section 7_Temperature**: Model performance analysis under different temperature parameters
-- **Study 1**: Regression analysis, partial correlation, RSA analysis (Python/R)
-- **Study 2**: Emotion vs. no emotion comparison analysis
-
-Refer to README files in each directory for specific usage instructions.
+- **Study 1**: Contains multiple analysis subdirectories:
+  - `1_Regression/`: GLMM/LMM models for choice and emotion outcomes (R/Python)
+  - `2_Partial correlation/`: Partial correlation analysis controlling for covariates (Python)
+  - `3_RSA/`: Representational Similarity Analysis comparing representational structures across groups using Mantel tests (Python)
+  - `4_mediation/`: Mediation analysis for unfair conditions (R)
+  - `5_COT_high_frequency_words/`: Chain of Thought reasoning and high-frequency word analysis (R/Python)
+- **Study 2**: Contains two sub-studies:
+  - `Study 2a_emo vs. no/`: GLMM analysis comparing emotion vs. no emotion self-report conditions (R Markdown)
+  - `Study 2b_emo vs. math/`: T-test analysis comparing emotion vs. math conditions (Python)
 
 ### Data Files
 

@@ -18,7 +18,7 @@ invisible(lapply(packs, library, character.only = TRUE))
 
 ```{r}
 # ============ Read Data ============
-file_path <- "~/Desktop/study2_GLMM.xlsx"
+file_path <- file.path( "/Users/daiyiqing/Desktop/LLM-emotion-project-main/Code/Study 2/Study 2a_emo vs. no/study2_GLMM.xlsx")
 df <- readxl::read_excel(file_path)
 
 cat("Column names:\n"); print(names(df))
@@ -71,7 +71,6 @@ print(table(expdata$Emotion_selfreport, useNA = "ifany"))
 
 
 ```{r pressure, echo=FALSE}
-
 # ============ Center Numeric Covariates ============
 # Missing data will later be filtered out using complete.cases
 expdata <- expdata %>%
@@ -128,6 +127,7 @@ print(or_m0, digits = 4)
 
 
 ```{r}
+#GLMM3
 # ============ Model 2: With Interaction (Agent_type * Emotion_selfreport) ============
 expdata_complete$Agent_type <- factor(expdata_complete$Agent_type)
 expdata_complete$Agent_type <- relevel(expdata_complete$Agent_type, ref = "Humans")
@@ -144,37 +144,51 @@ m1 <- glmer(
 cat("\n===== Model 2 (With Interaction) Results =====\n")
 print(summary(m1))
 
-or_m1 <- broom.mixed::tidy(m1, effects = "fixed", conf.int = TRUE, conf.method = "Wald") %>%
-  mutate(
-    OR = exp(estimate),
-    OR_low = exp(conf.low),
-    OR_high = exp(conf.high)
-  ) %>%
-  select(term, estimate, std.error, statistic, p.value, OR, OR_low, OR_high)
-
-cat("\n===== Model 2 OR (95% CI) =====\n")
-options(scipen = 999)  # Disable scientific notation
-print(or_m1, digits = 4)
 ```
 
 
 ```{r}
-# Report 95% CI (logit scale)
-coefs <- summary(m1)$coefficients
+library(broom.mixed)
+library(dplyr)
 
-# Compute 95% Wald CI on logit scale
-coefs_CI <- cbind(
-  B        = coefs[, "Estimate"],
-  SE       = coefs[, "Std. Error"],
-  z        = coefs[, "z value"],
-  p        = coefs[, "Pr(>|z|)"],
-  CI_lower = coefs[, "Estimate"] - 1.96 * coefs[, "Std. Error"],
-  CI_upper = coefs[, "Estimate"] + 1.96 * coefs[, "Std. Error"]
+## ----- Fixed effects with 95% CI & OR -----
+
+# 提取固定效应
+coefs_m1 <- tidy(m1, effects = "fixed", conf.int = TRUE, conf.method = "Wald")
+# 一般会有列：term, estimate, std.error, statistic, p.value, conf.low, conf.high
+
+# 组合结果表：logit 系数 + CI + OR
+results_m1 <- coefs_m1 %>%
+  mutate(
+    OR      = exp(estimate),
+    OR_low  = exp(conf.low),
+    OR_high = exp(conf.high)
+  ) %>%
+  transmute(
+    term,
+    B        = estimate,
+    SE       = std.error,
+    z        = statistic,
+    P        = p.value,
+    CI_lower = conf.low,
+    CI_upper = conf.high,
+    OR,
+    OR_low,
+    OR_high
+  )
+
+# 打印检查
+options(scipen = 999)  # 关科学计数法
+print(results_m1, digits = 4)
+
+# 导出为 CSV（改成你想要的路径）
+write.csv(
+  results_m1,
+  "~/Desktop/model_results_GLMM3_m1.csv",
+  row.names = FALSE
 )
-
-round(coefs_CI, 3)
-
 ```
+
 
 ```{r}
 # ============ Model Comparison (Test for Interaction) ============
@@ -199,48 +213,70 @@ pairs(emmeans(m1, ~ Emotion_selfreport | Agent_type, type="response"))
 
 ```
 
-
 ```{r}
-# (1) Compute conditional means for each Agent_type × Emotion_selfreport combination
-emm_tab <- emmeans(m1, ~ Emotion_selfreport | Agent_type, type = "response")
+library(emmeans)
+library(dplyr)
 
-# (2) Conduct pairwise comparisons (Yes vs. No) with CI and p-values
-ci_tab <- summary(
-  pairs(emm_tab, reverse = TRUE),
-  infer = c(TRUE, TRUE)
+## ----- 估计边际均值（仅用于 pairwise，默认是 logit 尺度）-----
+emm_logit <- emmeans(m1, ~ Agent_type * Emotion_selfreport)
+
+## 1) 在每个 Emotion_selfreport 条件下，比较不同 Agent_type
+posthoc_agent <- pairs(
+  emm_logit,
+  by = "Emotion_selfreport"   # 在每个 Emotion 条件下比较 Agent
+) %>%
+  summary(infer = TRUE) %>%    # infer = TRUE 给 95% CI 和 z, p
+  as.data.frame() %>%
+  mutate(effect = "Agent_type within Emotion_selfreport")
+
+## 2) 在每个 Agent_type 下，比较 Emotion_selfreport (Yes vs No)
+posthoc_emotion <- pairs(
+  emm_logit,
+  by = "Agent_type"           # 在每个 Agent 下比较 Emotion
+) %>%
+  summary(infer = TRUE) %>%
+  as.data.frame() %>%
+  mutate(effect = "Emotion_selfreport within Agent_type")
+
+## 3) 合并 & 标准化列名
+posthoc_all <- bind_rows(posthoc_agent, posthoc_emotion)
+
+results_posthoc_m1 <- posthoc_all %>%
+  rename(
+    B        = estimate,   # log-odds 差值
+    SE       = SE,
+    z        = z.ratio,
+    P        = p.value,
+    CI_lower = asymp.LCL,  # logit 95% CI 下界
+    CI_upper = asymp.UCL   # logit 95% CI 上界
+  ) %>%
+  mutate(
+    OR       = exp(B),
+    OR_low   = exp(CI_lower),
+    OR_high  = exp(CI_upper)
+  ) %>%
+  # 保留关键信息列
+  select(
+    Emotion_selfreport,   # 或者你更想放在 contrast 前面
+    Agent_type,
+    contrast,
+    effect,
+    B, SE, CI_lower, CI_upper,
+    z, P,
+    OR, OR_low, OR_high
+  )
+
+# 打印检查
+print(results_posthoc_m1, digits = 4)
+
+# 导出为 CSV
+write.csv(
+  results_posthoc_m1,
+  "~/Desktop/posthoc_results_GLMM3_m1.csv",
+  row.names = FALSE
 )
 
-print(ci_tab)
-# Columns include odds.ratio, lower.CL, upper.CL, and p.value
-
-
 ```
-
-
-```{r}
-# ============ Extended Model with Higher-Order Interactions ============
-expdata_complete$Agent_type <- factor(expdata_complete$Agent_type)
-expdata_complete$Agent_type <- relevel(expdata_complete$Agent_type, ref = "Humans")
-
-m2 <- glmer(
-  choice ~ Agent_type * Emotion_selfreport * amount_of_cost_c * amount_of_allocation_c
-            - Agent_type:Emotion_selfreport:amount_of_cost_c:amount_of_allocation_c
-            + (1 | ID),
-  data = expdata_complete,
-  family = binomial(link = "logit"),
-  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
-)
-
-cat("\n===== Model 3 (Extended Interaction Model) Results =====\n")
-print(summary(m2))
-
-```
-
-
-
-
-
-
 
 
 
@@ -375,8 +411,6 @@ print(results_table, digits = 3)
 
 # Export to CSV if needed
 write.csv(results_table, "~/Desktop/model_results_m6.csv", row.names = FALSE)
-
-
 ```
 
 
@@ -442,8 +476,6 @@ print(results_clean, digits = 3)
 
 # ====== Optional: Export to CSV ======
 write.csv(posthoc_results, "~/Desktop/posthoc_results_m6.csv", row.names = FALSE)
-
-
 ```
 
 
