@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a comprehensive research study on emotion analysis in Large Language Models (LLMs). Through multi-round experiments, the project explores LLM decision-making behavior under persona and emotion self-reporting conditions, conducting in-depth statistical analysis and model interpretability studies. To obtain the complete dataset, please contact the suthors for the download link and password.
+This project is a comprehensive research study on emotion analysis in Large Language Models (LLMs). Through multi-round experiments, the project explores LLM decision-making behavior under persona and emotion self-reporting conditions, conducting in-depth statistical analysis and model interpretability studies. To obtain the complete dataset, please contact the authors for the download link and password.
 
 ---
 
