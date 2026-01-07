@@ -17,11 +17,27 @@ def format_p_value(p_value):
         return f"= {p_value:.3f}"
 
 def prepare_data():
-    """Prepare data"""
+    """
+    Prepare data
+    
+    DATA FILE NOTE:
+    This script uses demo.xlsx, which contains a subset of the full dataset
+    (5 participants per group: human, gpt3.5, o3, V3, R1).
+    
+    To use the full dataset:
+    1. Access the full dataset at: [INSERT LINK HERE]
+    2. Download the file named "Study1_experimental_data.xlsx"
+    3. Replace "demo.xlsx" with "Study1_experimental_data.xlsx" in the read_excel() call below
+    
+    Note: When switching to full data, you may need to adjust:
+    - Model convergence settings (method parameter in fit() calls)
+    - Computation time may increase significantly
+    - Memory usage may increase
+    """
     print("=== Data Preparation ===")
     
-    # Read data
-    df = pd.read_excel('merged_all_data.xlsx')
+    # Read data - Using demo data - see DATA FILE NOTE above for full data access
+    df = pd.read_excel('demo.xlsx')
     df_clean = df.dropna(subset=['choice', 'amount_of_allocation', 'amount_of_cost', 'group', 'id', 'trial'])
     
     # Create unique participant IDs
@@ -440,7 +456,7 @@ def main():
     
     # Save as Excel file
     print("\nSaving tables to Excel file...")
-    with pd.ExcelWriter('three_way_interaction_complete_report.xlsx', engine='openpyxl') as writer:
+    with pd.ExcelWriter('GLMM2_choice_category_results.xlsx', engine='openpyxl') as writer:
         main_effects_table.to_excel(writer, sheet_name='Main_Effects', index=False)
         two_way_table.to_excel(writer, sheet_name='Two_Way_Interactions', index=False)
         three_way_table.to_excel(writer, sheet_name='Three_Way_Interactions', index=False)
@@ -461,7 +477,7 @@ def main():
     print(model_summary_table.to_string(index=False))
     
     print(f"\n=== Files Saved ===")
-    print("1. three_way_interaction_complete_report.xlsx - Complete report in Excel format")
+    print("1. GLMM2_choice_category_results.xlsx - Complete report in Excel format")
 
 if __name__ == "__main__":
     main()

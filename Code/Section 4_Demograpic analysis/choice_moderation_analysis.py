@@ -15,8 +15,11 @@ warnings.filterwarnings('ignore')
 
 def load_data():
     """Load data"""
+    import os
     try:
-        df = pd.read_excel('data_with_grouping_variables.xlsx')
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(script_dir, 'Study1_data_with_grouping_variables.xlsx')
+        df = pd.read_excel(file_path)
         print(f"Data loaded successfully, shape: {df.shape}")
         return df
     except Exception as e:

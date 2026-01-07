@@ -165,10 +165,27 @@ def create_model_info_table(result, dependent_var_name, n_groups):
 
 
 def main():
+    """
+    Main function to generate regression results tables.
+    
+    DATA FILE NOTE:
+    This script uses demo.xlsx, which contains a subset of the full dataset
+    (5 participants per group: human, gpt3.5, o3, V3, R1).
+    
+    To use the full dataset:
+    1. Access the full dataset at: [INSERT LINK HERE]
+    2. Download the file named "Study1_experimental_data.xlsx"
+    3. Replace "demo.xlsx" with "Study1_experimental_data.xlsx" in the read_excel() call below
+    
+    Note: When switching to full data, you may need to adjust:
+    - Model convergence settings (method parameter in fit() calls)
+    - Computation time may increase significantly
+    - Sample size statistics (n_groups) will change
+    """
     print("=== Generate Regression Results Three-line Tables (Corrected Encoding) ===\n")
     
-    # Load data
-    df = pd.read_excel('merged_all_data.xlsx')
+    # Load data - Using demo data - see DATA FILE NOTE above for full data access
+    df = pd.read_excel('demo.xlsx')
     df_clean = df.dropna(subset=['AA_valence', 'AA_arousal', 'amount_of_allocation', 'group', 'id', 'trial'])
     
     # Create unique participant ID
@@ -199,7 +216,7 @@ def main():
     
     # Save to Excel file
     print("\nSaving tables to Excel file...")
-    with pd.ExcelWriter('regression_tables_for_paper.xlsx', engine='openpyxl') as writer:
+    with pd.ExcelWriter('LMM1_emotion_results.xlsx', engine='openpyxl') as writer:
         valence_regression_table.to_excel(writer, sheet_name='Valence_Regression', index=False)
         arousal_regression_table.to_excel(writer, sheet_name='Arousal_Regression', index=False)
         valence_model_info.to_excel(writer, sheet_name='Valence_Model_Info', index=False)
@@ -220,7 +237,7 @@ def main():
     print(arousal_model_info.to_string(index=False))
     
     print(f"\n=== Files Saved ===")
-    print("1. regression_tables_for_paper.xlsx - Tables in Excel format")
+    print("1. LMM1_emotion_results.xlsx - Tables in Excel format")
 
 if __name__ == "__main__":
     main()

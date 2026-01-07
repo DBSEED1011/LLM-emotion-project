@@ -331,8 +331,10 @@ Each section has independent analysis scripts. Refer to README files in each dir
 ### Data Files
 
 - **Input Data**: Located in `Code/Section 1_experiment of LLM/prompt/`
-  - `demographic data.xlsx`: Human demographic information (n=1017)
+  - `Study1_demographic_data.xlsx`: Human demographic information (n=1017)
   - `Emo&TPP data.xlsx`: Actual human experiment settings
+  
+  **Note**: The data files `Study1_demographic_data.xlsx` and `Emo&TPP data.xlsx` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
 - **Source Data for Figures**: Located in `SourceData/`
   - `SourceData_Figure2.xlsx`
   - `SourceData_Figure3.xlsx`
@@ -340,6 +342,37 @@ Each section has independent analysis scripts. Refer to README files in each dir
   - `SourceData_Figure5.xlsx`
 - **Gender Data**: Located in `SourceData/`
   - `disaggregated_gender_data.xlsx`: Gender-disaggregated data for demographic analysis
+- **Reasoning Data**: Located in `Code/Section 3_CoT_mediation/`
+  - `Reasoning_example.xlsx`: Example dataset illustrating reasoning annotations structure
+  - `Reasoning_with_emotions.xlsx`: Reasoning content paired with emotional information
+  
+  **Note**: The data files `Reasoning_example.xlsx` and `Reasoning_with_emotions.xlsx` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
+- **Demographic Analysis Data**: Located in `Code/Section 4_Demograpic analysis/`
+  - `Study1_data_with_grouping_variables.xlsx`: Input data file containing demographic variables and grouping information
+  
+  **Note**: The data file `Study1_data_with_grouping_variables.xlsx` is not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
+- **SHAP Analysis Data**: Located in `Code/Section 5_SHAP/`
+  - `Study1_demographic_data.xlsx`: Demographic information for SHAP analysis
+  - `merged_all_models_persona.csv`: Merged data from all LLM models with persona conditions
+  
+  **Note**: The data files `Study1_demographic_data.xlsx` and `merged_all_models_persona.csv` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
+- **No Persona Analysis Data**: Located in `Code/Section 6_Nopersona/`
+  - `merged_all_models_persona.csv`: Merged data from all LLM models with persona conditions
+  - `merged_all_models_nopersona.csv`: Merged data from all LLM models without persona conditions
+  
+  **Note**: The data files `merged_all_models_persona.csv` and `merged_all_models_nopersona.csv` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
+- **Temperature Analysis Data**: Located in `Code/Section 7_Temperature/`
+  - `merged_all_models_T0.csv`: Merged data from all LLM models at temperature 0
+  - `merged_all_models_T1.csv`: Merged data from all LLM models at temperature 1
+  
+  **Note**: The data files `merged_all_models_T0.csv` and `merged_all_models_T1.csv` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
+- **Study 2 Analysis Data**:
+  - **Study 2a**: Located in `Code/Study 2/Study 2a_emo vs. no/`
+    - `Study2a_experimental_data_emo_vs_no.xlsx`: Trial-level dataset for GLMM analyses comparing emotion vs. no emotion conditions
+  - **Study 2b**: Located in `Code/Study 2/Study 2b_emo vs. math/`
+    - `Study2b_experimental_data_emo_vs_math.xlsx`: Input data file for comparing emotion vs. math conditions
+  
+  **Note**: The data files `Study2a_experimental_data_emo_vs_no.xlsx` and `Study2b_experimental_data_emo_vs_math.xlsx` are not included in this repository due to privacy considerations. Please contact the authors to obtain the data download link from the cloud storage.
 
 ---
 
@@ -432,7 +465,7 @@ Statistical Analysis → Visualization
 ```
 
 ### Input Data
-- `demographic data.xlsx`: Human participant demographic information (n=1017)
+- `Study1_demographic_data.xlsx`: Human participant demographic information (n=1017)
 - `Emo&TPP data.xlsx`: Experimental trial parameters
 
 ### Output Data

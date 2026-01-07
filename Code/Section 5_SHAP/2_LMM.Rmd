@@ -8,6 +8,7 @@ output: html_document
 
 ```{r}
 library(readr)
+library(readxl)
 library(dplyr)
 library(tidyr)
 library(bruceR)
@@ -79,7 +80,7 @@ df_avg <- df_human %>%
     .groups = "drop"
   )
 
-demo_df <- read_csv("demographic data.csv", locale = locale(encoding = "GBK"), show_col_types = FALSE)
+demo_df <- read_excel("Study1_demographic_data.xlsx")
 
 merged_df <- left_join(
   df_avg,

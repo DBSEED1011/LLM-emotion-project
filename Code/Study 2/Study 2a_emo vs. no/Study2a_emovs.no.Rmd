@@ -18,7 +18,14 @@ invisible(lapply(packs, library, character.only = TRUE))
 
 ```{r}
 # ============ Read Data ============
-file_path <- file.path( "/Users/daiyiqing/Desktop/LLM-emotion-project-main/Code/Study 2/Study 2a_emo vs. no/study2_GLMM.xlsx")
+# Get script directory and set file path
+# Try to get the directory of the current Rmd file, fallback to working directory
+if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+  script_dir <- dirname(rstudioapi::getActiveDocumentContext()$path)
+} else {
+  script_dir <- getwd()
+}
+file_path <- file.path(script_dir, "Study2a_experimental_data_emo_vs_no.xlsx")
 df <- readxl::read_excel(file_path)
 
 cat("Column names:\n"); print(names(df))
@@ -285,7 +292,8 @@ write.csv(
 ```{r}
 # GLMM4
 # ============ Read Data ============
-file_path <- "~/Desktop/study2_GLMM.xlsx"
+# Use the same file path as above (sheet 2 for GLMM4)
+file_path <- file.path(script_dir, "Study2a_experimental_data_emo_vs_no.xlsx")
 df <- readxl::read_excel(path = file_path, sheet = 2)
 
 cat("Column names:\n"); print(names(df))

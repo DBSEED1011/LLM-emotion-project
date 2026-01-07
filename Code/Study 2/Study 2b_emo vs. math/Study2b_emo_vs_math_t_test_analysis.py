@@ -17,8 +17,12 @@ plt.rcParams['axes.unicode_minus'] = False
 
 def load_and_filter_data():
     """Load data and filter stage=2 data"""
+    import os
     print("Loading data...")
-    df = pd.read_excel('Study2b_emo_vs_math.xlsx', sheet_name='bytrial')
+    # Get script directory and set file path
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, 'Study2b_experimental_data_emo_vs_math.xlsx')
+    df = pd.read_excel(file_path, sheet_name='bytrial')
     print(f"Original data shape: {df.shape}")
     
     # Filter stage=2 data

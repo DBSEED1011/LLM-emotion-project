@@ -28,7 +28,7 @@ average_values = {
 }
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, "demographic data.xlsx")
+file_path = os.path.join(current_dir, "Study1_demographic_data.xlsx")
 sheet_name = "n=1017"   
 df = pd.read_excel(file_path, sheet_name=sheet_name)
 

@@ -26,11 +26,17 @@ reported in the manuscript.
         • participant/agent ID
         • trial information
         • reasoning text or chain-of-thought
+    - Note: This data file is not included in this repository due to privacy 
+      considerations. Please contact the authors to obtain the data download 
+      link from the cloud storage.
 
 (3) Reasoning_with_emotions.xlsx
     - Dataset containing reasoning content paired with emotional information.
     - Used for semantic categorization analyses and for plotting reasoning-
       emotion relationships.
+    - Note: This data file is not included in this repository due to privacy 
+      considerations. Please contact the authors to obtain the data download 
+      link from the cloud storage.
 
 
 -----------------------------------------------
@@ -70,6 +76,10 @@ Step 2:
         • Reasoning_with_emotions.xlsx
     are located in the same directory as the Rmd file, or update the file
     paths in the script accordingly.
+    
+    Note: These data files are not included in this repository. Please 
+    contact the authors to obtain the data download link from the cloud 
+    storage before running the analysis.
 
 Step 3:
     Click "Run All" or knit the document:

@@ -19,9 +19,25 @@ library(MuMIn)       # Model selection
 # Set working directory (please modify according to your actual path)
 # setwd("/Users/liuhao/Desktop/behvr patterns-regression")
 
+# ============================================================================
+# DATA FILE NOTE:
+# This script uses demo.xlsx, which contains a subset of the full dataset
+# (5 participants per group: human, gpt3.5, o3, V3, R1).
+# 
+# To use the full dataset:
+# 1. Access the full dataset at: [INSERT LINK HERE]
+# 2. Download the file named "Study1_experimental_data.xlsx"
+# 3. Replace "demo.xlsx" with "Study1_experimental_data.xlsx" in the read_excel() call below
+# 
+# Note: When switching to full data, you may need to adjust:
+# - Model convergence settings (optimizer parameters, maxfun values)
+# - Memory allocation if dataset is very large
+# - Computation time may increase significantly
+# ============================================================================
+
 # 1. Data loading and preprocessing
 cat("Loading data...\n")
-data <- read_excel("merged_all_data.xlsx")
+data <- read_excel("demo.xlsx")  # Using demo data - see DATA FILE NOTE above for full data access
 
 cat("Basic data information:\n")
 cat("Data shape:", dim(data), "\n")
@@ -418,7 +434,7 @@ writeData(wb, "Marginal Effects Analysis", pairs_df, startRow = nrow(marginal_ef
 
 
 # 11. Save Excel file to current directory
-file_path <- "Best_Model_Results.xlsx"
+file_path <- "GLMM1_choice_continuous_results.xlsx"
 saveWorkbook(wb, file_path, overwrite = TRUE)
 cat("Excel file saved as:", file_path, "\n")
 cat("Contains the following worksheets:\n")
